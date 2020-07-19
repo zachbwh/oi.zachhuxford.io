@@ -1,0 +1,58 @@
+.profile-images {
+	position: relative;
+
+	&:before {
+		display: block;
+		content: "";
+		width: 100%;
+		padding-top: (5 / 4) * 100%;
+	}
+	> .profile-images-inner {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	.profile-images-controls {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		z-index: 20;
+		display: flex;
+
+		.profile-images-left-control,
+		.profile-images-right-control {
+			display: inline-flex;
+			opacity: 0;
+			transition: opacity 200ms linear;
+			flex-direction: column;
+			justify-content: center;
+			height: 100%;
+			width: 50%;
+			font-size: 1.5em;
+		}
+
+		.profile-images-right-control svg {
+			position: absolute;
+			right: 0;
+		}
+
+		svg {
+			padding: 0 10px;
+		}
+	}
+
+	.profile-images-controls:hover:not(.last-image) {
+		.profile-images-right-control {
+			opacity: 1;
+		}
+	}
+
+	.profile-images-controls:hover:not(.first-image) {
+		.profile-images-left-control {
+			opacity: 1;
+		}
+	}
+}

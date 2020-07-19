@@ -1,0 +1,15 @@
+.profile-image-indicator {
+	height: 4px;
+	display: inline-block;
+	padding: 0 2px;
+	border-radius: 2px;
+
+	&.active {
+		background-color: #ffffff;
+	}
+
+	&.inactive {
+		background-color: #32363d;
+		opacity: 0.2;
+	}
+}
