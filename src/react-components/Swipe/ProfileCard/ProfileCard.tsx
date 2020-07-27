@@ -38,6 +38,7 @@ class ProfileCard extends React.Component<ProfileCardProps, ProfileCardState> {
 
 	downOnCardStartTime: Date | null = null
 	timeDownOnCard: number | null = null
+	referenceTouch: React.Touch | null = null
 
 	handleProfileCardMouseDown(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 		this.downOnCard = true;
@@ -71,6 +72,7 @@ class ProfileCard extends React.Component<ProfileCardProps, ProfileCardState> {
 		this.downOnCard = true;
 		this.timeDownOnCard = null;
 		this.downOnCardStartTime = new Date();
+		this.referenceTouch = event.targetTouches.item(0);
 		
 		this.setState({downOnCard: true});
 	}
@@ -80,9 +82,8 @@ class ProfileCard extends React.Component<ProfileCardProps, ProfileCardState> {
 			return;
 		}
 
-		var newDeltaX = this.state.deltaX + event.changedTouches[0].screenX,
-			newDeltaY = this.state.deltaY + event.targetTouches[0].clientY;
-
+		var newDeltaX = event.targetTouches[0].pageX - (this.referenceTouch?.pageX ?? 0),
+			newDeltaY = event.targetTouches[0].pageY - (this.referenceTouch?.pageY ?? 0);
 		this.updateCardTransform(newDeltaX, newDeltaY);
 	}
 
@@ -137,6 +138,8 @@ class ProfileCard extends React.Component<ProfileCardProps, ProfileCardState> {
 				onTouchMove={this.handleProfileCardTouchMove.bind(this)}
 				onTouchEnd={this.handleProfileCardTouchEnd.bind(this)}
 			>
+				<div className="swipe-indicator nope" style={{opacity: -this.state.swipeProgress}}><h3>NOPE</h3></div>
+				<div className="swipe-indicator like" style={{opacity: this.state.swipeProgress}}><h3>LIKE</h3></div>
 				{cardContent}
 			</div>
 		);

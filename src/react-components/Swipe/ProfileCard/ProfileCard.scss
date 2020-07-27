@@ -12,6 +12,34 @@
 	position: relative;
 	will-change: transform;
 	transition: transform ease-in-out 200ms;
+
+	.swipe-indicator {
+		position: absolute;
+		z-index: 100;
+		border: 4px solid;
+		border-radius: 4px;
+		font-size: 1.45em;
+		font-weight: 600;
+		line-height: 1;
+		padding: 0 4px;
+		top: 10%;
+		opacity: 0;
+		will-change: opacity;
+	}
+
+	.like {
+		color: #01df8a;
+		border-color: #01df8a;
+		transform: rotate(-20deg);
+		left: 10%;
+	}
+
+	.nope {
+		color: #ff4848;
+		border-color: #ff4848;
+		transform: rotate(20deg);
+		right: 10%;
+	}
 }
 
 .profile-card.down-on-card {
