@@ -19,10 +19,9 @@
 	background-color: #ffffff;
 
 	.profile-body {
-		
 		background-color: #ffffff;
 		color: #2c2c2c;
-		// height: 1000px;
+		position: relative;
 
 		.section {
 			padding: 10px 16px;
@@ -51,6 +50,10 @@
 			&:last-child {
 				margin-bottom: 10px;
 			}
+
+			.svg-inline--fa.fa-w-16 {
+				width: 1.125em;
+			}
 		}
 
 		p.biography {
@@ -63,9 +66,32 @@
 			font-family: sans-serif;
 		}
 
-		.svg-inline--fa.fa-w-16 {
-			width: 1.125em;
+		.toggle-view-mode {
+			position: absolute;
+			top: -30px;
+			right: 5%;
+			z-index: 20;
 
+			.circle {
+				height: 50px;
+				width: 50px;
+				border-radius: 25px;
+				color: #ff2e38;
+				background-color: #ffffff;
+				font-size: 50px;
+				transition: transform 200ms;
+				transform: scale(0.92);
+
+				svg {
+					display: block;
+					transform: scale(1.05);
+				}
+			}
+
+			.circle:hover {
+				transform: scale(1);
+				cursor: pointer;
+			}
 		}
 	}
 }

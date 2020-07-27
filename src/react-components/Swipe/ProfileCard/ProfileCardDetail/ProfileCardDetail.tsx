@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ProfileCardDetail.scss'
 
 import Moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faBriefcase } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faBriefcase, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons'
 
 import ProfileImages from '../ProfileImages/ProfileImages'
 
 import IProfile from 'typescript-types/IProfile';
 
-const ProfileCardDetail: React.FunctionComponent<{profile: IProfile, toggleViewMode: any;}> = props => {
+const ProfileCardDetail: React.FunctionComponent<{profile: IProfile, imageIndex: number, setImageIndex: any, toggleViewMode: any;}> = props => {
 	const age = Moment(new Date()).diff(props.profile.BirthDate, 'years');
 
 	return (
 		<div className="profile-card-detail">
-			<ProfileImages profileImages={props.profile.ProfileImages}></ProfileImages>
+			<ProfileImages profileImages={props.profile.ProfileImages} imageIndex={props.imageIndex} setImageIndex={props.setImageIndex}></ProfileImages>
 			<div className="profile-body">
 				<div className="section">
-					<h3>{props.profile.ShortName} <span className="age">{age}</span></h3>
+					<h3 className="profile-header">{props.profile.ShortName} <span className="age">{age}</span></h3>
 					<div>
 						<p>
 							<FontAwesomeIcon icon={faBriefcase}></FontAwesomeIcon> {props.profile.Occupation}
@@ -34,6 +34,9 @@ const ProfileCardDetail: React.FunctionComponent<{profile: IProfile, toggleViewM
 					</p>
 				</div>
 				<hr />
+				<div className="toggle-view-mode">
+					<div className="circle" onClick={props.toggleViewMode}><FontAwesomeIcon icon={faArrowAltCircleDown}></FontAwesomeIcon></div>
+				</div>
 			</div>
 		</div>
 	);

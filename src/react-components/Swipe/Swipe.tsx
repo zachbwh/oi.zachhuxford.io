@@ -51,7 +51,7 @@ My name is Zachariah Huxford`,
 			{
 				ImageUrl: "/assets/swipe-images/isolation-April 13, 2020-10.jpg",
 				ImageAltText: "Zach wearing double denim in the dark on his bike",
-				Offset: 0
+				Offset: -30
 			},
 		]
 	}

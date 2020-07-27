@@ -9,4 +9,11 @@
 
 	overflow: hidden;
 	background-color: #ffffff;
+	position: relative;
+	will-change: transform;
+	transition: transform ease-in-out 200ms;
+}
+
+.profile-card.down-on-card {
+	transition: none;
 }

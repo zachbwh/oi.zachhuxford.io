@@ -57,8 +57,8 @@ var imageList = [
 	// "isolation-May 08, 2020-33.jpg", 
 	// "isolation-May 08, 2020-35.jpg"
 ];
-const ProfileImages: React.FunctionComponent<{profileImages: IProfileImage[];}> = props => {
-	const [imageIndex, setImageIndex] = useState(0);
+const ProfileImages: React.FunctionComponent<{profileImages: IProfileImage[], imageIndex: number, setImageIndex: any;}> = props => {
+	const imageIndex = props.imageIndex;
 	const [isFirstImage, setIsFirstImage] = useState(imageIndex <= 0);
 	const [isLastImage, setIsLastImage] = useState(imageIndex >= props.profileImages.length - 1);
 
@@ -66,20 +66,24 @@ const ProfileImages: React.FunctionComponent<{profileImages: IProfileImage[];}> 
 		var newImageIndex = imageIndex;
 		if (imageIndex > 0) {
 			newImageIndex = imageIndex - 1;
-			setImageIndex(newImageIndex);
+			setIsFirstImage(newImageIndex <= 0);
+			setIsLastImage(newImageIndex >= props.profileImages.length - 1);
+			if (props.setImageIndex) {
+				props.setImageIndex(newImageIndex);
+			}
 		}
-		setIsFirstImage(newImageIndex <= 0);
-		setIsLastImage(newImageIndex >= props.profileImages.length - 1);
 	}
 
 	const nextImage = function() {
 		var newImageIndex = imageIndex;
 		if (imageIndex < props.profileImages.length - 1) {
 			newImageIndex = imageIndex + 1;
-			setImageIndex(newImageIndex);
+			setIsFirstImage(newImageIndex <= 0);
+			setIsLastImage(newImageIndex >= props.profileImages.length - 1);
+			if (props.setImageIndex) {
+				props.setImageIndex(newImageIndex);
+			}
 		}
-		setIsFirstImage(newImageIndex <= 0);
-		setIsLastImage(newImageIndex >= props.profileImages.length - 1);
 	}
 
 	var profileImagesElements = props.profileImages.map((profileImage, index) => (

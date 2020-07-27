@@ -1,39 +1,57 @@
 .profile-card-preview {
-	background-color: #ffffff;
+	height: 100%;
+
+	@keyframes text-fade-in-right {
+		from {opacity: 0;transform: translateX(20px);}
+		to {opacity: 1;transform: translateX(0px);}
+	}
+
+	@keyframes text-fade-in-left {
+		from {opacity: 0;transform: translateX(-20px);}
+		to {opacity: 1;transform: translateX(0px);}
+	}
 
 	.profile-body {
-		
-		background-color: #ffffff;
-		color: #2c2c2c;
-		// height: 1000px;
+		position: absolute;
+		bottom: 0px;
+		z-index: 30;
+		width: 100%;
+		color: #ffffff;
+		padding-top: 50px;
+		background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.5));
+		text-shadow: 0 1px 1px rgba(0,0,0,0.12);
+		cursor: pointer;
 
 		.section {
 			padding: 10px 16px;
-		}
 
-		hr {
-			height: 1px;
-			margin: -1px 0 0 0;
-			border-width: 0;
-			background-color: #e8e8e8;
+			.profile-header {
+				position: absolute;
+				bottom: 0px;
+			}
 		}
 
 		h3 {
 			margin: 0;
 			font-weight: 700;
+			transition: transform 200ms;
 		}
 
 		p {
 			margin: 5px 0;
-			color: #545454;
+			line-height: 1.8;
+		}
 
-			&:first-child {
-				margin-top: 10px;
-			}
+		.text-fade-in-right {
+			animation-name: text-fade-in-right;
+			animation-duration: 500ms;
+			animation-iteration-count: 1;
+		}
 
-			&:last-child {
-				margin-bottom: 10px;
-			}
+		.text-fade-in-left {
+			animation-name: text-fade-in-left;
+			animation-duration: 500ms;
+			animation-iteration-count: 1;
 		}
 
 		p.biography {
@@ -48,7 +66,6 @@
 
 		.svg-inline--fa.fa-w-16 {
 			width: 1.125em;
-
 		}
 	}
 }
