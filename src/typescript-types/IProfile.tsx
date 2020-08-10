@@ -12,7 +12,8 @@ interface IProfile {
 	InterestedIn: string,
 	Occupation: string,
 	Locality: ILocailty,
-	ProfileImages: IProfileImage[]
+	ProfileImages: IProfileImage[],
+	Status: "candidate" | "accepted" | "rejected"
 }
 
 export default IProfile;

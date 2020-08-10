@@ -22,6 +22,7 @@ interface ProfileCardState {
 
 const maxCardRotate = 25;
 const maxTimeOnCardToClick = 250;
+const cardSpeedToAcceptOrReject = 0.3;
 
 class ProfileCard extends React.Component<ProfileCardProps, ProfileCardState> {
 	state: ProfileCardState = {
@@ -65,7 +66,17 @@ class ProfileCard extends React.Component<ProfileCardProps, ProfileCardState> {
 		this.downOnCardStartTime = null;
 
 		this.setState({downOnCard: false});
+
+		var speed = Math.abs(this.state.deltaX) / this.timeDownOnCard;
+		console.log(speed);
+
+		if (this.state.swipeProgress > 0.5 || (speed > cardSpeedToAcceptOrReject && this.state.swipeProgress > 0.05)) {
+			this.accept();
+		} else if (this.state.swipeProgress < -0.5  || (speed > cardSpeedToAcceptOrReject && this.state.swipeProgress < 0.05)) {
+			this.reject();
+		} else {
 		this.updateCardTransform(0, 0);
+	}
 	}
 
 	handleProfileCardTouchStart(event: React.TouchEvent<HTMLDivElement>) {
@@ -93,7 +104,17 @@ class ProfileCard extends React.Component<ProfileCardProps, ProfileCardState> {
 		this.downOnCardStartTime = null;
 		
 		this.setState({downOnCard: false});
+
+		var speed = Math.abs(this.state.deltaX) / this.timeDownOnCard;
+		console.log(speed);
+
+		if (this.state.swipeProgress > 0.5 || (speed > cardSpeedToAcceptOrReject && this.state.swipeProgress > 0.05)) {
+			this.accept();
+		} else if (this.state.swipeProgress < -0.5  || (speed > cardSpeedToAcceptOrReject && this.state.swipeProgress < 0.05)) {
+			this.reject();
+		} else {
 		this.updateCardTransform(0, 0);
+	}
 	}
 
 	updateCardTransform(newDeltaX: number, newDeltaY: number) {
@@ -114,6 +135,27 @@ class ProfileCard extends React.Component<ProfileCardProps, ProfileCardState> {
 			return;
 		}
 		this.setState({imageIndex: newImageIndex});
+	}
+
+	setProgress(progress: number) {
+		var windowWidth = window.innerWidth,
+			windowHeight = window.innerHeight,
+			newDeltaX = windowWidth * progress,
+			newDeltaY = windowHeight * Math.abs(progress) * -0.1;
+
+		this.setState({
+			swipeProgress: progress,
+			deltaX: newDeltaX,
+			deltaY: newDeltaY
+		})
+	}
+	
+	accept() {
+		this.setProgress(1.2);
+	}
+
+	reject() {
+		this.setProgress(-1.2);
 	}
 
 	setViewMode(newViewMode: "preview" | "detail") {
