@@ -1,4 +1,7 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { acceptProfileAsync, rejectProfileAsync } from 'redux/slices/SwipeSlice'
+
 import './ProfileCard.scss'
 
 import ProfileCardDetail from './ProfileCardDetail/ProfileCardDetail'
@@ -24,168 +27,151 @@ const maxCardRotate = 25;
 const maxTimeOnCardToClick = 250;
 const cardSpeedToAcceptOrReject = 0.3;
 
-class ProfileCard extends React.Component<ProfileCardProps, ProfileCardState> {
-	state: ProfileCardState = {
-		downOnCard: false,
-		viewMode: "preview",
-		deltaX: 0,
-		deltaY: 0,
-		rotate: 0,
-		swipeProgress: 0,
-		imageIndex: 0
+const ProfileCard: React.FunctionComponent<ProfileCardProps> = props => {
+	const [downOnCard, setDownOnCard] = useState(false);
+	const [viewMode, setViewMode] = useState<"preview" | "detail">("preview");
+	const [deltaX, setDeltaX] = useState(0);
+	const [deltaY, setDeltaY] = useState(0);
+	const [rotate, setRotate] = useState(0);
+	const [swipeProgress, setSwipeProgress] = useState(0);
+	const [imageIndex, setImageIndex] = useState(0);
+
+	const [downOnCardStartTime, setDownOnCardStartTime] = useState<Date | null>(null);
+	// time down on card should be calculated each render cycle
+	const [referenceTouch, setReferenceTouch] = useState<React.Touch | null>(null);
+
+	const dispatch = useDispatch();
+
+	const handleProfileCardMouseDown = function(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+		setDownOnCard(true);
+		setDownOnCardStartTime(new Date());
 	}
 
-	downOnCard: boolean = false
-
-	downOnCardStartTime: Date | null = null
-	timeDownOnCard: number | null = null
-	referenceTouch: React.Touch | null = null
-
-	handleProfileCardMouseDown(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-		this.downOnCard = true;
-		this.timeDownOnCard = null;
-		this.downOnCardStartTime = new Date();
-		
-		this.setState({downOnCard: true});
-	}
-
-	handleProfileCardMouseMove(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-		if (!this.downOnCard || this.state.viewMode === "detail") {
+	const handleProfileCardMouseMove = function(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+		if (!downOnCard || viewMode === "detail") {
 			return;
 		}
 
-		var newDeltaX = this.state.deltaX + event.movementX,
-			newDeltaY = this.state.deltaY + event.movementY;
+		var newDeltaX = deltaX + event.movementX,
+			newDeltaY = deltaY + event.movementY;
 
-		this.updateCardTransform(newDeltaX, newDeltaY);
+		updateCardTransform(newDeltaX, newDeltaY);
 	}
 
-	handleProfileCardMouseUp(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-		this.downOnCard = false;
-		this.timeDownOnCard = Date.now() - (this.downOnCardStartTime?.getTime() ?? 0);
-		this.downOnCardStartTime = null;
+	const handleProfileCardMouseUp = function(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+		const timeDownOnCard = Date.now() - (downOnCardStartTime?.getTime() ?? 0);
 
-		this.setState({downOnCard: false});
+		var speed = Math.abs(deltaX) / timeDownOnCard;
 
-		var speed = Math.abs(this.state.deltaX) / this.timeDownOnCard;
-		console.log(speed);
-
-		if (this.state.swipeProgress > 0.5 || (speed > cardSpeedToAcceptOrReject && this.state.swipeProgress > 0.05)) {
-			this.accept();
-		} else if (this.state.swipeProgress < -0.5  || (speed > cardSpeedToAcceptOrReject && this.state.swipeProgress < 0.05)) {
-			this.reject();
+		if (swipeProgress > 0.5 || (speed > cardSpeedToAcceptOrReject && swipeProgress > 0.05)) {
+			accept();
+		} else if (swipeProgress < -0.5  || (speed > cardSpeedToAcceptOrReject && swipeProgress < 0.05)) {
+			reject();
 		} else {
-		this.updateCardTransform(0, 0);
-	}
+			updateCardTransform(0, 0);
+		}
+
+		setDownOnCard(false);
 	}
 
-	handleProfileCardTouchStart(event: React.TouchEvent<HTMLDivElement>) {
-		this.downOnCard = true;
-		this.timeDownOnCard = null;
-		this.downOnCardStartTime = new Date();
-		this.referenceTouch = event.targetTouches.item(0);
-		
-		this.setState({downOnCard: true});
+	const handleProfileCardTouchStart = function(event: React.TouchEvent<HTMLDivElement>) {
+		setDownOnCard(true);
+		setDownOnCardStartTime(new Date());
+		setReferenceTouch(event.targetTouches.item(0))
 	}
 
-	handleProfileCardTouchMove(event: React.TouchEvent<HTMLDivElement>) {
-		if (!this.downOnCard || this.state.viewMode === "detail") {
+	const handleProfileCardTouchMove = function(event: React.TouchEvent<HTMLDivElement>) {
+		if (!downOnCard || viewMode === "detail") {
 			return;
 		}
 
-		var newDeltaX = event.targetTouches[0].pageX - (this.referenceTouch?.pageX ?? 0),
-			newDeltaY = event.targetTouches[0].pageY - (this.referenceTouch?.pageY ?? 0);
-		this.updateCardTransform(newDeltaX, newDeltaY);
+		var newDeltaX = event.targetTouches[0].pageX - (referenceTouch?.pageX ?? 0),
+			newDeltaY = event.targetTouches[0].pageY - (referenceTouch?.pageY ?? 0);
+		updateCardTransform(newDeltaX, newDeltaY);
 	}
 
-	handleProfileCardTouchEnd(event: React.TouchEvent<HTMLDivElement>) {
-		this.downOnCard = false;
-		this.timeDownOnCard = Date.now() - (this.downOnCardStartTime?.getTime() ?? 0);
-		this.downOnCardStartTime = null;
-		
-		this.setState({downOnCard: false});
+	const handleProfileCardTouchEnd = function(event: React.TouchEvent<HTMLDivElement>) {
+		const timeDownOnCard = Date.now() - (downOnCardStartTime?.getTime() ?? 0);
 
-		var speed = Math.abs(this.state.deltaX) / this.timeDownOnCard;
+		var speed = Math.abs(deltaX) / timeDownOnCard;
 		console.log(speed);
 
-		if (this.state.swipeProgress > 0.5 || (speed > cardSpeedToAcceptOrReject && this.state.swipeProgress > 0.05)) {
-			this.accept();
-		} else if (this.state.swipeProgress < -0.5  || (speed > cardSpeedToAcceptOrReject && this.state.swipeProgress < 0.05)) {
-			this.reject();
+		if (swipeProgress > 0.5 || (speed > cardSpeedToAcceptOrReject && swipeProgress > 0.05)) {
+			accept();
+		} else if (swipeProgress < -0.5  || (speed > cardSpeedToAcceptOrReject && swipeProgress < 0.05)) {
+			reject();
 		} else {
-		this.updateCardTransform(0, 0);
-	}
+			updateCardTransform(0, 0);
+		}
+
+		setDownOnCard(false);
 	}
 
-	updateCardTransform(newDeltaX: number, newDeltaY: number) {
+	const updateCardTransform = function(newDeltaX: number, newDeltaY: number) {
 		var windowWidth = window.innerWidth,
-			swipeProgress = newDeltaX / (windowWidth / 2);
+			newSwipeProgress = newDeltaX / (windowWidth / 2);
 
-		var newRotate = swipeProgress * maxCardRotate;
-		this.setState({
-			swipeProgress: swipeProgress,
-			rotate: newRotate,
-			deltaX: newDeltaX,
-			deltaY: newDeltaY
-		})
+		var newRotate = newSwipeProgress * maxCardRotate;
+
+		setSwipeProgress(newSwipeProgress);
+		setRotate(newRotate);
+		setDeltaX(newDeltaX);
+		setDeltaY(newDeltaY);
 	}
 
-	setImageIndex(newImageIndex: number) {
-		if (this.downOnCard || (this.timeDownOnCard ?? 0) > maxTimeOnCardToClick) {
+	const trySetImageIndex = function(newImageIndex: number) {
+		const timeDownOnCard = Date.now() - (downOnCardStartTime?.getTime() ?? 0);
+		if ((timeDownOnCard ?? 0) > maxTimeOnCardToClick) {
 			return;
 		}
-		this.setState({imageIndex: newImageIndex});
+		setImageIndex(newImageIndex)
 	}
 
-	setProgress(progress: number) {
+	const setProgress = function(progress: number) {
 		var windowWidth = window.innerWidth,
 			windowHeight = window.innerHeight,
 			newDeltaX = windowWidth * progress,
 			newDeltaY = windowHeight * Math.abs(progress) * -0.1;
 
-		this.setState({
-			swipeProgress: progress,
-			deltaX: newDeltaX,
-			deltaY: newDeltaY
-		})
+		setSwipeProgress(progress);
+		setDeltaX(newDeltaX);
+		setDeltaY(newDeltaY);
 	}
 	
-	accept() {
-		this.setProgress(1.2);
+	const accept = function() {
+		setProgress(1.2);
+
+		dispatch(acceptProfileAsync(props.profile.UserName));
 	}
 
-	reject() {
-		this.setProgress(-1.2);
+	const reject = function() {
+		setProgress(-1.2);
+
+		dispatch(rejectProfileAsync(props.profile.UserName));
 	}
 
-	setViewMode(newViewMode: "preview" | "detail") {
-		this.setState({viewMode: newViewMode});
+	var cardContent;
+
+	if (viewMode === "preview") {
+		cardContent = <ProfileCardPreview profile={props.profile} imageIndex={imageIndex} setImageIndex={trySetImageIndex} toggleViewMode={() => setViewMode("detail")}></ProfileCardPreview>;
+	} else {
+		cardContent = <ProfileCardDetail profile={props.profile} imageIndex={imageIndex} setImageIndex={trySetImageIndex} toggleViewMode={() => setViewMode("preview")}></ProfileCardDetail>;
 	}
 
-	render() {
-		var cardContent;
-
-		if (this.state.viewMode === "preview") {
-			cardContent = <ProfileCardPreview profile={this.props.profile} imageIndex={this.state.imageIndex} setImageIndex={this.setImageIndex.bind(this)} toggleViewMode={() => this.setViewMode("detail")}></ProfileCardPreview>;
-		} else {
-			cardContent = <ProfileCardDetail profile={this.props.profile} imageIndex={this.state.imageIndex} setImageIndex={this.setImageIndex.bind(this)} toggleViewMode={() => this.setViewMode("preview")}></ProfileCardDetail>;
-		}
-
-		return (
-			<div className={`profile-card ${this.state.downOnCard ? "down-on-card" : ""}`} style={{transform: `translate(${this.state.deltaX}px, ${this.state.deltaY}px) rotate(${this.state.rotate}deg)`}}
-				onMouseDown={this.handleProfileCardMouseDown.bind(this)}
-				onMouseMove={this.handleProfileCardMouseMove.bind(this)}
-				onMouseUp={this.handleProfileCardMouseUp.bind(this)}
-				onTouchStart={this.handleProfileCardTouchStart.bind(this)}
-				onTouchMove={this.handleProfileCardTouchMove.bind(this)}
-				onTouchEnd={this.handleProfileCardTouchEnd.bind(this)}
-			>
-				<div className="swipe-indicator nope" style={{opacity: -this.state.swipeProgress}}><h3>NOPE</h3></div>
-				<div className="swipe-indicator like" style={{opacity: this.state.swipeProgress}}><h3>LIKE</h3></div>
-				{cardContent}
-			</div>
-		);
-	}
+	return (
+		<div className={`profile-card ${downOnCard ? "down-on-card" : ""}`} style={{transform: `translate(${deltaX}px, ${deltaY}px) rotate(${rotate}deg)`}}
+			onMouseDown={handleProfileCardMouseDown}
+			onMouseMove={handleProfileCardMouseMove}
+			onMouseUp={handleProfileCardMouseUp}
+			onTouchStart={handleProfileCardTouchStart}
+			onTouchMove={handleProfileCardTouchMove}
+			onTouchEnd={handleProfileCardTouchEnd}
+		>
+			<div className="swipe-indicator nope" style={{opacity: -swipeProgress}}><h3>NOPE</h3></div>
+			<div className="swipe-indicator like" style={{opacity: swipeProgress}}><h3>LIKE</h3></div>
+			{cardContent}
+		</div>
+	);
 }
 
 export default ProfileCard;

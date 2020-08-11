@@ -53,7 +53,7 @@ const ProfileCardPreview: React.FunctionComponent<{profile: IProfile, imageIndex
 		}
 		newHeaderTranslateY += 15;
 		setHeaderTranslateY(newHeaderTranslateY);
-	});
+	}, [props.imageIndex]);
 
 
 	return (
