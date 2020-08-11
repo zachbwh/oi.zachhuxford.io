@@ -127,6 +127,14 @@ const ProfileCard: React.FunctionComponent<ProfileCardProps> = props => {
 		setImageIndex(newImageIndex)
 	}
 
+	const trySetViewMode = function(newViewMode: "detail" | "preview") {
+		const timeDownOnCard = Date.now() - (downOnCardStartTime?.getTime() ?? 0);
+		if ((timeDownOnCard ?? 0) > maxTimeOnCardToClick) {
+			return;
+		}
+		setViewMode(newViewMode)
+	}
+
 	const setProgress = function(progress: number) {
 		var windowWidth = window.innerWidth,
 			windowHeight = window.innerHeight,
@@ -153,9 +161,9 @@ const ProfileCard: React.FunctionComponent<ProfileCardProps> = props => {
 	var cardContent;
 
 	if (viewMode === "preview") {
-		cardContent = <ProfileCardPreview profile={props.profile} imageIndex={imageIndex} setImageIndex={trySetImageIndex} toggleViewMode={() => setViewMode("detail")}></ProfileCardPreview>;
+		cardContent = <ProfileCardPreview profile={props.profile} imageIndex={imageIndex} setImageIndex={trySetImageIndex} toggleViewMode={() => trySetViewMode("detail")}></ProfileCardPreview>;
 	} else {
-		cardContent = <ProfileCardDetail profile={props.profile} imageIndex={imageIndex} setImageIndex={trySetImageIndex} toggleViewMode={() => setViewMode("preview")}></ProfileCardDetail>;
+		cardContent = <ProfileCardDetail profile={props.profile} imageIndex={imageIndex} setImageIndex={trySetImageIndex} toggleViewMode={() => trySetViewMode("preview")}></ProfileCardDetail>;
 	}
 
 	return (
