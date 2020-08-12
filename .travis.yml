@@ -19,4 +19,4 @@ deploy:
   local-dir: build
   acl: public_read
   on:
-    repo: zachbwh/zachhuxford.io
+    repo: zachbwh/oi.zachhuxford.io
