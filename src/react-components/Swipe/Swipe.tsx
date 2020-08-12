@@ -1,14 +1,24 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { selectProfiles } from 'redux/slices/SwipeSlice'
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectProfiles, setProfiles } from 'redux/slices/SwipeSlice'
 import './Swipe.scss';
 
 import ProfileCard from './ProfileCard/ProfileCard';
 
 function Swipe() {
-	const profiles = useSelector(selectProfiles);
+	const dispatch = useDispatch();
 
-	var profileCards = profiles.filter(profile => profile.Status === "candidate").map(profile => {
+	var profiles = useSelector(selectProfiles);
+
+	useEffect(() => {
+		fetch('/assets/profiles.json')
+		.then(response => response.json())
+		.then(((profiles: any[]) => {
+			dispatch(setProfiles(profiles));
+		}))
+	 }, []);
+
+	var profileCards = profiles.filter(profile => profile.Status === "candidate").filter((profile, index) => index < 3).map(profile => {
 		return (<ProfileCard profile={profile} key={profile.UserName}></ProfileCard>);
 	});
 

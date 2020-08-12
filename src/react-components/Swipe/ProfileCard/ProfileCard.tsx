@@ -13,16 +13,6 @@ interface ProfileCardProps {
 	profile: IProfile
 }
 
-interface ProfileCardState {
-	downOnCard: boolean,
-	viewMode: "preview" | "detail",
-	deltaX: number,
-	deltaY: number,
-	rotate: number,
-	swipeProgress: number,
-	imageIndex: number
-}
-
 const maxCardRotate = 25;
 const maxTimeOnCardToClick = 250;
 const cardSpeedToAcceptOrReject = 0.3;

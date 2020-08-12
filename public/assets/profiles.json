@@ -1,0 +1,164 @@
+[
+	{
+		"UserName": "zachbwh2",
+		"ShortName": "Zach",
+		"FullName": "Zach Huxford",
+		"BirthDate": "1998-02-21T11:00:00.148Z",
+		"Biography": "disbelievingly debonair",
+		"Gender": {
+			"Gender": "male",
+			"Pronouns": "he/him"
+		},
+		"InterestedIn": "women",
+		"Occupation": "software dev",
+		"Locality": {
+			"ShortName": "Auckland",
+			"Longitude": 174.763336,
+			"Lattitude": -36.848461
+		},
+		"ProfileImages": [
+			{
+				"ImageUrl": "/assets/swipe-images/disbelievingly debonair/isolation-April 07, 2020-8.jpg",
+				"ImageAltText": "Zach relaxing in his dressing gown using his phone on an orange chair after a long day"
+			},
+			{
+				"ImageUrl": "/assets/swipe-images/disbelievingly debonair/isolation-April 18, 2020-28.jpg",
+				"ImageAltText": "Zach in a blue suit and turtleneck holding a plate"
+			},
+			{
+				"ImageUrl": "/assets/swipe-images/disbelievingly debonair/isolation-April 18, 2020-57.jpg",
+				"ImageAltText": "Zach in a blue suit and a turtleneck with an extremely cute smile"
+			},
+			{
+				"ImageUrl": "/assets/swipe-images/disbelievingly debonair/isolation-April 18, 2020-23.jpg",
+				"ImageAltText": "Zach in a blue suit and a turtleneck holding a glass of wine"
+			},
+			{
+				"ImageUrl": "/assets/swipe-images/disbelievingly debonair/isolation-April 18, 2020-39.jpg",
+				"ImageAltText": "Zach trying to communicate the concept of \"Foreign Policy\" in a game of charades"
+			},
+			{
+				"ImageUrl": "/assets/swipe-images/disbelievingly debonair/isolation-May 08, 2020-33.jpg",
+				"ImageAltText": "Zach in a brown suit jacket and bow tie with a very busy blue shirt"
+			}
+		],
+		"Status": "candidate"
+	},
+	{
+		"UserName": "zachbwh3",
+		"ShortName": "Zach",
+		"FullName": "Zach Huxford",
+		"BirthDate": "1998-02-21T11:00:00.148Z",
+		"Biography": "extremely cute",
+		"Gender": {
+			"Gender": "male",
+			"Pronouns": "he/him"
+		},
+		"InterestedIn": "women",
+		"Occupation": "software dev",
+		"Locality": {
+			"ShortName": "Auckland",
+			"Longitude": 174.763336,
+			"Lattitude": -36.848461
+		},
+		"ProfileImages": [
+			{
+				"ImageUrl": "/assets/swipe-images/extremely cute/isolation-April 13, 2020-10.jpg",
+				"ImageAltText": "Zach wearing double denim in the dark on his bike"
+			},
+			{
+				"ImageUrl": "/assets/swipe-images/extremely cute/isolation-April 18, 2020-23.jpg",
+				"ImageAltText": "Zach in a blue suit and turtleneck holding a plate"
+			},
+			{
+				"ImageUrl": "/assets/swipe-images/extremely cute/isolation-April 18, 2020-28.jpg",
+				"ImageAltText": "Zach in a blue suit and a turtleneck with an extremely cute smile"
+			}
+		],
+		"Status": "candidate"
+	},
+	{
+		"UserName": "zachbwh4",
+		"ShortName": "Zach",
+		"FullName": "Zach Huxford",
+		"BirthDate": "1998-02-21T11:00:00.148Z",
+		"Biography": "food fiend",
+		"Gender": {
+			"Gender": "male",
+			"Pronouns": "he/him"
+		},
+		"InterestedIn": "women",
+		"Occupation": "software dev",
+		"Locality": {
+			"ShortName": "Auckland",
+			"Longitude": 174.763336,
+			"Lattitude": -36.848461
+		},
+		"ProfileImages": [
+			{
+				"ImageUrl": "/assets/swipe-images/food fiend/isolation-March 28, 2020-8.jpg",
+				"ImageAltText": "Zach mid eating a pancake"
+			},
+			{
+				"ImageUrl": "/assets/swipe-images/food fiend/isolation-March 29, 2020.jpg",
+				"ImageAltText": "Zach attempting to comsume a very large gobstopper."
+			},
+			{
+				"ImageUrl": "/assets/swipe-images/food fiend/isolation-March 29, 2020-4.jpg",
+				"ImageAltText": "Zach attempting to consume a very large gobstopper #2"
+			},
+			{
+				"ImageUrl": "/assets/swipe-images/food fiend/isolation-May 01, 2020-7.jpg",
+				"ImageAltText": "Zach longingly looking at a piece of cheese held by Loewn (off camera)"
+			},
+			{
+				"ImageUrl": "/assets/swipe-images/food fiend/isolation-May 01, 2020-9.jpg",
+				"ImageAltText": "Zach going for a hedonistic tak yak so he can consume more food (feat. Busters finger)"
+			}
+		],
+		"Status": "candidate"
+	},
+	{
+		"UserName": "zachbwh5",
+		"ShortName": "Zach",
+		"FullName": "Zach Huxford",
+		"BirthDate": "1998-02-21T11:00:00.148Z",
+		"Biography": "tangential to techology",
+		"Gender": {
+			"Gender": "male",
+			"Pronouns": "he/him"
+		},
+		"InterestedIn": "women",
+		"Occupation": "software dev",
+		"Locality": {
+			"ShortName": "Auckland",
+			"Longitude": 174.763336,
+			"Lattitude": -36.848461
+		},
+		"ProfileImages": [
+			{
+				"ImageUrl": "/assets/swipe-images/tangential to technology/isolation-April 13, 2020-9.jpg",
+				"ImageAltText": "Zach checking the time of his Samsung Galaxy® Watch"
+			},
+			{
+				"ImageUrl": "/assets/swipe-images/tangential to technology/isolation-March 20, 2020.jpg",
+				"ImageAltText": "Zach working remotely on his Dell XPS 13® 2016 9360 with his deskphone and friend/flatmate Ravid"
+			},
+			{
+				"ImageUrl": "/assets/swipe-images/tangential to technology/isolation-March 23, 2020.jpg",
+				"ImageAltText": "Zach keeping up to date with the world on his Samsumg Galaxy Note 9®"
+			},
+			{
+				"ImageUrl": "/assets/swipe-images/tangential to technology/isolation-May 06, 2020-2.jpg",
+				"ImageAltText": "Zach checking out something on Loewn's Macbook Air"
+			}
+		],
+		"Status": "candidate"
+	}
+]
+
+
+
+
+
+
