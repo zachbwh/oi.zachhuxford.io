@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+- stable
+cache:
+  directories:
+  - node_modules
+script:
+- npm test
+- npm run build
+- ls ./build
+deploy:
+  provider: s3
+  access_key_id: AKIAIGWRXLWWJ2QAYE4A
+  secret_access_key:
+    secure: JDmJpwFSdZcodDGpCqXkS0PIeU4IaoOEBLcB95ZrDMs67CYxPZuDJxKAb+oSiriGUcd49bZVM7X6dE2qHvgDuT6TcxUL6txRZavMOsGlj7twqIF8nCLZr2EmdUQ549iaRkbzYCppBNmB7Jiid/dbUcDBASTnLh9A9DZy7dMtJ2hBOriGdhSfTA2HnTPW+p1pO/HA8u2RNTacoBkZQ4D5tbrMRitmVUzUdpSt55YZbuOW1t3B87WCEHjC8vacySc27lzVCu3E1HqmNiblaBrfqRr2kZfLjTh0hywAsrOxy3AjSbf9j1Ah7pDfxDOfFiqwJ2Fu02HZf/YHJ0vsxGcZZbMT3qfSJsoyKleiDDC8GMUwo2I4VIybWOBThVpSDtwh57YClB1g2jsXkBTOjXecIx8ioTd4br07DqpqMbVfQIITan/6Vt6IWYA97TJIEBNRFodwMYwJpo1HapQUmUwQD55nuwR1vn+RLPTaJ1lKEkv0pOMDNHAcZee1QXsFhVRJrj/jYKRtsgSU+0jVMuEvHDWCI+uSZTLIrAXG67fNHCNO0fLGEX44edc7PtQ4gCxlUIGkZjjukM05kpHrrTLb2FX/x9qLBLfju58dupX60C2FiA1aDBYDp9EzauKK9EpK+zmeAM3NqttFgxEFAbcgeMWeahNLnbnOfRm14ZqjcPU=
+  bucket: oi-zachhuxford-io
+  skip_cleanup: true
+  region: ap-southeast-2
+  local-dir: build
+  acl: public_read
+  on:
+    repo: zachbwh/zachhuxford.io
