@@ -1,0 +1,10 @@
+{
+    "cognito": {
+        "userPoolId": "ap-southeast-2_HLpGCsN3N",
+        "userPoolClientId": "2ambb3nvp9fql7c2ku9s8bko7g",
+        "region": "ap-southeast-2"
+    },
+    "api": {
+        "invokeUrl": '' // e.g. https://rc7nyt4tql.execute-api.us-west-2.amazonaws.com/prod,
+    }
+};

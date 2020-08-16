@@ -1,0 +1,13 @@
+$shadow-color: #ffff50;
+
+.short-name-icon {
+	display: inline-block;
+
+	span {
+		font-size: 1em;
+		font-weight: 600;
+		font-style: italic;
+		letter-spacing: 0.08em;
+		text-shadow: 0.04em 0.04em black, 0.06em 0.06em black, 0.08em 0.08em $shadow-color, 0.1em 0.1em $shadow-color;
+	}
+}
