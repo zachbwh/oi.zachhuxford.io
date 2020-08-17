@@ -81,7 +81,7 @@ function RegisterUser() {
 			setPasswordFeedbackVisible(true);
 		}, 200);
 
-	}, [password, confirmPassword]);
+	}, [password, confirmPassword, passwordFeedback]);
 
 	var registerBody,
 		previousButton,
