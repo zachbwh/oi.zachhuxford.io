@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import zxcvbn from 'zxcvbn'
 import ShortNameIcon from 'react-components/BrandingAssets/ShortNameIcon/ShortNameIcon';
-
 
 import './RegisterUser.scss';
 import PasswordStrength from './PasswordStrength/PasswordStrength';
@@ -12,7 +12,8 @@ function RegisterUser() {
 	const [phoneNumber, setPhoneNumber] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
-	const [passwordsMatch, setPasswordsMatch] = useState(true);
+	const [passwordFeedback, setPasswordFeedback] = useState('');
+	const [passwordFeedbackVisible, setPasswordFeedbackVisible] = useState(false);
 
 	const [registerStage, setRegisterStage] = useState(1);
 
@@ -37,7 +38,49 @@ function RegisterUser() {
 	}
 
 	useEffect(() => {
-		setPasswordsMatch(password === confirmPassword);
+		var newPasswordFeedback : string;
+
+		if (!password && !confirmPassword) {
+			newPasswordFeedback = ""
+		} else if (!password && confirmPassword) {
+			newPasswordFeedback = "Please Enter Password"
+		} else if (password.length > 0 && password.length < 8) {
+			newPasswordFeedback = "Password Minimum Length: 8"
+		} else if (!confirmPassword) {
+			var zxcvbnScore = zxcvbn(password).score;
+
+			switch(zxcvbnScore) {
+				case 0:
+					newPasswordFeedback = "Password Strength: Very Weak"
+				break;
+				case 1:
+					newPasswordFeedback = "Password Strength: Weak"
+				break;
+				case 2:
+					newPasswordFeedback = "Password Strength: Medium"
+				break;
+				case 3:
+					newPasswordFeedback = "Password Strength: Good"
+				break;
+				case 4:
+					newPasswordFeedback = "Password Strength: Very Good"
+				break;
+			}
+		} else if (password !== confirmPassword) {
+			newPasswordFeedback = "Passwords Must Match"
+		} else {
+			newPasswordFeedback = "";
+		}
+
+		if (passwordFeedback !== newPasswordFeedback) {
+			setPasswordFeedbackVisible(false);
+		}
+
+		setTimeout(() => {
+			setPasswordFeedback(newPasswordFeedback);
+			setPasswordFeedbackVisible(true);
+		}, 200);
+
 	}, [password, confirmPassword]);
 
 	var registerBody,
@@ -72,9 +115,11 @@ function RegisterUser() {
 						<span>Confirm Password</span>
 						<div>
 							<input type="password" onChange={event => setConfirmPassword(event.currentTarget.value)} value={confirmPassword}></input>
-							<span className="passwords-match" style={{opacity: passwordsMatch ? 0 : 1}}>
-								"Passwords Must Match"
-							</span>
+							<div>
+								<span className="passwords-feedback" style={{opacity: passwordFeedbackVisible ? 1 : 0}}>
+									{passwordFeedback}
+								</span>
+							</div>
 						</div>
 					</li>
 				</ul>

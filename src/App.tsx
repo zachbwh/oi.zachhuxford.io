@@ -23,16 +23,18 @@ function App() {
 						<SquareIcon></SquareIcon>
 					</div>
 				</div>
-				<Router>
-					<Switch>
-						<Route path="/swipe">
-							<Swipe />
-						</Route>
-						<Route path="/register">
-							<RegisterUser />
-						</Route>
-					</Switch>
-				</Router>
+				<div className="App-content">
+					<Router>
+						<Switch>
+							<Route path="/swipe">
+								<Swipe />
+							</Route>
+							<Route path="/register">
+								<RegisterUser />
+							</Route>
+						</Switch>
+					</Router>
+				</div>
 			</header>
 		</div>
 	);

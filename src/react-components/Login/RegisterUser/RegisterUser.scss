@@ -1,6 +1,14 @@
 $background-color: #2e5dff;
 
 .register-user {
+	margin: 10px;
+
+	@media (max-width: 601px) {
+		h2 {
+			text-align: center;
+		}
+	}
+
 	.register-user-body {
 		background-color: $background-color;
 		border: 0px solid;
@@ -16,20 +24,13 @@ $background-color: #2e5dff;
 
 		li {
 			padding: 5px;
-			display: flex;
-			flex-direction: row;
 
 			* {
 				font-weight: normal;
 				line-height: 2.5;
 			}
 
-			> *:first-child {
-				width: 60%;
-			}
-
 			> *:nth-child(2) {
-				width: 40%;
 				border-radius: 0.25em;
 
 				* {
@@ -41,7 +42,7 @@ $background-color: #2e5dff;
 				display: flex;
 				flex-direction: column;
 
-				.passwords-match {
+				.passwords-feedback {
 					height: 2em;
 					font-size: 0.8em;
 					padding: 0 0.25em;
@@ -55,6 +56,42 @@ $background-color: #2e5dff;
 				border: 0px solid;
 				padding: 0 0.5em;
 				box-sizing: border-box;
+			}
+
+			input::placeholder {
+				color: #FFFFFF9a;
+
+			}
+
+			@media (min-width: 601px) {
+				> *:first-child {
+					width: 60%;
+				}
+
+				> *:nth-child(2) {
+					width: 40%;
+				}
+			}
+
+			@media (max-width: 601px) {
+				> * {
+					display: block;
+					width: 100%;
+				}
+			}
+		}
+
+		@media (min-width: 601px) {
+			li {
+				display: flex;
+				flex-direction: row;
+			}
+		}
+
+		@media (max-width: 601px) {
+			
+			li {
+				display: block;
 			}
 		}
 	}

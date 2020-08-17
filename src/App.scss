@@ -1,75 +1,77 @@
 .App {
-	background-image: linear-gradient(#18318b,#2e5dff);
-}
-
-.App-header {
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	color: white;
-}
-
-.App h1, .App h2, .App h3, .App h4, .App h5, .App h6 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    margin: 0;
-    display: inline-block;
-    vertical-align: middle;
-    user-select: none;
-}
-
-.App h1 {
-    font-size: 5em;
-}
-
-.App h2 {
-    font-size: 3.5em;
-}
-
-.App h3 {
-    font-size: 2em;
-}
-
-.App p, .App ol {
-    font-family: 'Open Sans', sans-serif;
-    user-select: none;
-}
-
-.App .nav-bar {
-    // height: 100px;
-    display: flex;
-    align-items: center;
-    position: fixed;
-    top: 0px;
-    width: 100%;
-    overflow: hidden;
-    z-index: 200;
-
-    .gradient-wrapper .gradient {
-        height: 100vh;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: linear-gradient(rgb(24, 49, 139), #2E5DFF);
+    background-image: linear-gradient(#18318b,#2e5dff);
+    
+    .App-header {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
     }
 
-    .nav-bar-content {
-        z-index: 1;
-        width: 100%;
-        padding: 10px;
+    .App-content {
+        padding-top: calc(30px + 3em);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        margin: 0;
+        display: inline-block;
+        vertical-align: middle;
+        user-select: none;
+    }
+
+    h1 {
+        font-size: 5em;
+    }
+
+    h2 {
+        font-size: 3.5em;
+    }
+
+    h3 {
+        font-size: 2em;
+    }
+
+    p, ol {
+        font-family: 'Open Sans', sans-serif;
+        user-select: none;
+    }
+
+    .nav-bar {
+        // height: 100px;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        overflow: hidden;
+        z-index: 200;
 
+        .gradient-wrapper .gradient {
+            height: 100vh;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: linear-gradient(rgb(24, 49, 139), #2E5DFF);
+        }
 
+        .nav-bar-content {
+            z-index: 1;
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
 
-        .square-icon {
-            font-size: 3em;
+            .square-icon {
+                font-size: 3em;
+            }
         }
     }
 }
