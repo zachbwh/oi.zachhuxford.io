@@ -18,7 +18,7 @@ function Swipe() {
 		}))
 	 }, [dispatch]);
 
-	var profileCards = profiles.filter(profile => profile.Status === "candidate").filter((profile, index) => index < 3).map(profile => {
+	var profileCards = profiles.filter(profile => profile.Status === "candidate").filter((profile, index) => index < 3).reverse().map(profile => {
 		return (<ProfileCard profile={profile} key={profile.UserName}></ProfileCard>);
 	});
 

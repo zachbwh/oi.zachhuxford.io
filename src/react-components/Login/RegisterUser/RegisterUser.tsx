@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import zxcvbn from 'zxcvbn'
-import ShortNameIcon from 'react-components/BrandingAssets/ShortNameIcon/ShortNameIcon';
 
 import './RegisterUser.scss';
 import PasswordStrength from './PasswordStrength/PasswordStrength';
@@ -138,17 +137,20 @@ function RegisterUser() {
 	}
 
 	return (
-	<div className="register-user">
-		
-		<h2>Sign Up for <ShortNameIcon></ShortNameIcon></h2>
-		<div className="register-user-body">
-			<div>
-				{registerBody}
-			</div>
-			<div className="register-button-container">
-				{/* Order Reversed but flex direction: row reverse is applied so a single button is right aligned */}
-				{nextButton}
-				{previousButton}
+	<div className="register-user-container">
+		<div className="register-user">
+			
+			<h2 className="large-heading">Create an account</h2>
+			<div className="register-user-body">
+				<h3 className="small-heading">Create an account</h3>
+				<div>
+					{registerBody}
+				</div>
+				<div className="register-button-container">
+					{/* Order Reversed but flex direction: row reverse is applied so a single button is right aligned */}
+					{nextButton}
+					{previousButton}
+				</div>
 			</div>
 		</div>
 	</div>

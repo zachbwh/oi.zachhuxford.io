@@ -9,22 +9,23 @@ import './App.scss';
 
 import Swipe from 'react-components/Swipe/Swipe'
 import RegisterUser from "react-components/Login/RegisterUser/RegisterUser";
-import SquareIcon from "react-components/BrandingAssets/SquareIcon/SquareIcon";
+import SwipeNavBar from "react-components/Swipe/SwipeNavBar/SwipeNavBar";
+import LoginNavBar from "react-components/Login/LoginNavBar/LoginNavBar";
 
 function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
-				<div className="nav-bar">
-					<div className="gradient-wrapper">
-						<div className="gradient"></div>
-					</div>
-					<div className="nav-bar-content">
-						<SquareIcon></SquareIcon>
-					</div>
-				</div>
-				<div className="App-content">
-					<Router>
+				<Router>
+					<Switch>
+						<Route path="/swipe">
+							<SwipeNavBar />
+						</Route>
+						<Route path="/register">
+							<LoginNavBar />
+						</Route>
+					</Switch>
+					<div className="App-content">
 						<Switch>
 							<Route path="/swipe">
 								<Swipe />
@@ -33,8 +34,8 @@ function App() {
 								<RegisterUser />
 							</Route>
 						</Switch>
-					</Router>
-				</div>
+					</div>
+				</Router>
 			</header>
 		</div>
 	);

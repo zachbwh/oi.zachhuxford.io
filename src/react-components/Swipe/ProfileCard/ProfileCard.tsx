@@ -137,13 +137,13 @@ const ProfileCard: React.FunctionComponent<ProfileCardProps> = props => {
 	}
 	
 	const accept = function() {
-		setProgress(1.2);
+		setProgress(1.5);
 
 		dispatch(acceptProfileAsync(props.profile.UserName));
 	}
 
 	const reject = function() {
-		setProgress(-1.2);
+		setProgress(-1.5);
 
 		dispatch(rejectProfileAsync(props.profile.UserName));
 	}

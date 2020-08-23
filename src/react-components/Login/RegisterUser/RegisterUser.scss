@@ -1,120 +1,161 @@
 $background-color: #2e5dff;
 
-.register-user {
-	margin: 10px;
+.register-user-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	padding: 0 10px;
 
-	@media (max-width: 601px) {
-		h2 {
-			text-align: center;
-		}
-	}
-
-	.register-user-body {
-		background-color: $background-color;
-		border: 0px solid;
-		border-radius: 0.25em;
-		padding: 20px;
-		margin: 10px 0;
-	}
-
-	ul {
-		list-style-type: none;
-		padding: 0;
-		margin: 0;
-
-		li {
-			padding: 5px;
-
-			* {
-				font-weight: normal;
-				line-height: 2.5;
+	.register-user {
+		max-width: 900px;
+		width: 100%;
+		max-height: 100%;
+		overflow-y: auto;
+	
+		@media (max-width: 601px) {
+			h2 {
+				text-align: center;
 			}
 
-			> *:nth-child(2) {
-				border-radius: 0.25em;
-
-				* {
-					width: 100%;
-				}
-			}
-
-			div {
-				display: flex;
-				flex-direction: column;
-
-				.passwords-feedback {
-					height: 2em;
-					font-size: 0.8em;
-					padding: 0 0.25em;
-					transition: opacity 200ms ease-in;
-				}
-			}
-
-			input {
-				background-color: #1e42c4;
-				color: #FFFFFF;
-				border: 0px solid;
-				padding: 0 0.5em;
-				box-sizing: border-box;
-			}
-
-			input::placeholder {
-				color: #FFFFFF9a;
-
-			}
-
-			@media (min-width: 601px) {
-				> *:first-child {
-					width: 60%;
-				}
-
-				> *:nth-child(2) {
-					width: 40%;
-				}
-			}
-
-			@media (max-width: 601px) {
-				> * {
-					display: block;
-					width: 100%;
-				}
+			.large-heading {
+				display: none;
 			}
 		}
 
 		@media (min-width: 601px) {
-			li {
-				display: flex;
-				flex-direction: row;
+			.small-heading {
+				display: none;
 			}
 		}
 
-		@media (max-width: 601px) {
-			
-			li {
-				display: block;
-			}
+		.small-heading {
+			text-align: center;
+			width: 100%;
 		}
-	}
-
-	.register-button-container {
-		display: flex;
-		flex-direction: row-reverse;
-		justify-content: space-between;
-		padding: 10px 5px;
-
-		button {
-			background-color: #2da8ae;
+	
+		.register-user-body {
+			background-color: $background-color;
 			border: 0px solid;
 			border-radius: 0.25em;
-			padding: 0.5em 0.75em;
-			font-size: 1.3em;
-			color: #FFFFFF;
-			font-weight: 600;
-			cursor: pointer;
+			padding: 20px;
 		}
+	
+		ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+	
+			li {
+				padding: 5px;
+	
+				* {
+					font-weight: normal;
+					line-height: 2.5;
+				}
 
-		button:active {
-			background-color: #30b7bd;
+				@media (max-width: 601px) {
+					> *:first-child {
+						line-height: 1.75;
+					}
+				}
+	
+				> *:nth-child(2) {
+					border-radius: 0.25em;
+	
+					* {
+						width: 100%;
+					}
+				}
+	
+				div {
+					display: flex;
+					flex-direction: column;
+	
+					.passwords-feedback {
+						height: 2em;
+						font-size: 0.8em;
+						padding: 0 0.25em;
+						transition: opacity 200ms ease-in;
+					}
+				}
+	
+				input {
+					background-color: #1e42c4;
+					color: #FFFFFF;
+					border: 0px solid;
+					padding: 0 0.5em;
+					box-sizing: border-box;
+				}
+	
+				input::placeholder {
+					color: #FFFFFF9a;
+	
+				}
+	
+				@media (min-width: 601px) {
+					> *:first-child {
+						width: 60%;
+					}
+	
+					> *:nth-child(2) {
+						width: 40%;
+					}
+				}
+	
+				@media (max-width: 601px) {
+					> * {
+						display: block;
+						width: 100%;
+					}
+				}
+			}
+	
+			@media (min-width: 601px) {
+				li {
+					display: flex;
+					flex-direction: row;
+				}
+			}
+	
+			@media (max-width: 601px) {
+				
+				li {
+					display: block;
+				}
+			}
+		}
+	
+		.register-button-container {
+			display: flex;
+			flex-direction: row-reverse;
+			justify-content: space-between;
+			padding: 10px 5px;
+	
+			button {
+				background-color: #2da8ae;
+				border: 0px solid;
+				border-radius: 0.25em;
+				padding: 0.5em 0.75em;
+				font-size: 1.3em;
+				color: #FFFFFF;
+				font-weight: 600;
+				cursor: pointer;
+			}
+
+			@media (max-width: 601px) {
+				button {
+					padding: 0.25em 0.5em;
+					font-size: 1.2em;
+					font-weight: 500;
+				}
+			}
+	
+			button:active {
+				background-color: #30b7bd;
+			}
 		}
 	}
 }
+
