@@ -18,4 +18,75 @@
 	@media (max-width: 400px) {
 		height: calc(100% + -20px + -1.5em);
 	}
+
+	.end-of-list-message {
+		width: 375px;
+		max-width: calc(100% - 22px);
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		h3 {
+			width: 100%;
+			text-align: center;
+		}
+
+		div {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		a, a:visited {
+			color: white;
+			text-decoration: none;
+			border: 2px solid white;
+			line-height: 2;
+			border-radius: 2em;
+			font-size: 1.25em;
+			padding: 0.1em 0.5em;
+			display: inline-block;
+			text-align: center;
+			margin-top: 1em;
+			transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+		}
+
+		.reload {
+			font-size: 2em;
+			height: 2em;
+			width: 2em;
+			border: 2px solid white;
+			border-radius: 1.25em;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+			cursor: pointer;
+		}
+
+		.reload:hover, a:hover {
+			color: #2e5dff;
+			background-color: #FFFFFF;
+		}
+
+		.reload.loading {
+			animation-name: load-spin;
+			animation-duration: 1s;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+		}
+
+		.reload.hidden {
+			opacity: 0;
+		}
+	}
+}
+
+@keyframes load-spin {
+	0% {transform: rotate(0) scale(1)}
+	50% {transform: rotate(180deg) scale(1.05)}
+	100% {transform: rotate(360deg) scale(1)}
 }

@@ -9,7 +9,7 @@ export const acceptProfileAsync = createAsyncThunk(
 		return new Promise<string>(function(fulfill, reject) {
 			setTimeout(function() {
 				fulfill(userId);
-			}, 1000);
+			}, 500);
 		})
 	}
 );
@@ -20,7 +20,7 @@ export const rejectProfileAsync = createAsyncThunk(
 		return new Promise<string>(function(fulfill, reject) {
 			setTimeout(function() {
 				fulfill(userId);
-			}, 1000);
+			}, 500);
 		})
 	}
 );
@@ -35,6 +35,13 @@ export const swipeSlice = createSlice({
 	reducers: {
 		setProfiles: function(state, action) {
 			state.profiles = action.payload;
+		},
+		reloadRejectedProfiles: function(state, action) {
+			state.profiles.forEach(profile => {
+				if (profile.Status === "rejected") {
+					profile.Status = "candidate";
+				}
+			})
 		}
 	},
 	extraReducers: builder => {
@@ -49,11 +56,12 @@ export const swipeSlice = createSlice({
 			const userIndex = state.profiles.findIndex(profile => profile.UserName === userId);
 			state.profiles[userIndex].Status = "rejected";
 		})
+
 	}
 });
 
 export const selectProfiles = (state:RootState) => state.swipe.profiles;
 
-export const { setProfiles } = swipeSlice.actions;
+export const { setProfiles, reloadRejectedProfiles } = swipeSlice.actions;
 
 export default swipeSlice.reducer;
