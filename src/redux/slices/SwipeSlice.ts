@@ -62,6 +62,8 @@ export const swipeSlice = createSlice({
 
 export const selectProfiles = (state:RootState) => state.swipe.profiles;
 
+export const selectUserProfile = (state:RootState) => state.swipe.profiles[0];
+
 export const { setProfiles, reloadRejectedProfiles } = swipeSlice.actions;
 
 export default swipeSlice.reducer;

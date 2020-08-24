@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { acceptProfileAsync, rejectProfileAsync } from 'redux/slices/SwipeSlice'
 
@@ -124,6 +124,20 @@ const ProfileCard: React.FunctionComponent<ProfileCardProps> = props => {
 		}
 		setViewMode(newViewMode)
 	}
+
+	useEffect(() => {
+		const popDetailView = function(event: PopStateEvent) {
+			setViewMode("preview");
+			window.removeEventListener("popstate", popDetailView);
+		}
+
+		if (viewMode === "detail") {
+			window.history.pushState({viewMode: viewMode}, "", window.location.href);
+			window.addEventListener("popstate", popDetailView)
+		} else {
+			window.removeEventListener("popstate", popDetailView);
+		}
+	}, [viewMode]);
 
 	const setProgress = function(progress: number) {
 		var windowWidth = window.innerWidth,

@@ -4,6 +4,8 @@
 	align-items: center;
 	justify-content: center;
 	position: relative;
+	position: fixed;
+	bottom: 0;
 
 	@media (min-width: 601px) {
 		height: calc(100% + -30px + -3em);
@@ -11,8 +13,6 @@
 
 	@media (max-width: 601px) {
 		height: calc(100% + -20px + -2em);
-		position: fixed;
-		bottom: 0;
 	}
 	
 	@media (max-width: 400px) {

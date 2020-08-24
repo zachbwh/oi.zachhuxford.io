@@ -73,7 +73,7 @@ function Swipe() {
 				<div>
 					<h3>You're outta profiles!</h3>
 					<p>
-						Try not to swipe left of all of them this time.
+						Try not to swipe left on all of them this time.
 					</p>
 				</div>
 				<div 
