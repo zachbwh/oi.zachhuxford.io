@@ -1,63 +1,79 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import { selectUserProfile, setProfiles } from 'redux/slices/SwipeSlice'
+import React, { useState } from "react";
 
-import Moment from 'moment'
 import './SwipeSettings.scss';
+import InputRange, {Range} from 'react-input-range'
+import 'react-input-range/lib/css/index.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faPencilAlt, faImages } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+
+const minProfileAge = 18,
+	ageRangeMustContain = 22,
+	maxProfileAge = 55,
+	minSwipeRadius = 1,
+	maxSwipeRadius = 120;
 
 function SwipeSettings() {
-	const dispatch = useDispatch();
+	const [swipeRadius, setSwipeRadius] = useState(69);
+	const [minAge, setMinAge] = useState(18);
+	const [maxAge, setMaxAge] = useState(55);
+	const [lookingFor, setLookingFor] = useState<"Men" | "Everyone" | "Zach">("Zach");
 
-	var userProfile = useSelector(selectUserProfile),
-		userProfileImage = userProfile?.ProfileImages[4] ?? null;
+	const updateAgeRange = function(range: Range) {
+		if (range.min <= ageRangeMustContain) {
+			setMinAge(range.min);
+		}
+		if (range.max >= ageRangeMustContain) {
+			setMaxAge(range.max);
+		}
+	};
 
-	useEffect(() => {
-		fetch('/assets/profiles.json')
-		.then(response => response.json())
-		.then(((profiles: any[]) => {
-			dispatch(setProfiles(profiles));
-		}));
-	 }, [dispatch]);
-
-	 var profileThing;
-	 if (!userProfile) {
-		profileThing = (
-			<div>
-			</div>
-		);
-	 } else {
-		const age = Moment(new Date()).diff(userProfile.BirthDate, 'years');
-
-		profileThing = [
-			(<div key="1">
-				<img src={userProfileImage.ImageUrl} alt={userProfileImage.ImageAltText}></img>
-			</div>),
-			(<h3 key="2">{userProfile.ShortName} <span className="age">{age}</span></h3>),
-			(<div key="3">
-				{userProfile.Occupation}
-			</div>),
-			(<div key="4" className="actions">
-				<div>
-					<FontAwesomeIcon icon={faCog}></FontAwesomeIcon>
-					<div>Settings</div>
-				</div>
-				<div>
-					<FontAwesomeIcon icon={faImages}></FontAwesomeIcon>
-					<div>Add Media</div>
-				</div>
-				<div>
-					<FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon>
-					<div>Edit Profile</div>
-				</div>
-			</div>)
-		];
-	 }
+	const openPreferenceList = function() {
+		
+	};
 
 	return (
-		<div className="swipe-settings">
-			{profileThing}
+		<div className="swipe-settings-container">
+			<div className="swipe-settings">
+				<div className="settings-body">
+					<h4 className="settings-title"><span>Swipe Settings</span><span>Save</span></h4>
+					<div className="discovery-settings">
+						<div className="setting">
+							<div className="setting-label">
+								<div className="setting-name">Swipe Radius</div>
+								<div className="setting-value">{Math.floor(swipeRadius)} km.</div>
+							</div>
+							<div className="input-range-container">
+								<InputRange
+									value={swipeRadius}
+									formatLabel={() => ""}
+									minValue={minSwipeRadius}
+									maxValue={maxSwipeRadius}
+									onChange={(value) => {value = value as number; setSwipeRadius(value)}} />
+							</div>
+						</div>
+						<div className="setting">
+							<div className="setting-label">
+								<div className="setting-name">Age Range</div>
+								<div className="setting-value">{Math.floor(minAge)} - {Math.floor(maxAge)} {maxAge === maxProfileAge ? "+" : ""}</div>
+							</div>
+							<div className="input-range-container">
+								<InputRange
+									value={{min: minAge, max: maxAge}}
+									formatLabel={() => ""}
+									minValue={minProfileAge}
+									maxValue={maxProfileAge}
+									onChange={(value) => {value = value as Range; updateAgeRange(value)}} />
+							</div>
+						</div>
+						<div className="setting preference-list" onClick={openPreferenceList}>
+							<div className="setting-label">
+								<div className="setting-name">Looking For</div>
+								<div className="setting-value">{lookingFor} <FontAwesomeIcon icon={faChevronRight} /></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 }

@@ -14,7 +14,7 @@ function SwipeNavBar() {
 				<div className="gradient"></div>
 			</div>
 			<div className="nav-bar-content">
-				<Link to="/swipe/settings"><FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Link>
+				<Link to="/swipe/profile"><FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Link>
 				<Link to="/swipe"><SquareIcon></SquareIcon></Link>
 				<Link to="/messages"><FontAwesomeIcon icon={faComments}></FontAwesomeIcon></Link>
 			</div>

@@ -11,8 +11,8 @@ import Swipe from 'react-components/Swipe/Swipe'
 import RegisterUser from "react-components/Login/RegisterUser/RegisterUser";
 import SwipeNavBar from "react-components/Swipe/SwipeNavBar/SwipeNavBar";
 import LoginNavBar from "react-components/Login/LoginNavBar/LoginNavBar";
-import SwipeSettings from "react-components/Swipe/SwipeSettings/SwipeSettings";
 import SwipeUserProfile from "react-components/Swipe/SwipeUserProfile/SwipeUserProfile";
+import SwipeSettings from "react-components/Swipe/SwipeSettings/SwipeSettings";
 
 function App() {
 	return (

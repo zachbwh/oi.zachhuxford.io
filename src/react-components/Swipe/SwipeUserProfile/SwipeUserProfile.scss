@@ -1,3 +1,67 @@
 .swipe-user-profile {
-	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	div {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		img {
+			height: 8em;
+			width: 8em;
+			border-radius: 4em;
+			object-fit: cover;
+		}
+	}
+
+	h3 {
+		margin: 0;
+		font-weight: 700;
+		width: 100%;
+		text-align: center;
+		line-height: 1.5;
+	}
+
+	.age {
+		font-size: 0.85em;
+		font-weight: 400;
+		font-family: sans-serif;
+	}
+
+	.actions {
+		flex-direction: row;
+		margin: 2em 1em;
+		font-size: 2em;
+		justify-content: space-between;
+		max-width: 500px;
+		width: 100%;
+
+
+		> div:nth-child(2) {
+			margin-top: 50px;
+			margin-bottom: 0px;
+		}
+
+		> div {
+			margin-top: 0px;
+			margin-bottom: 50px;
+
+			a {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			div {
+				text-transform: uppercase;
+				text-align: center;
+				font-size: 0.4em;
+				margin-top: 1em;
+			}
+		}
+	}
 }

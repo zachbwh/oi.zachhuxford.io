@@ -1,55 +1,108 @@
-.swipe-settings {
+$background-color: #2e5dff;
+
+.swipe-settings-container {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	padding: 0 10px;
 
-	div {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-
-		img {
-			height: 8em;
-			width: 8em;
-			border-radius: 4em;
-			object-fit: cover;
-		}
+	@media (min-width: 601px) {
+		height: calc(100% + -30px + -3em);
 	}
 
-	h3 {
-		margin: 0;
-		font-weight: 700;
+	@media (max-width: 601px) {
+		height: calc(100% + -20px + -2em);
+	}
+	
+	@media (max-width: 400px) {
+		height: calc(100% + -20px + -1.5em);
+	}
+
+	.swipe-settings {
+		max-width: 900px;
 		width: 100%;
-		text-align: center;
-		line-height: 1.5;
-	}
+		max-height: 100%;
+		overflow-y: auto;
 
-	.age {
-		font-size: 0.85em;
-		font-weight: 400;
-		font-family: sans-serif;
-	}
+		.settings-title {
+			text-transform: uppercase;
+			padding: 25px 20px;
+			font-weight: 600;
+			font-family: sans-serif;
 
-	.actions {
-		flex-direction: row;
-		margin: 2em 1em;
-		font-size: 2em;
-		justify-content: space-between;
-
-		> div:nth-child(2) {
-			margin-top: 50px;
-			margin-bottom: 0px;
+			display: flex;
+			justify-content: space-between;
+			align-content: center;
 		}
 
-		> div {
-			margin-top: 0px;
-			margin-bottom: 50px;
-			flex-direction: column;
+		.settings-body {
+			background-color: $background-color;
+			border: 0px solid;
+			border-radius: 8px;
 
-			div {
-				text-transform: uppercase;
-				text-align: center;
-				font-size: 0.4em;
-				margin-top: 1em;
+
+			.setting {
+				padding: 10px 2em;
+				border: 0px solid #18318b;
+				border-bottom-width: 1px;
+	
+				.setting-label {
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+				}
+
+				.input-range {
+					width: 100%;
+					padding: 1em 0;
+
+					.input-range__track {
+						height: 4px;
+						transition: left 100ms linear, width 100ms linear;
+
+						.input-range__slider-container {
+							transition: left 100ms linear;
+						}
+					}
+
+					.input-range__track--background {
+						background: #18318b33;
+					}
+
+					.input-range__track--active {
+						background: #FFFFFF;
+					}
+
+					.input-range__slider {
+						position: relative;
+						right: 1em;
+						border: none;
+						border-radius: 1em;
+						height: 2em;
+						width: 2em;
+						background: #FFFFFF;
+						box-shadow: 0 2px 10px 0 rgba(84,84,84,0.8);
+						margin-top: -1.15em;
+						margin-left: 0;
+					}
+				}
+			}
+
+			.setting:first-child {
+				border-top-width: 1px;
+			}
+
+			.setting:last-child {
+				border-bottom-width: 0px;
+				padding: 15px 2em;
+			}
+
+			.fa-chevron-right {
+				padding-left: 0.5em;
+				font-size: 1em;
+				vertical-align: middle;
 			}
 		}
 	}
