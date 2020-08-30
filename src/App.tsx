@@ -13,6 +13,7 @@ import SwipeNavBar from "react-components/Swipe/SwipeNavBar/SwipeNavBar";
 import LoginNavBar from "react-components/Login/LoginNavBar/LoginNavBar";
 import SwipeUserProfile from "react-components/Swipe/SwipeUserProfile/SwipeUserProfile";
 import SwipeSettings from "react-components/Swipe/SwipeSettings/SwipeSettings";
+import SwipeSettingsLookingFor from "react-components/Swipe/SwipeSettings/SwipeSettingsLookingFor/SwipeSettingsLookingFor";
 
 function App() {
 	return (
@@ -31,6 +32,9 @@ function App() {
 						<Switch>
 							<Route path="/swipe/profile">
 								<SwipeUserProfile />
+							</Route>
+							<Route path="/swipe/settings/looking-for">
+								<SwipeSettingsLookingFor />
 							</Route>
 							<Route path="/swipe/settings">
 								<SwipeSettings />

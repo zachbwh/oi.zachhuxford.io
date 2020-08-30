@@ -5,30 +5,60 @@ import InputRange, {Range} from 'react-input-range'
 import 'react-input-range/lib/css/index.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSwipeSettings, setSwipeRadius as _setSwipeRadius, setMinAge, setMaxAge } from "redux/slices/SwipeSettingsSlice";
 
 const minProfileAge = 18,
 	ageRangeMustContain = 22,
 	maxProfileAge = 55,
 	minSwipeRadius = 1,
+	swipeRadiusMustContain = 22,
 	maxSwipeRadius = 120;
 
 function SwipeSettings() {
-	const [swipeRadius, setSwipeRadius] = useState(69);
-	const [minAge, setMinAge] = useState(18);
-	const [maxAge, setMaxAge] = useState(55);
-	const [lookingFor, setLookingFor] = useState<"Men" | "Everyone" | "Zach">("Zach");
+	const [showAgeRequirement, setShowAgeRequirement] = useState(false);
+	const [showSwipeRadiusRequirement, setShowSwipeRadiusRequirement] = useState(false);
+	
+	const dispatch = useDispatch();
+
+	var swipeSettings = useSelector(selectSwipeSettings);
+	const swipeRadius = swipeSettings.swipeRadius;
+	const minAge = swipeSettings.minAge;
+	const maxAge = swipeSettings.maxAge;
+	const lookingFor = swipeSettings.lookingFor;
 
 	const updateAgeRange = function(range: Range) {
+		var shouldShowAgeRequirement = false,
+			nextMinAge = {minAge: minAge},
+			nextMaxAge = {maxAge: maxAge};
+
 		if (range.min <= ageRangeMustContain) {
-			setMinAge(range.min);
+			nextMinAge.minAge = range.min;
+		} else {
+			nextMinAge.minAge = range.max === ageRangeMustContain ? ageRangeMustContain - 1 : ageRangeMustContain;
+			shouldShowAgeRequirement = true;
 		}
 		if (range.max >= ageRangeMustContain) {
-			setMaxAge(range.max);
+			nextMaxAge.maxAge = range.max;
+		} else {
+			nextMaxAge.maxAge = range.min === ageRangeMustContain ? ageRangeMustContain + 1 : ageRangeMustContain;
+			shouldShowAgeRequirement = true;
 		}
+
+		dispatch(setMinAge(nextMinAge));
+		dispatch(setMaxAge(nextMaxAge));
+
+		setShowAgeRequirement(shouldShowAgeRequirement);
 	};
 
-	const openPreferenceList = function() {
-		
+	const setSwipeRadius = function(value: number) {
+		if (value >= swipeRadiusMustContain) {
+			dispatch(_setSwipeRadius({ swipeRadius: value }));
+			setShowSwipeRadiusRequirement(false);
+		} else {
+			setShowSwipeRadiusRequirement(true);
+		}
 	};
 
 	return (
@@ -50,6 +80,11 @@ function SwipeSettings() {
 									maxValue={maxSwipeRadius}
 									onChange={(value) => {value = value as number; setSwipeRadius(value)}} />
 							</div>
+							<div>
+								<span className="requirement-message" style={{opacity: showSwipeRadiusRequirement ? 1 : 0}}>
+									Swipe Radius must include Zach's current location relative to you.
+								</span>
+							</div>
 						</div>
 						<div className="setting">
 							<div className="setting-label">
@@ -64,13 +99,20 @@ function SwipeSettings() {
 									maxValue={maxProfileAge}
 									onChange={(value) => {value = value as Range; updateAgeRange(value)}} />
 							</div>
-						</div>
-						<div className="setting preference-list" onClick={openPreferenceList}>
-							<div className="setting-label">
-								<div className="setting-name">Looking For</div>
-								<div className="setting-value">{lookingFor} <FontAwesomeIcon icon={faChevronRight} /></div>
+							<div>
+								<span className="requirement-message" style={{opacity: showAgeRequirement ? 1 : 0}}>
+									Age range must include Zach's current age.
+								</span>
 							</div>
 						</div>
+						<Link to="/swipe/settings/looking-for">
+							<div className="setting preference-list">
+								<div className="setting-label">
+									<div className="setting-name">Looking For</div>
+									<div className="setting-value">{lookingFor} <FontAwesomeIcon icon={faChevronRight} /></div>
+								</div>
+							</div>
+						</Link>
 					</div>
 				</div>
 			</div>

@@ -28,13 +28,16 @@ $background-color: #2e5dff;
 
 		.settings-title {
 			text-transform: uppercase;
-			padding: 25px 20px;
 			font-weight: 600;
 			font-family: sans-serif;
 
 			display: flex;
 			justify-content: space-between;
 			align-content: center;
+
+			* {
+				padding: 25px 20px;
+			}
 		}
 
 		.settings-body {
@@ -90,6 +93,13 @@ $background-color: #2e5dff;
 				}
 			}
 
+			.requirement-message {
+				height: 2em;
+				font-size: 0.8em;
+				padding: 0 0.25em;
+				transition: opacity 200ms ease-in;
+			}
+
 			.setting:first-child {
 				border-top-width: 1px;
 			}
@@ -97,6 +107,10 @@ $background-color: #2e5dff;
 			.setting:last-child {
 				border-bottom-width: 0px;
 				padding: 15px 2em;
+			}
+
+			a .setting:first-child {
+				border-top-width: 0px;
 			}
 
 			.fa-chevron-right {

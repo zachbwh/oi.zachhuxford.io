@@ -1,9 +1,7 @@
-import Profile from 'typescript-types/IProfile';
+import { SwipeState } from './slices/SwipeSlice';
+import { SwipeSettingsState } from './slices/SwipeSettingsSlice';
 
 export interface RootState {
-	swipe: SwipeSliceState
-}
-
-export interface SwipeSliceState {
-	profiles: Profile[]
+	swipe: SwipeState
+	swipeSettings: SwipeSettingsState
 }

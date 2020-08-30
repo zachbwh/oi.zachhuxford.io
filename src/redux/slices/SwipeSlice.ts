@@ -25,7 +25,7 @@ export const rejectProfileAsync = createAsyncThunk(
 	}
 );
 
-interface SwipeState {
+export interface SwipeState {
 	profiles: Profile[]
 }
 
