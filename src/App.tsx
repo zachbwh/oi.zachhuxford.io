@@ -9,6 +9,7 @@ import './App.scss';
 
 import Swipe from 'react-components/Swipe/Swipe'
 import RegisterUser from "react-components/Login/RegisterUser/RegisterUser";
+import LoginUser from "react-components/Login/LoginUser/LoginUser";
 import SwipeNavBar from "react-components/Swipe/SwipeNavBar/SwipeNavBar";
 import LoginNavBar from "react-components/Login/LoginNavBar/LoginNavBar";
 import SwipeUserProfile from "react-components/Swipe/SwipeUserProfile/SwipeUserProfile";
@@ -25,6 +26,9 @@ function App() {
 							<SwipeNavBar />
 						</Route>
 						<Route path="/register">
+							<LoginNavBar />
+						</Route>
+						<Route path="/login">
 							<LoginNavBar />
 						</Route>
 					</Switch>
@@ -44,6 +48,9 @@ function App() {
 							</Route>
 							<Route path="/register">
 								<RegisterUser />
+							</Route>
+							<Route path="/login">
+								<LoginUser />
 							</Route>
 						</Switch>
 					</div>
