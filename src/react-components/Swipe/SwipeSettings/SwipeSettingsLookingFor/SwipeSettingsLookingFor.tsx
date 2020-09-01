@@ -11,15 +11,18 @@ function SwipeSettingsLookingFor() {
 	const dispatch = useDispatch();
 
 	var swipeSettings = useSelector(selectSwipeSettings);
-	const lookingFor = swipeSettings.lookingFor;
+	const lookingFor = swipeSettings.lookingFor,
+		swipeRadius = swipeSettings.swipeRadius;
 
 	useEffect(() => {
-		fetch('/assets/swipeSettings.json')
-		.then(response => response.json())
-		.then(((swipeSettings: SwipeSettingsState) => {
-			dispatch(setSwipeSettings(swipeSettings));
-		}))
-	 }, [dispatch]);
+		if (swipeRadius === 0) {
+			fetch('/assets/swipeSettings.json')
+			.then(response => response.json())
+			.then(((swipeSettings: SwipeSettingsState) => {
+				dispatch(setSwipeSettings(swipeSettings));
+			}));
+		}
+	 }, [dispatch, swipeRadius]);
 
 	return (
 		<div className="swipe-settings-container looking-for">

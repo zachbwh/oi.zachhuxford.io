@@ -36,7 +36,7 @@ function SwipeSettings() {
 				dispatch(setSwipeSettings(swipeSettings));
 			}));
 		}
-	 }, [dispatch]);
+	 }, [dispatch, swipeRadius]);
 
 	const updateAgeRange = function(range: Range) {
 		var shouldShowAgeRequirement = false,
