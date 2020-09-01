@@ -37,7 +37,7 @@
 		font-size: 2em;
 		justify-content: space-between;
 		max-width: 500px;
-		width: 100%;
+		width: calc(100% - 1em);
 
 
 		> div:nth-child(2) {

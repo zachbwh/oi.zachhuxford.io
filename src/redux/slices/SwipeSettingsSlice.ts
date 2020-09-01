@@ -11,7 +11,7 @@ export interface SwipeSettingsState {
 
 export const swipeSettingsSlice = createSlice({
 	name: 'swipe',
-	initialState: { swipeRadius: 120, minAge: 18, maxAge: 55, lookingFor: "Zach" } as SwipeSettingsState,
+	initialState: { swipeRadius: 0, minAge: 18, maxAge: 55, lookingFor: "Zach" } as SwipeSettingsState,
 	reducers: {
 		setSwipeRadius: function(state, action) {
 			state.swipeRadius = action.payload.swipeRadius;
@@ -25,11 +25,17 @@ export const swipeSettingsSlice = createSlice({
 		setLookingFor: function(state, action) {
 			state.lookingFor = action.payload.lookingFor;
 		},
+		setSwipeSettings: function(state, action) {
+			state.swipeRadius = action.payload.swipeRadius;
+			state.minAge = action.payload.minAge;
+			state.maxAge = action.payload.maxAge;
+			state.lookingFor = action.payload.lookingFor;
+		}
 	}
 });
 
 export const selectSwipeSettings = (state:RootState) => state.swipeSettings;
 
-export const { setSwipeRadius, setMinAge, setMaxAge, setLookingFor } = swipeSettingsSlice.actions;
+export const { setSwipeRadius, setMinAge, setMaxAge, setLookingFor, setSwipeSettings } = swipeSettingsSlice.actions;
 
 export default swipeSettingsSlice.reducer;

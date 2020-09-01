@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import '../SwipeSettings.scss';
 import './SwipeSettingsLookingFor.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import { selectSwipeSettings, setLookingFor } from "redux/slices/SwipeSettingsSlice";
+import { selectSwipeSettings, setLookingFor, SwipeSettingsState, setSwipeSettings } from "redux/slices/SwipeSettingsSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 function SwipeSettingsLookingFor() {
@@ -14,11 +13,19 @@ function SwipeSettingsLookingFor() {
 	var swipeSettings = useSelector(selectSwipeSettings);
 	const lookingFor = swipeSettings.lookingFor;
 
+	useEffect(() => {
+		fetch('/assets/swipeSettings.json')
+		.then(response => response.json())
+		.then(((swipeSettings: SwipeSettingsState) => {
+			dispatch(setSwipeSettings(swipeSettings));
+		}))
+	 }, [dispatch]);
+
 	return (
 		<div className="swipe-settings-container looking-for">
 			<div className="swipe-settings">
 				<div className="settings-body">
-					<h4 className="settings-title"><span>Looking For</span><Link to="/swipe/settings">Done</Link></h4>
+					<h4 className="settings-title"><span>Looking For</span><span onClick={() => window.history.back()}>Done</span></h4>
 					<div className="discovery-settings">
 						<div className="setting" onClick={() => dispatch(setLookingFor({ lookingFor: "Everyone" }))}>
 							<div className="setting-label">

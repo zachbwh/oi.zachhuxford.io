@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import './SwipeSettings.scss';
 import InputRange, {Range} from 'react-input-range'
@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSwipeSettings, setSwipeRadius as _setSwipeRadius, setMinAge, setMaxAge } from "redux/slices/SwipeSettingsSlice";
+import { selectSwipeSettings, setSwipeRadius as _setSwipeRadius, setMinAge, setMaxAge, setSwipeSettings, SwipeSettingsState } from "redux/slices/SwipeSettingsSlice";
 
 const minProfileAge = 18,
 	ageRangeMustContain = 22,
@@ -27,6 +27,16 @@ function SwipeSettings() {
 	const minAge = swipeSettings.minAge;
 	const maxAge = swipeSettings.maxAge;
 	const lookingFor = swipeSettings.lookingFor;
+
+	useEffect(() => {
+		if (swipeRadius === 0) {
+			fetch('/assets/swipeSettings.json')
+			.then(response => response.json())
+			.then(((swipeSettings: SwipeSettingsState) => {
+				dispatch(setSwipeSettings(swipeSettings));
+			}));
+		}
+	 }, [dispatch]);
 
 	const updateAgeRange = function(range: Range) {
 		var shouldShowAgeRequirement = false,
@@ -70,7 +80,7 @@ function SwipeSettings() {
 						<div className="setting">
 							<div className="setting-label">
 								<div className="setting-name">Swipe Radius</div>
-								<div className="setting-value">{Math.floor(swipeRadius)} km.</div>
+								<div className="setting-value"> {swipeRadius === maxSwipeRadius ? "over" : ""} {Math.floor(swipeRadius)}km</div>
 							</div>
 							<div className="input-range-container">
 								<InputRange
@@ -89,7 +99,7 @@ function SwipeSettings() {
 						<div className="setting">
 							<div className="setting-label">
 								<div className="setting-name">Age Range</div>
-								<div className="setting-value">{Math.floor(minAge)} - {Math.floor(maxAge)} {maxAge === maxProfileAge ? "+" : ""}</div>
+								<div className="setting-value">{Math.floor(minAge)} - {Math.floor(maxAge)}{maxAge === maxProfileAge ? "+" : ""}</div>
 							</div>
 							<div className="input-range-container">
 								<InputRange
