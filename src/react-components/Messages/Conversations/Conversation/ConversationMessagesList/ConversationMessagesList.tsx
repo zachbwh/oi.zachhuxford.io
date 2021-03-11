@@ -4,6 +4,7 @@ import './ConversationMessagesList.scss';
 import { useSelector } from 'react-redux';
 import { messageSelectEntities } from 'redux/slices/MessagesSlice';
 import { Link } from 'react-router-dom';
+import { Scrollbars } from 'react-custom-scrollbars';
 import ConversationMessage from './ConversationMessage/ConversationMessage';
 import IConversation from 'typescript-types/Messages/IConversation';
 import IMessage from 'typescript-types/Messages/IMessage';
@@ -31,7 +32,9 @@ const Conversation: React.FunctionComponent<{ conversation: IConversation | unde
 
 	return (
 	<div className="conversation-messages-list">
-		{conversationBody}
+		<Scrollbars>
+			{conversationBody}
+		</Scrollbars>
 	</div>
 	);
 }
