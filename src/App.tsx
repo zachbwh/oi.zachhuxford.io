@@ -15,6 +15,7 @@ import LoginNavBar from "react-components/Login/LoginNavBar/LoginNavBar";
 import SwipeUserProfile from "react-components/Swipe/SwipeUserProfile/SwipeUserProfile";
 import SwipeSettings from "react-components/Swipe/SwipeSettings/SwipeSettings";
 import SwipeSettingsLookingFor from "react-components/Swipe/SwipeSettings/SwipeSettingsLookingFor/SwipeSettingsLookingFor";
+import Conversations from "react-components/Messages/Conversations/Conversations";
 
 function App() {
 	return (
@@ -45,6 +46,9 @@ function App() {
 							</Route>
 							<Route path="/swipe">
 								<Swipe />
+							</Route>
+							<Route path="/messages">
+								<Conversations />
 							</Route>
 							<Route path="/register">
 								<RegisterUser />

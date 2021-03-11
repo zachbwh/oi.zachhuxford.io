@@ -1,0 +1,22 @@
+.conversation-message {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1em;
+
+    .date {
+        text-align: center;
+		transition: height 200ms ease-in-out, opacity 200ms ease-in-out;
+		height: 1.5em;
+		opacity: 0.8;
+		font-size: 0.8em;
+
+		&.hidden {
+			height: 0px;
+			opacity: 0;
+		}
+    }
+
+    &:last-child {
+        padding-bottom: 1em
+    }
+}

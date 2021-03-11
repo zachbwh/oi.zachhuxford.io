@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-import Profile from 'typescript-types/IProfile';
+import Profile from 'typescript-types/Swipe/IProfile';
 import { RootState } from 'redux/StateTypes';
 
 export const acceptProfileAsync = createAsyncThunk(

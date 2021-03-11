@@ -1,0 +1,48 @@
+.conversation-nav-bar {
+	display: flex;
+	align-items: center;
+	top: 0px;
+	width: 100%;
+	overflow: hidden;
+
+	.nav-bar-content {
+		z-index: 1;
+		width: 100%;
+		padding: 0.5em;
+		display: flex;
+		flex-direction: row;
+	    align-items: center;
+        
+        a > svg {
+            font-size: 1.8em;
+            padding: 0.25em;
+        }
+
+        & > * {
+            padding: 0 0.5em
+        }
+	}
+
+	a svg, a:hover svg {
+		color: #2E5DFF;
+		text-decoration: none;
+	}
+
+	a, a:hover {
+		color: white;
+		text-decoration: none;
+	}
+
+    .conversation-title {
+        overflow-x: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .conversation-icon img {
+        height: 2.8em;
+        width: 2.8em;
+        border-radius: 1.4em;
+        object-fit: cover;
+    }
+}

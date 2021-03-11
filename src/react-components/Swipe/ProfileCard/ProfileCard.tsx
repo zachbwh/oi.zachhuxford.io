@@ -7,7 +7,7 @@ import './ProfileCard.scss'
 import ProfileCardDetail from './ProfileCardDetail/ProfileCardDetail'
 import ProfileCardPreview from './ProfileCardPreview/ProfileCardPreview'
 
-import IProfile from 'typescript-types/IProfile';
+import IProfile from 'typescript-types/Swipe/IProfile';
 
 interface ProfileCardProps {
 	profile: IProfile

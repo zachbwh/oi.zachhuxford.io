@@ -1,0 +1,49 @@
+.conversation-list-preview-item {
+	display: flex;
+	padding: 10px;
+	transition: background-color 200ms ease-in-out;
+
+	.selected, &:hover {
+		border-radius: 0.25em;
+		background-color: #1e42c4;
+	}
+
+	.conversation-preview-text {
+		margin: 0 10px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		overflow-x: hidden;
+
+		> * {
+			overflow-x: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		
+		.conversation-preview-header {
+			font-weight: bold;
+			font-size: 1.2em;
+			overflow-x: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.conversation-last-message {
+			font-size: 0.9em;
+			display: flex;
+
+			.text {
+				flex-grow: 1;
+				overflow-x: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			.date {
+				padding-left: 0.5em;
+			}
+		}
+	}
+
+}

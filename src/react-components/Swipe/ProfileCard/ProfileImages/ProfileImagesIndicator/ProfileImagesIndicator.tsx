@@ -2,7 +2,7 @@ import React from 'react';
 import './ProfileImagesIndicator.scss'
 
 import ProjectImageIndicator from './ProfileImageIndicator/ProfileImageIndicator'
-import IProfileImage from 'typescript-types/IProfileImage';
+import IProfileImage from 'typescript-types/Swipe/IProfileImage';
 
 const ProfileImagesIndicator: React.FunctionComponent<{index: number; profileImages: IProfileImage[];}> = props => {
     var indicatorElements = props.profileImages.map((profileImage, index) => {

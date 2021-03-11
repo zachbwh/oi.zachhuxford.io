@@ -6,17 +6,23 @@
     
     .App-header {
         min-height: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         color: white;
+        display: flex;
+        flex-direction: column;
     }
 
     .App-content {
         height: 100%;
         width: 100vw;
         z-index: 201;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
     }
 
     h1, h2, h3, h4, h5, h6 {

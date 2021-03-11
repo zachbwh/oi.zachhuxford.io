@@ -7,7 +7,7 @@ import { faHome, faBriefcase, faArrowAltCircleDown } from '@fortawesome/free-sol
 
 import ProfileImages from '../ProfileImages/ProfileImages'
 
-import IProfile from 'typescript-types/IProfile';
+import IProfile from 'typescript-types/Swipe/IProfile';
 
 const ProfileCardDetail: React.FunctionComponent<{profile: IProfile, imageIndex: number, setImageIndex: any, toggleViewMode: any;}> = props => {
 	const age = Moment(new Date()).diff(props.profile.BirthDate, 'years');

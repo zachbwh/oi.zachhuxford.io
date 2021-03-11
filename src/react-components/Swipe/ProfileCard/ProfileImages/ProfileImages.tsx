@@ -6,7 +6,7 @@ import ProfileImagesIndicator from './ProfileImagesIndicator/ProfileImagesIndica
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
-import IProfileImage from 'typescript-types/IProfileImage'
+import IProfileImage from 'typescript-types/Swipe/IProfileImage'
 
 const ProfileImages: React.FunctionComponent<{profileImages: IProfileImage[], imageIndex: number, setImageIndex: any;}> = props => {
 	const imageIndex = props.imageIndex;

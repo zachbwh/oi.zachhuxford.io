@@ -1,0 +1,81 @@
+{
+	"conversations": {
+		"entities": {
+			"126r51": {
+				"ConversationId": "126r51",
+				"ConversationName": "test conversation with zach",
+				"ConversationImage": "/assets/swipe-images/disbelievingly debonair/isolation-April 07, 2020-8.jpg",
+				"ConversationImageAltText": "Zach relaxing in his dressing gown using his phone on an orange chair after a long day",
+				"Participants": ["12drt"],
+				"Messages": ["1"]
+			},
+			"23iu2n": {
+				"ConversationId": "23iu2n",
+				"ConversationName": "A Different Conversation",
+				"ConversationImage": "/assets/swipe-images/disbelievingly debonair/isolation-April 07, 2020-8.jpg",
+				"ConversationImageAltText": "Zach relaxing in his dressing gown using his phone on an orange chair after a long day",
+				"Participants": ["12drt", "f73287"],
+				"Messages": ["3", "4"]
+			}
+		},
+		"ids": ["126r51", "23iu2n"]
+	},
+	"users": {
+		"entities": {
+			"12drt": {
+				"UserId": "12drt",
+				"Username": "zachbwh",
+				"FirstName": "Zach",
+				"LastName": "Huxford",
+				"ProfileImage": "/assets/swipe-images/disbelievingly debonair/isolation-April 07, 2020-8.jpg",
+				"ProfileImageAltText": "Zach relaxing in his dressing gown using his phone on an orange chair after a long day"
+			},
+			"f73287": {
+				"UserId": "f73287",
+				"Username": "ravid",
+				"FirstName": "Ravid",
+				"LastName": "Aharon",
+				"ProfileImage": "/assets/swipe-images/food fiend/isolation-March 29, 2020.jpg",
+				"ProfileImageAltText": "yummy gum ball"
+			}
+		},
+		"ids": ["12drt","f73287" ]
+	},
+	"messages": {
+		"entities": {
+			"1": {
+				"MessageId": "1",
+				"ConversationId": "126r51",
+				"MessageType": "text",
+				"SenderId": "12drt",
+				"Date": "Fri Sep 18 2020 14:58:57 GMT+1200 (New Zealand Standard Time)",
+				"MessageText": "hello this is my friend who is a message"
+			},
+			"2": {
+				"MessageId": "2",
+				"ConversationId": "126r51",
+				"MessageType": "text",
+				"SenderId": "f73287",
+				"Date": "Fri Sep 18 2020 13:00:27 GMT+1200 (New Zealand Standard Time)",
+				"MessageText": "reply time"
+			},
+			"3": {
+				"MessageId": "3",
+				"ConversationId": "23iu2n",
+				"MessageType": "text",
+				"SenderId": "12drt",
+				"Date": "Fri Sep 18 2020 14:58:57 GMT+1200 (New Zealand Standard Time)",
+				"MessageText": "This message is meant to distinguish itself from the other thread"
+			},
+			"4": {
+				"MessageId": "4",
+				"ConversationId": "23iu2n",
+				"MessageType": "text",
+				"SenderId": "f73287",
+				"Date": "Fri Sep 18 2020 13:00:27 GMT+1200 (New Zealand Standard Time)",
+				"MessageText": "nice"
+			}
+		},
+		"ids": ["1", "2", "3", "4"]
+	}
+}

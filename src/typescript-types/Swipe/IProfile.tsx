@@ -1,6 +1,6 @@
-import IGender from 'typescript-types/IGender'
-import IProfileImage from 'typescript-types/IProfileImage'
-import ILocailty from 'typescript-types/ILocality'
+import IGender from 'typescript-types/Swipe/IGender'
+import IProfileImage from 'typescript-types/Swipe/IProfileImage'
+import ILocailty from 'typescript-types/Swipe/ILocality'
 
 interface IProfile {
 	UserName: string,

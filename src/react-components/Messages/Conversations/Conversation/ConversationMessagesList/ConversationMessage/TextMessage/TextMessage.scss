@@ -1,0 +1,31 @@
+.text-message {
+    flex-grow: 1;
+    display: flex;
+    
+    &.left-align {
+        justify-content: flex-start;
+
+        .body {
+            border-bottom-left-radius: 0.25em;
+    		background-color: #1e42c4;
+        }
+    }
+
+    &.right-align {
+        justify-content: flex-end;
+
+        .body {
+            border-bottom-right-radius: 0.25em;
+            background-color: #2e5dff;
+        }
+    }
+
+    .body {
+        display: flex;
+        padding: 0.5em 0.75em;
+        max-width: 75%;
+        background-color: aqua;
+        border-radius: 1em;
+    }
+    
+}

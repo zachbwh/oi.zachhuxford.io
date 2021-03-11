@@ -1,0 +1,12 @@
+.conversation-preview-icon {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	img {
+		height: 4em;
+		width: 4em;
+		border-radius: 2em;
+		object-fit: cover;
+	}
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProfileImage.scss'
 
-import IProfileImage from 'typescript-types/IProfileImage';
+import IProfileImage from 'typescript-types/Swipe/IProfileImage';
 
 const ProfileImage: React.FunctionComponent<{index: number, visibleIndex: number, profileImage: IProfileImage;}> = props => {
 	var imageClass = "hidden",

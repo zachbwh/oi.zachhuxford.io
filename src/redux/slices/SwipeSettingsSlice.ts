@@ -10,7 +10,7 @@ export interface SwipeSettingsState {
 }
 
 export const swipeSettingsSlice = createSlice({
-	name: 'swipe',
+	name: 'swipe-settings',
 	initialState: { swipeRadius: 0, minAge: 18, maxAge: 55, lookingFor: "Zach" } as SwipeSettingsState,
 	reducers: {
 		setSwipeRadius: function(state, action) {
