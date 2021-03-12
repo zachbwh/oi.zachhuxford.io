@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import './ConversationInput.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,18 +12,21 @@ const ConversationInput: React.FunctionComponent<{ conversation: IConversation |
     const [messageDraftValue, setMessageDraftValue] = useState('');
 	const dispatch = useDispatch();
     const loginContent = useSelector(selectLoginContext);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const sendMessage = function() {
-        if (messageDraftValue) {
+        if (messageDraftValue && messageDraftValue.trim().length > 0) {
             const newMessage = {
                 "ConversationId": props.conversation?.ConversationId || "",
                 "MessageType": "text",
                 "SenderId": loginContent.userId,
                 "MessageText": messageDraftValue
             }
-            dispatch(addMessage(newMessage))
+            dispatch(addMessage(newMessage));
+
+            setMessageDraftValue('');
+            inputRef.current?.focus();
         }
-        setMessageDraftValue('');
     }
 
     const inputChanged = function(inputChangedEvent: React.ChangeEvent<HTMLInputElement>) {
@@ -31,17 +34,14 @@ const ConversationInput: React.FunctionComponent<{ conversation: IConversation |
     }
 
     const handleKeyDown = function(keyDownEvent: React.KeyboardEvent<HTMLInputElement>) {
-        if (keyDownEvent.nativeEvent.code === "Enter") {
-            sendMessage()
-        } else {
-            setMessageDraftValue(keyDownEvent.nativeEvent.code);
+        if (keyDownEvent.nativeEvent.code === "Enter" || keyDownEvent.keyCode === 13) {
             sendMessage()
         }
     }
 
 	return (
 	<div className="conversation-input">
-        <input type="text" placeholder="Send Message" onChange={inputChanged} value={messageDraftValue} onKeyDown={handleKeyDown}></input>
+        <input type="text" placeholder="Send Message" onChange={inputChanged} value={messageDraftValue} onKeyDown={handleKeyDown} ref={inputRef}></input>
         <FontAwesomeIcon icon={faArrowRight} onClick={sendMessage}></FontAwesomeIcon>
 	</div>
 	);

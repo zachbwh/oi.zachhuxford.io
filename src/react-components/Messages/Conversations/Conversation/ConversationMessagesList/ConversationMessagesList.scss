@@ -1,3 +1,5 @@
-.conversation-messages-list > div > div:first-child {
-    padding: 0 1em;
+.conversation-messages-list {
+    > div > div:first-child {
+        padding: 0 1em;
+    }
 }

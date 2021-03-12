@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import './ConversationMessagesList.scss';
 import { useSelector } from 'react-redux';
@@ -11,6 +11,12 @@ import IMessage from 'typescript-types/Messages/IMessage';
 
 const Conversation: React.FunctionComponent<{ conversation: IConversation | undefined }> = props => {
 	let conversationBody;
+
+	const listRef = useRef<Scrollbars>(null);
+
+	useEffect(() => {
+		listRef.current?.scrollToBottom();
+	});
 
 	var messages : IMessage[] = [];
 
@@ -32,8 +38,9 @@ const Conversation: React.FunctionComponent<{ conversation: IConversation | unde
 
 	return (
 	<div className="conversation-messages-list">
-		<Scrollbars>
+		<Scrollbars ref={listRef}>
 			{conversationBody}
+			<div className="dummy-empty-div"></div>
 		</Scrollbars>
 	</div>
 	);
