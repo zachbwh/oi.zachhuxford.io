@@ -40,7 +40,6 @@ const Conversation: React.FunctionComponent<{ conversation: IConversation | unde
 	<div className="conversation-messages-list">
 		<Scrollbars ref={listRef}>
 			{conversationBody}
-			<div className="dummy-empty-div"></div>
 		</Scrollbars>
 	</div>
 	);
