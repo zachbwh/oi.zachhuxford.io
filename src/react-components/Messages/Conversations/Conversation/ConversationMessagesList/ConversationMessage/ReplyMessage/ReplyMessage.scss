@@ -1,0 +1,47 @@
+.reply-message {
+    flex-grow: 1;
+    display: flex;
+    
+    &.left-align {
+        justify-content: flex-start;
+
+        .reply-text, .reply-to {
+            border-bottom-left-radius: 0.25em;
+    		background-color: #16308b;
+        }
+    }
+
+    &.right-align {
+        justify-content: flex-end;
+
+        .reply-text, .reply-to {
+            border-bottom-right-radius: 0.25em;
+            background-color: #2e5dff;
+        }
+    }
+
+    .reply-to {
+        filter: brightness(75%);
+        padding-bottom: 1em;
+        transform: translateY(1em);
+        z-index: 1;
+        border-radius: 1em;
+
+        .body {
+            max-width: 100%;
+        }
+    }
+
+    .reply-text {
+        padding: 0.5em 0.75em;
+        border-radius: 1em;
+        z-index: 2;
+    }
+
+    .body {
+        display: flex;
+        flex-direction: column;
+        max-width: 75%;
+    }
+    
+}

@@ -74,8 +74,25 @@
 				"SenderId": "f73287",
 				"Date": "Fri Sep 18 2020 13:00:27 GMT+1200 (New Zealand Standard Time)",
 				"MessageText": "nice"
+			},
+			"5": {
+				"MessageId": "5",
+				"ConversationId": "23iu2n",
+				"MessageType": "reply",
+				"ReferenceMessageId": "4",
+				"SenderId": "f73287",
+				"Date": "Fri Sep 18 2020 13:00:27 GMT+1200 (New Zealand Standard Time)",
+				"MessageText": "actually a reply"
+			},
+			"6": {
+				"MessageId": "6",
+				"ConversationId": "23iu2n",
+				"MessageType": "deleted",
+				"SenderId": "f73287",
+				"Date": "Fri Sep 18 2020 13:00:27 GMT+1200 (New Zealand Standard Time)",
+				"MessageText": "actually a reply"
 			}
 		},
-		"ids": ["1", "2", "3", "4"]
+		"ids": ["1", "2", "3", "4", "5", "6"]
 	}
 }

@@ -1,17 +1,18 @@
 import React, { useRef } from 'react';
+import useClickOutside from 'react-hooks/ClickOutside';
 import { useSelector } from 'react-redux';
 import { selectLoginContext } from 'redux/slices/LoginContextSlice';
 import { userSelectById } from 'redux/slices/MessagesSlice';
 import IMessage from 'typescript-types/Messages/IMessage';
-import useClickOutside from 'react-hooks/ClickOutside';
 
-import './TextMessage.scss';
+import './DeletedMessage.scss';
 
 const TextMessage: React.FunctionComponent<{ message: IMessage, isReply?: boolean, onClick?: () => void, onClickOutside?: () => void }> = props => {
 
 	const loggedInUsername = useSelector(selectLoginContext).username,
 		senderUsername = useSelector(userSelectById(props.message.SenderId))?.Username,
 		bodyRef = useRef(null);
+
 	let alignClassName;
 	
 	if (props.isReply) {
@@ -25,9 +26,9 @@ const TextMessage: React.FunctionComponent<{ message: IMessage, isReply?: boolea
 	useClickOutside(bodyRef, props.onClickOutside);
 
 	return (
-	<div className={"text-message " +  alignClassName}>
+	<div className={"deleted-message " +  alignClassName}>
 		<div className="body" onClick={props?.onClick} ref={bodyRef}>
-			{props.message.MessageText}
+            Message Deleted
 		</div>
 	</div>
 	);

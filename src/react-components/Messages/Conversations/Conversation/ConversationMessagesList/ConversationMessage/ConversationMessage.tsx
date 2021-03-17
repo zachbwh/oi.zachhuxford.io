@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import IMessage from 'typescript-types/Messages/IMessage';
 
 import './ConversationMessage.scss';
+import DeletedMessage from './DeletedMessage/DeletedMessage';
+import ReplyMessage from './ReplyMessage/ReplyMessage';
 import TextMessage from './TextMessage/TextMessage';
 
 const ConversationMessage: React.FunctionComponent<{ message: IMessage }> = props => {
@@ -15,12 +17,15 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage }> = prop
 	}
 
 	switch (props.message.MessageType) {
+		case "reply":
+			messageComponent = <ReplyMessage message={props.message} onClick={toggleDetailVisible} onClickOutside={() => setDetailVisible(false)}></ReplyMessage>
+			break;
+
 		case "text":
 			messageComponent = <TextMessage message={props.message} onClick={toggleDetailVisible} onClickOutside={() => setDetailVisible(false)}></TextMessage>
 			break;
-
 		default:
-			messageComponent = <TextMessage message={props.message} onClick={toggleDetailVisible}></TextMessage>
+			messageComponent = <DeletedMessage message={props.message} onClick={toggleDetailVisible} onClickOutside={() => setDetailVisible(false)}></DeletedMessage>
 			break;
 	}
 
