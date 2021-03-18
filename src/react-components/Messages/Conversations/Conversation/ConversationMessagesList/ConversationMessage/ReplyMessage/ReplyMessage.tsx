@@ -29,10 +29,10 @@ const ReplyMessage: React.FunctionComponent<{ message: IMessage, onClick?: () =>
 	switch (replyToMessage?.MessageType) {
 		case "text":
 		case "reply":
-			replyToComponent = <TextMessage message={props.message} isReply={true}></TextMessage>
+			replyToComponent = <TextMessage message={replyToMessage} isReply={true}></TextMessage>
 			break;
-		default:
-			replyToComponent = <DeletedMessage message={props.message} isReply={true}></DeletedMessage>
+		case "deleted":
+			replyToComponent = <DeletedMessage message={replyToMessage} isReply={true}></DeletedMessage>
 		break;
 	}
 
