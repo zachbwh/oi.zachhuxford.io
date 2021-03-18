@@ -1,7 +1,7 @@
 interface IMessage {
 	MessageId: string,
 	ConversationId: string
-	MessageType: "text" | "reply" | "image" | "deleted",
+	MessageType: "text" | "reply" | "images" | "deleted",
 	SenderId: string,
 	DateTime: string,
 	MessageText?: string,

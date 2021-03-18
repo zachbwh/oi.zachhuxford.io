@@ -98,7 +98,7 @@
 				"MessageType": "images",
 				"SenderId": "12drt",
 				"DateTime": "2021-03-18T08:06:48.905Z",
-				"MessageUrls": ["/assets/swipe-images/food fiend/isolation-March 29, 2020.jpg"],
+				"ImageUrls": ["/assets/swipe-images/food fiend/isolation-March 29, 2020.jpg"],
 				"MessageText": "image caption"
 			}
 		},
