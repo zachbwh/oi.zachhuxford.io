@@ -48,7 +48,7 @@
 				"ConversationId": "126r51",
 				"MessageType": "text",
 				"SenderId": "12drt",
-				"Date": "Fri Sep 18 2020 14:58:57 GMT+1200 (New Zealand Standard Time)",
+				"DateTime": "2021-03-18T08:05:48.905Z",
 				"MessageText": "hello this is my friend who is a message"
 			},
 			"2": {
@@ -56,7 +56,7 @@
 				"ConversationId": "126r51",
 				"MessageType": "text",
 				"SenderId": "f73287",
-				"Date": "Fri Sep 18 2020 13:00:27 GMT+1200 (New Zealand Standard Time)",
+				"DateTime": "2021-03-18T08:05:48.905Z",
 				"MessageText": "reply time"
 			},
 			"3": {
@@ -64,7 +64,7 @@
 				"ConversationId": "23iu2n",
 				"MessageType": "text",
 				"SenderId": "12drt",
-				"Date": "Fri Sep 18 2020 14:58:57 GMT+1200 (New Zealand Standard Time)",
+				"DateTime": "2021-03-18T08:05:48.905Z",
 				"MessageText": "This message is meant to distinguish itself from the other thread"
 			},
 			"4": {
@@ -72,7 +72,7 @@
 				"ConversationId": "23iu2n",
 				"MessageType": "text",
 				"SenderId": "f73287",
-				"Date": "Fri Sep 18 2020 13:00:27 GMT+1200 (New Zealand Standard Time)",
+				"DateTime": "2021-03-18T08:05:48.905Z",
 				"MessageText": "nice"
 			},
 			"5": {
@@ -81,7 +81,7 @@
 				"MessageType": "reply",
 				"ReferenceMessageId": "4",
 				"SenderId": "f73287",
-				"Date": "Fri Sep 18 2020 13:00:27 GMT+1200 (New Zealand Standard Time)",
+				"DateTime": "2021-03-18T08:05:48.905Z",
 				"MessageText": "actually a reply"
 			},
 			"6": {
@@ -89,10 +89,19 @@
 				"ConversationId": "23iu2n",
 				"MessageType": "deleted",
 				"SenderId": "f73287",
-				"Date": "Fri Sep 18 2020 13:00:27 GMT+1200 (New Zealand Standard Time)",
+				"DateTime": "2021-03-18T08:05:48.905Z",
 				"MessageText": "actually a reply"
+			},
+			"7": {
+				"MessageId": "7",
+				"ConversationId": "23iu2n",
+				"MessageType": "images",
+				"SenderId": "12drt",
+				"DateTime": "2021-03-18T08:06:48.905Z",
+				"MessageUrls": ["/assets/swipe-images/food fiend/isolation-March 29, 2020.jpg"],
+				"MessageText": "image caption"
 			}
 		},
-		"ids": ["1", "2", "3", "4", "5", "6"]
+		"ids": ["1", "2", "3", "4", "5", "6", "7"]
 	}
 }

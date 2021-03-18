@@ -2,7 +2,7 @@ import React from 'react';
 
 import './ConversationsListPreviewItem.scss';
 import { useSelector } from "react-redux";
-import { conversationSelectById, messageSelectById, userSelectById } from "redux/slices/MessagesSlice";
+import { conversationSelectById, selectLastMessageFromConversation, userSelectById } from "redux/slices/MessagesSlice";
 import ConversationPreviewIcon from "./ConversationPreviewIcon/ConversationPreviewIcon"
 import { Link } from 'react-router-dom';
 import { selectLoginContext } from 'redux/slices/LoginContextSlice';
@@ -11,7 +11,7 @@ import moment from 'moment';
 const ConversationsListPreviewItem: React.FunctionComponent<{ conversationId: string | number }> = props => {
 
 	const conversation = useSelector(conversationSelectById(props.conversationId)),
-		lastMessage = useSelector(messageSelectById(conversation?.Messages[0] || "")),
+		lastMessage = useSelector(selectLastMessageFromConversation(conversation?.ConversationId || "")),
 		lastMessageSender = useSelector(userSelectById(lastMessage?.SenderId || "")),
 		loggedInUsername = useSelector(selectLoginContext).username;
 

@@ -91,6 +91,22 @@ export const conversationSelectAll = () => (state: RootState) => conversationsSe
 export const conversationSelectTotal = () => (state: RootState) => conversationsSelectors.selectTotal(state.messages.conversations)
 export const conversationSelectById = (id: string | number) => (state: RootState) => conversationsSelectors.selectById(state.messages.conversations, id)
 
+export const selectLastMessageFromConversation = (id: string | number) => function(state: RootState) {
+	const orderedMessages = Object.values(state.messages.messages.entities)
+	.filter(message => message.ConversationId === id)
+	.sort((a, b) => {
+		if (a.DateTime === b.DateTime) {
+			return 0;
+		} else if (new Date(a.DateTime) > new Date(b.DateTime)) {
+			return 1;
+		} else {
+			return -1;
+		}
+	});
+
+	return orderedMessages[orderedMessages.length - 1];
+};
+
 const usersSelectors = usersAdapter.getSelectors<UsersState>(
 	(state) => state
 );
