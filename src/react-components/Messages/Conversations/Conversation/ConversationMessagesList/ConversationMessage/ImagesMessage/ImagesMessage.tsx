@@ -25,11 +25,11 @@ const ImagesMessage: React.FunctionComponent<{ message: IMessage, isReply?: bool
 
 	if (props.message.ImageUrls?.length === 1) {
 		imagesPreview = (
-			<img src={props.message.ImageUrls[0]}></img>
+			<img src={props.message.ImageUrls[0]} alt={props.message.MessageText}></img>
 		);
 	} else {
 		imagesPreview = (
-			<img></img>
+			<img alt={props.message.MessageText}></img>
 		);
 	}
 
