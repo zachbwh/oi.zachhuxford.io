@@ -29,10 +29,18 @@
     .body {
         display: flex;
         flex-direction: column;
-        max-width: 40%;
 
         img, .images-text {
+            min-height: 24px;
+            max-height: 400px;
+            width: auto;
             max-width: 100%;
+        }
+
+        @media (max-width: 601px) {
+            img, .images-text {
+                max-height: 300px;
+            }
         }
 
         .images-text {
