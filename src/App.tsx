@@ -23,6 +23,9 @@ function App() {
 			<header className="App-header">
 				<Router>
 					<Switch>
+						<Route path="/">
+							<SwipeNavBar />
+						</Route>
 						<Route path="/swipe">
 							<SwipeNavBar />
 						</Route>
@@ -43,6 +46,9 @@ function App() {
 							</Route>
 							<Route path="/swipe/settings">
 								<SwipeSettings />
+							</Route>
+							<Route path="/">
+								<Swipe />
 							</Route>
 							<Route path="/swipe">
 								<Swipe />
