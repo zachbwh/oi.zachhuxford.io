@@ -8,6 +8,7 @@ import { addMessage } from 'redux/slices/MessagesSlice';
 import IConversation from 'typescript-types/Messages/IConversation';
 import { selectLoginContext } from 'redux/slices/LoginContextSlice';
 
+const ConversationInput: React.FunctionComponent<{ conversationId: string}> = props => {
 const ConversationInput: React.FunctionComponent<{ conversation: IConversation | undefined}> = props => {
     const [messageDraftValue, setMessageDraftValue] = useState('');
 	const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const ConversationInput: React.FunctionComponent<{ conversation: IConversation |
     const sendMessage = function() {
         if (messageDraftValue && messageDraftValue.trim().length > 0) {
             const newMessage = {
-                "ConversationId": props.conversation?.ConversationId || "",
+                "ConversationId": props.conversationId,
                 "MessageType": "text",
                 "SenderId": loginContent.userId,
                 "MessageText": messageDraftValue
