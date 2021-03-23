@@ -13,9 +13,11 @@ const ConversationsList: React.FunctionComponent<{ searchTerm: string }> = props
 		fetch('/assets/conversations.json')
 		.then(response => response.json())
 		.then(((messages: MessagesState) => {
-			dispatch(setConversations(messages));
+			if (conversationIds.length === 0) {
+				dispatch(setConversations(messages));
+			}
 		}));
-	}, [dispatch]);
+	}, [dispatch, conversationIds]);
 
 	const conversationsList = conversationIds.map(conversationId => {
 		return (

@@ -1,3 +1,4 @@
+import DraftMessage from './IDraftMessage'
 interface IConversation {
 	ConversationId: string,
 	ConversationImage: string,
@@ -6,7 +7,8 @@ interface IConversation {
 	NickNames?: string[]
 	ConversationName?: string,
 	LastActiveDate: Date,
-	Messages: string[]
+	Messages: string[],
+	DraftMessage?: DraftMessage
 };
 
 export default IConversation;

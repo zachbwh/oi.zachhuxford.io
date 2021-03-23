@@ -3,6 +3,7 @@ import { nanoid } from '@reduxjs/toolkit'
 
 import { RootState } from 'redux/StateTypes';
 import Conversation from 'typescript-types/Messages/IConversation';
+import IDraftMessage from 'typescript-types/Messages/IDraftMessage';
 import IMessage from 'typescript-types/Messages/IMessage';
 import Message from 'typescript-types/Messages/IMessage';
 import User from 'typescript-types/Messages/IUser';
@@ -77,7 +78,15 @@ export const messagesSlice = createSlice({
 
 				return newPayload;
 			}
-		}
+		},
+		setConversationDraftMessage: (state, action: PayloadAction<IDraftMessage>) => {
+			state.conversations.entities[action.payload.ConversationId].DraftMessage = action.payload;
+			return state;
+		},
+		removeConversationDraftMessage: (state, action: PayloadAction<string | number>) => {
+			delete state.conversations.entities[action.payload].DraftMessage;
+			return state;
+		},
 	}
 });
 
@@ -128,7 +137,7 @@ export const messageSelectTotal = () => (state: RootState) => messagesSelectors.
 export const messageSelectById = (id: string | number) => (state: RootState) => messagesSelectors.selectById(state.messages.messages, id)
 
 
-export const { setConversations, addMessage } = messagesSlice.actions;
+export const { setConversations, addMessage, setConversationDraftMessage, removeConversationDraftMessage } = messagesSlice.actions;
 
 
 export default messagesSlice.reducer;

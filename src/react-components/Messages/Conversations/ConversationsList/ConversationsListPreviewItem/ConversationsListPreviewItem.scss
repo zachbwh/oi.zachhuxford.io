@@ -29,12 +29,11 @@
 			white-space: nowrap;
 		}
 
-		.conversation-last-message {
+		.conversation-text-preview {
 			font-size: 0.9em;
 			display: flex;
 
 			.text {
-				// flex-grow: 1;
 				overflow-x: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
