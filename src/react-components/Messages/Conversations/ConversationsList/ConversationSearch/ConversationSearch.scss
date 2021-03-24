@@ -21,6 +21,10 @@
         background-color: #1e42c4;
     }
 
+    input:focus {
+        outline: 0;
+    }
+
     input::placeholder {
         color: #ffffff;
         opacity: 0.8;

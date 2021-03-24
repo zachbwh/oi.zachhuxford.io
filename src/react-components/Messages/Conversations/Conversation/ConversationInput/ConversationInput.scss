@@ -15,16 +15,21 @@
         padding: 0.75em;
         
         input {
+            padding: 0 0.75em;
             flex-grow: 1;
             color: #FFFFFF;
             border: 0px solid;
             box-sizing: border-box;
             background-color: #1e42c4;
         }
-    }
-    
-    input::placeholder {
-        color: #ffffff;
-        opacity: 0.8;
+
+        input:focus {
+            outline: 0;
+        }
+        
+        input::placeholder {
+            color: #ffffff;
+            opacity: 0.8;
+        }
     }
 }
