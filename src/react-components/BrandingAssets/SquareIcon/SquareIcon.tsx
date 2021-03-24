@@ -4,7 +4,7 @@ import './SquareIcon.scss';
 function SquareIcon() {
 
 	return (
-		<img className="square-icon" src="/logo192.png"/>
+		<img className="square-icon" alt="square icon" src="/logo192.png"/>
 	);
 }
 
