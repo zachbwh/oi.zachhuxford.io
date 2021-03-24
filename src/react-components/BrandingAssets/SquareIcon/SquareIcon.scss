@@ -1,21 +1,4 @@
-$shadow-color: #ffff50;
-$background-color: #2e5dff;
-
 .square-icon {
 	height: 1.5em;
 	width: 1.5em;
-	display: flex;
-	align-content: center;
-	background-color: $background-color;
-	border: 0px solid;
-	border-radius: 0.25em;
-	padding-left: 0.1em;
-
-	span {
-		font-weight: 600;
-		font-style: italic;
-		letter-spacing: 0.08em;
-		text-shadow: 0.04em 0.04em black, 0.06em 0.06em black, 0.08em 0.08em $shadow-color, 0.1em 0.1em $shadow-color;
-		line-height: 1.4;
-	}
 }

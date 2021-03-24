@@ -13,7 +13,9 @@
    version="1.1"
    id="svg328"
    inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
-   sodipodi:docname="logo.svg">
+   sodipodi:docname="logo.svg"
+   inkscape:export-xdpi="4.0640001"
+   inkscape:export-ydpi="4.0640001">
   <defs
      id="defs322" />
   <sodipodi:namedview
@@ -23,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.80706064"
-     inkscape:cx="330.35872"
-     inkscape:cy="416.07024"
+     inkscape:zoom="0.77145701"
+     inkscape:cx="163.73134"
+     inkscape:cy="428.64462"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -50,7 +52,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -66,11 +68,11 @@
        height="200"
        x="0"
        y="0"
-       rx="33.333302" />
+       rx="50" />
     <g
        id="g911"
        style="display:inline"
-       transform="translate(-15.7,3.6499928)">
+       transform="translate(-12.48,6.8509928)">
       <text
          xml:space="preserve"
          style="font-style:italic;font-weight:bold;font-size:140px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:'Roboto, Bold Italic';letter-spacing:13.2292px;stroke-width:0.264583"
@@ -84,28 +86,6 @@
            style="fill:#000000;stroke-width:0.264583">OI</tspan></text>
       <text
          xml:space="preserve"
-         style="font-style:italic;font-weight:bold;font-size:140px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:'Roboto, Bold Italic';letter-spacing:13.2292px;opacity:0.990891;fill:#ffff50;fill-opacity:1;stroke-width:0.264583"
-         x="43.240818"
-         y="150.90686"
-         id="text895"><tspan
-           sodipodi:role="line"
-           id="tspan893"
-           x="43.240818"
-           y="150.90686"
-           style="fill:#ffff50;fill-opacity:1;stroke-width:0.264583">OI</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:italic;font-weight:bold;font-size:140px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:'Roboto, Bold Italic';letter-spacing:13.2292px;opacity:0.990891;fill:#ffff50;fill-opacity:1;stroke-width:0.264583"
-         x="46.440819"
-         y="154.10686"
-         id="text899"><tspan
-           sodipodi:role="line"
-           id="tspan897"
-           x="46.440819"
-           y="154.10686"
-           style="fill:#ffff50;fill-opacity:1;stroke-width:0.264583">OI</tspan></text>
-      <text
-         xml:space="preserve"
          style="font-style:italic;font-weight:bold;font-size:140px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:'Roboto, Bold Italic';letter-spacing:13.2292px;opacity:0.990891;stroke-width:0.264583"
          x="40.040817"
          y="147.70686"
@@ -115,6 +95,33 @@
            x="40.040817"
            y="147.70686"
            style="fill:#000000;stroke-width:0.264583">OI</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:italic;font-weight:bold;font-size:140px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:'Roboto, Bold Italic';letter-spacing:13.2292px;stroke-width:0.264583"
+         x="33.640816"
+         y="141.30687"
+         id="text66"><tspan
+           sodipodi:role="line"
+           id="tspan64"
+           x="33.640816"
+           y="141.30687"
+           style="fill:#000000;stroke-width:0.264583">OI</tspan></text>
+      <rect
+         style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke-width:0.169559;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
+         id="rect913"
+         width="13.531521"
+         height="11.67405"
+         x="197.31094"
+         y="-12.890177"
+         transform="matrix(0.70946049,0.70474521,-0.70946049,0.70474521,0,0)" />
+      <rect
+         style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke-width:0.169559;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
+         id="rect915"
+         width="13.531521"
+         height="11.67405"
+         x="152.8812"
+         y="-98.24675"
+         transform="matrix(0.70946049,0.70474521,-0.70946049,0.70474521,0,0)" />
       <text
          xml:space="preserve"
          style="font-style:italic;font-weight:bold;font-size:140px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:'Roboto, Bold Italic';letter-spacing:13.2292px;stroke-width:0.264583"
