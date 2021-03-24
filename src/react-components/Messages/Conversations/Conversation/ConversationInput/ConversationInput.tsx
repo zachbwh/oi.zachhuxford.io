@@ -4,13 +4,14 @@ import './ConversationInput.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMessage, setConversationDraftMessage } from 'redux/slices/MessagesSlice';
+import { addMessage, conversationSelectById, removeConversationDraftMessage, setConversationDraftMessage } from 'redux/slices/MessagesSlice';
 import { selectLoginContext } from 'redux/slices/LoginContextSlice';
 import useDebounce from 'react-hooks/Debounce';
 import IDraftMessage from 'typescript-types/Messages/IDraftMessage';
 
 const ConversationInput: React.FunctionComponent<{ conversationId: string}> = props => {
-    const [messageDraftTextValue, setMessageDraftTextValue] = useState('');
+    const conversation = useSelector(conversationSelectById(props.conversationId))
+    const [messageDraftTextValue, setMessageDraftTextValue] = useState(conversation?.DraftMessage?.MessageText || "");
     const debouncedMessageDraftText = useDebounce<string>(messageDraftTextValue, 500);
 	const dispatch = useDispatch();
     const loginContent = useSelector(selectLoginContext);
@@ -39,6 +40,7 @@ const ConversationInput: React.FunctionComponent<{ conversationId: string}> = pr
             dispatch(addMessage(newMessage));
 
             setMessageDraftTextValue('');
+            dispatch(removeConversationDraftMessage(props.conversationId))
             inputRef.current?.focus();
         }
     }
@@ -55,7 +57,9 @@ const ConversationInput: React.FunctionComponent<{ conversationId: string}> = pr
 
 	return (
 	<div className="conversation-input">
-        <input type="text" placeholder="Send Message" onChange={inputChanged} value={messageDraftTextValue} onKeyDown={handleKeyDown} ref={inputRef}></input>
+        <div className="input-wrapper">
+            <input autoFocus type="text" placeholder="Send Message" onChange={inputChanged} value={messageDraftTextValue} onKeyDown={handleKeyDown} ref={inputRef}></input>
+        </div>
         <FontAwesomeIcon icon={faArrowRight} onClick={sendMessage}></FontAwesomeIcon>
 	</div>
 	);

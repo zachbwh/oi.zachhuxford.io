@@ -1,24 +1,30 @@
 .conversation-input {
     display: flex;
     align-items: center;
-    background-color: #1e42c4;
     padding: 0.5em;
 
-    > * {
-        padding: 0.75em
+    > svg {
+        padding: 0.75em;
     }
 
-    input {
-        flex-grow: 1;
-        color: #FFFFFF;
-        border: 0px solid;
-        box-sizing: border-box;
+    .input-wrapper {
         background-color: #1e42c4;
+        flex-grow: 1;
+        border-radius: 3em;
+        display: flex;
+        padding: 0.75em;
+        
+        input {
+            flex-grow: 1;
+            color: #FFFFFF;
+            border: 0px solid;
+            box-sizing: border-box;
+            background-color: #1e42c4;
+        }
     }
-
+    
     input::placeholder {
         color: #ffffff;
         opacity: 0.8;
     }
-
 }
