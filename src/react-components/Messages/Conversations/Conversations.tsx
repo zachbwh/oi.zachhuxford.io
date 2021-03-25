@@ -16,12 +16,20 @@ function Conversations() {
 	<div className="conversations">
 		<Switch>
 			<Route path={`${match.path}/:conversationId`}>
-				<Conversation />
+				<div className="secondary-view">
+					<ConversationSearch onSearchTermUpdated={setSearchTerm}></ConversationSearch>
+					<ConversationsList searchTerm={searchTerm} />
+				</div>
+				<div className="primary-view">
+					<Conversation />
+				</div>
 			</Route>
 			<Route path={match.path}>
-				<SwipeNavBar />
-				<ConversationSearch onSearchTermUpdated={setSearchTerm}></ConversationSearch>
-				<ConversationsList searchTerm={searchTerm} />
+				<div className="primary-view">
+					<SwipeNavBar />
+					<ConversationSearch onSearchTermUpdated={setSearchTerm}></ConversationSearch>
+					<ConversationsList searchTerm={searchTerm} />
+				</div>
 			</Route>
       </Switch>
 	</div>

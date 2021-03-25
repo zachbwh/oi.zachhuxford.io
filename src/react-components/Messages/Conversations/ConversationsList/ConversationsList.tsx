@@ -4,10 +4,12 @@ import './ConversationsList.scss';
 import { useDispatch, useSelector } from "react-redux";
 import { conversationSelectIds, setConversations, MessagesState } from "redux/slices/MessagesSlice";
 import ConversationsListPreviewItem from './ConversationsListPreviewItem/ConversationsListPreviewItem';
+import { useParams } from 'react-router-dom';
 
 const ConversationsList: React.FunctionComponent<{ searchTerm: string }> = props => {
 	const dispatch = useDispatch();
 	const conversationIds = useSelector(conversationSelectIds());
+	let { conversationId } = useParams<{conversationId: string}>();
 
 	useEffect(() => {
 		fetch('/assets/conversations.json')
@@ -19,9 +21,9 @@ const ConversationsList: React.FunctionComponent<{ searchTerm: string }> = props
 		}));
 	}, [dispatch, conversationIds]);
 
-	const conversationsList = conversationIds.map(conversationId => {
+	const conversationsList = conversationIds.map(listConversationId => {
 		return (
-			<ConversationsListPreviewItem key={conversationId} conversationId={conversationId}></ConversationsListPreviewItem>
+			<ConversationsListPreviewItem key={listConversationId} conversationId={listConversationId} isSelected={listConversationId === conversationId}></ConversationsListPreviewItem>
 		);
 	})
 

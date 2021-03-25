@@ -3,9 +3,9 @@
 	padding: 10px;
 	transition: background-color 200ms ease-in-out;
 
-	.selected, &:hover {
+	&.selected, &:hover {
 		border-radius: 0.25em;
-		background-color: #1e42c466;
+		background-color: #16308b99;
 	}
 
 	.conversation-preview-text {

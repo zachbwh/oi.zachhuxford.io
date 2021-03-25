@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { selectLoginContext } from 'redux/slices/LoginContextSlice';
 import moment from 'moment';
 
-const ConversationsListPreviewItem: React.FunctionComponent<{ conversationId: string | number }> = props => {
+const ConversationsListPreviewItem: React.FunctionComponent<{ conversationId: string | number, isSelected: boolean }> = props => {
 	const conversation = useSelector(conversationSelectById(props.conversationId)),
 		lastMessage = useSelector(selectLastMessageFromConversation(conversation?.ConversationId || "")),
 		lastMessageSender = useSelector(userSelectById(lastMessage?.SenderId || "")),
@@ -56,7 +56,7 @@ const ConversationsListPreviewItem: React.FunctionComponent<{ conversationId: st
 	}
 
 	return (
-	<Link to={`/messages/${conversation?.ConversationId}`} className="conversation-list-preview-item">
+	<Link to={`/messages/${conversation?.ConversationId}`} className={"conversation-list-preview-item" + (props.isSelected ? " selected" : "")}>
 		<ConversationPreviewIcon conversationId={props.conversationId}></ConversationPreviewIcon>
 		<div className="conversation-preview-text">
 			<h3 className="conversation-preview-header">{conversation?.ConversationName}</h3>

@@ -1,7 +1,31 @@
 .conversations {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-grow: 1;
     z-index: 1;
     height: 100%;
+
+    .primary-view, .secondary-view {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .primary-view {
+        flex-grow: 1;
+    }
+
+    .secondary-view {
+        width: 400px;
+        opacity: 1;
+        transition: width 500ms ease-in-out, opacity 500ms ease-in-out, border-color 500ms ease-in-out;
+        border-right: 5px solid #16308b99;
+    }
+
+    @media (max-width: 801px) {
+        .secondary-view {
+            width: 0;
+            opacity: 0;
+            border-color: #16308b00;
+        }
+    }
 }
