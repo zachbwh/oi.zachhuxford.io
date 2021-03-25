@@ -12,8 +12,10 @@ const ConversationSearch: React.FunctionComponent<{ onSearchTermUpdated: (search
 
 	return (
 	<div className="conversation-search">
-        <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
-        <input type="text" placeholder="Search Messages" onChange={onSearchInputUpdated}></input>
+        <div className="input-wrapper">
+            <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
+            <input type="text" placeholder="Search Messages" onChange={onSearchInputUpdated}></input>
+        </div>
 	</div>
 	);
 }
