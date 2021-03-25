@@ -3,6 +3,9 @@
     flex-direction: column;
     padding-top: 1em;
     user-select: none;
+    transform: rotateX(180deg);
+    // Sort order is reversed as the List is flipped and it's Children are flipped back
+	// This is so when the list height it increased, it expands upwards instead of downwards
 
     .date {
         text-align: center;
@@ -10,6 +13,7 @@
 		height: 1.5em;
 		opacity: 0.8;
 		font-size: 0.8em;
+        overflow-y: hidden;
 
 		&.hidden {
 			height: 0px;

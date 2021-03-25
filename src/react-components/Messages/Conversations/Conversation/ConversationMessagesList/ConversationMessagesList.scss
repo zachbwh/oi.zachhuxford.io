@@ -1,4 +1,8 @@
 .conversation-messages-list {
+    transform: rotateX(180deg);
+    // Sort order is reversed as the List is flipped and it's Children are flipped back
+	// This is so when the list height it increased, it expands upwards instead of downwards
+
     > div > div:first-child {
         padding: 0 1em;
     }

@@ -13,7 +13,7 @@ const Conversation: React.FunctionComponent<{ conversationId: string }> = props 
 	const listRef = useRef<Scrollbars>(null);
 
 	useEffect(() => {
-		listRef.current?.scrollToBottom();
+		listRef.current?.scrollToTop();
 	});
 
 	var messages : IMessage[] = [];
@@ -24,7 +24,9 @@ const Conversation: React.FunctionComponent<{ conversationId: string }> = props 
 		}
 	});
 
-	messages = messages.sort((a, b) => (new Date(a?.DateTime) || new Date()).getTime()  - (new Date(b?.DateTime) || new Date()).getTime());
+	// Sort order is reversed as the List is flipped and it's Children are flipped back
+	// This is so when the list height it increased, it expands upwards instead of downwards
+	messages = messages.sort((b, a) => (new Date(a?.DateTime) || new Date()).getTime()  - (new Date(b?.DateTime) || new Date()).getTime());
 
 	var conversationMessages = messages.map(message => <ConversationMessage message={message} key={message.MessageId}></ConversationMessage>)
 
