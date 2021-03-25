@@ -18,6 +18,9 @@ import SwipeSettingsLookingFor from "react-components/Swipe/SwipeSettings/SwipeS
 import Conversations from "react-components/Messages/Conversations/Conversations";
 
 function App() {
+	let vh = window.innerHeight * 0.01;
+	document.documentElement.style.setProperty('--vh-gradient', `${vh}px`);
+
 	return (
 		<div className="App">
 			<header className="App-header">
@@ -66,6 +69,7 @@ function App() {
 					</div>
 				</Router>
 			</header>
+			<div className="gradient-background"></div>
 		</div>
 	);
 }
