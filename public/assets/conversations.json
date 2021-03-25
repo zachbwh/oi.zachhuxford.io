@@ -64,7 +64,7 @@
 				"ConversationId": "23iu2n",
 				"MessageType": "text",
 				"SenderId": "12drt",
-				"DateTime": "2021-03-18T08:05:48.905Z",
+				"DateTime": "2021-03-18T08:05:30.905Z",
 				"MessageText": "This message is meant to distinguish itself from the other thread"
 			},
 			"4": {
@@ -81,7 +81,7 @@
 				"MessageType": "reply",
 				"ReferenceMessageId": "4",
 				"SenderId": "f73287",
-				"DateTime": "2021-03-18T08:05:48.905Z",
+				"DateTime": "2021-03-18T08:05:49.905Z",
 				"MessageText": "actually a reply"
 			},
 			"6": {
@@ -89,7 +89,7 @@
 				"ConversationId": "23iu2n",
 				"MessageType": "deleted",
 				"SenderId": "f73287",
-				"DateTime": "2021-03-18T08:05:48.905Z",
+				"DateTime": "2021-03-18T08:05:58.905Z",
 				"MessageText": "actually a reply"
 			},
 			"7": {
