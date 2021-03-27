@@ -2,16 +2,22 @@ import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { selectLoginContext } from 'redux/slices/LoginContextSlice';
 import { userSelectById } from 'redux/slices/MessagesSlice';
-import IMessage from 'typescript-types/Messages/IMessage';
+import ConversationMessageProps from 'typescript-types/Messages/ConversationMessageProps';
 import useClickOutside from 'react-hooks/ClickOutside';
 
 import './TextMessage.scss';
+import useLongPress from 'react-hooks/LongPress';
 
-const TextMessage: React.FunctionComponent<{ message: IMessage, isReply?: boolean, onClick?: () => void, onClickOutside?: () => void }> = props => {
+const TextMessage: React.FunctionComponent<ConversationMessageProps> = props => {
 
 	const loggedInUsername = useSelector(selectLoginContext).username,
 		senderUsername = useSelector(userSelectById(props.message.SenderId))?.Username,
-		bodyRef = useRef(null);
+		bodyRef = useRef(null),
+		messageLongPressHandlers = useLongPress(() => {
+			if (props.onLongPress) {
+				props.onLongPress();
+			}
+		});
 	let alignClassName;
 	
 	if (props.isReply) {
@@ -26,7 +32,7 @@ const TextMessage: React.FunctionComponent<{ message: IMessage, isReply?: boolea
 
 	return (
 	<div className={"text-message " +  alignClassName}>
-		<div className="body" onClick={props?.onClick} ref={bodyRef}>
+		<div className="body" onClick={props?.onClick} ref={bodyRef} {...messageLongPressHandlers}>
 			{props.message.MessageText}
 		</div>
 	</div>

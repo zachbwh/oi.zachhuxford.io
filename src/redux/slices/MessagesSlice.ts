@@ -79,6 +79,15 @@ export const messagesSlice = createSlice({
 				return newPayload;
 			}
 		},
+		deleteMessage: (state, action: PayloadAction<IMessage>) => {
+			// set message type to deleted and stripped all other content
+			state.messages.entities[action.payload.MessageId].MessageType = "deleted";
+			state.messages.entities[action.payload.MessageId].MessageText = "";
+			state.messages.entities[action.payload.MessageId].ReferenceMessageId = "";
+			state.messages.entities[action.payload.MessageId].ImageUrls = [];
+
+			return state;
+		},
 		setConversationDraftMessage: (state, action: PayloadAction<IDraftMessage>) => {
 			state.conversations.entities[action.payload.ConversationId].DraftMessage = action.payload;
 			return state;
@@ -137,7 +146,7 @@ export const messageSelectTotal = () => (state: RootState) => messagesSelectors.
 export const messageSelectById = (id: string | number) => (state: RootState) => messagesSelectors.selectById(state.messages.messages, id)
 
 
-export const { setConversations, addMessage, setConversationDraftMessage, removeConversationDraftMessage } = messagesSlice.actions;
+export const { setConversations, addMessage, deleteMessage, setConversationDraftMessage, removeConversationDraftMessage } = messagesSlice.actions;
 
 
 export default messagesSlice.reducer;

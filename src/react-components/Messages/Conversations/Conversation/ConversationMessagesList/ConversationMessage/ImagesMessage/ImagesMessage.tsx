@@ -2,16 +2,22 @@ import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { selectLoginContext } from 'redux/slices/LoginContextSlice';
 import { userSelectById } from 'redux/slices/MessagesSlice';
-import IMessage from 'typescript-types/Messages/IMessage';
+import ConversationMessageProps from 'typescript-types/Messages/ConversationMessageProps';
 import useClickOutside from 'react-hooks/ClickOutside';
 
 import './ImagesMessage.scss';
+import useLongPress from 'react-hooks/LongPress';
 
-const ImagesMessage: React.FunctionComponent<{ message: IMessage, isReply?: boolean, onClick?: () => void, onClickOutside?: () => void }> = props => {
+const ImagesMessage: React.FunctionComponent<ConversationMessageProps> = props => {
 
 	const loggedInUsername = useSelector(selectLoginContext).username,
 		senderUsername = useSelector(userSelectById(props.message.SenderId))?.Username,
-		bodyRef = useRef(null);
+		bodyRef = useRef(null),
+		messageLongPressHandlers = useLongPress(() => {
+			if (props.onLongPress) {
+				props.onLongPress();
+			}
+		});
 	let alignClassName,
 		imagesPreview;
 	
@@ -37,7 +43,7 @@ const ImagesMessage: React.FunctionComponent<{ message: IMessage, isReply?: bool
 
 	return (
 	<div className={"images-message " +  alignClassName}>
-		<div className="body" ref={bodyRef}>
+		<div className="body" ref={bodyRef} {...messageLongPressHandlers}>
 			<div className="images-preview">{imagesPreview}</div>
 			<div className="images-text" onClick={props?.onClick}>{props.message.MessageText}</div>
 		</div>

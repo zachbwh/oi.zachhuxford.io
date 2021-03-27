@@ -2,19 +2,20 @@ import React, { useEffect, useRef } from 'react';
 
 import './ConversationMessagesList.scss';
 import { useSelector } from 'react-redux';
-import { messageSelectEntities } from 'redux/slices/MessagesSlice';
+import { messageSelectEntities, selectLastMessageFromConversation } from 'redux/slices/MessagesSlice';
 import { Scrollbars } from 'react-custom-scrollbars';
 import ConversationMessage from './ConversationMessage/ConversationMessage';
 import IMessage from 'typescript-types/Messages/IMessage';
 
-const Conversation: React.FunctionComponent<{ conversationId: string }> = props => {
+const ConversationMessagesList: React.FunctionComponent<{ conversationId: string, showMessageActions: (messageId: string) => void  }> = props => {
 	let conversationBody;
 
 	const listRef = useRef<Scrollbars>(null);
 
+	const lastConversationMessage = useSelector(selectLastMessageFromConversation(props.conversationId))
 	useEffect(() => {
 		listRef.current?.scrollToTop();
-	});
+	}, [lastConversationMessage?.MessageId]);
 
 	var messages : IMessage[] = [];
 
@@ -28,7 +29,10 @@ const Conversation: React.FunctionComponent<{ conversationId: string }> = props 
 	// This is so when the list height it increased, it expands upwards instead of downwards
 	messages = messages.sort((b, a) => (new Date(a?.DateTime) || new Date()).getTime()  - (new Date(b?.DateTime) || new Date()).getTime());
 
-	var conversationMessages = messages.map(message => <ConversationMessage message={message} key={message.MessageId}></ConversationMessage>)
+	var conversationMessages = messages.map(message => {
+		const messageId = message.MessageId;
+		return (<ConversationMessage message={message} key={messageId} showMessageActions={props.showMessageActions}></ConversationMessage>);
+	});
 
 	conversationBody = conversationMessages;
 
@@ -41,4 +45,4 @@ const Conversation: React.FunctionComponent<{ conversationId: string }> = props 
 	);
 }
 
-export default Conversation;
+export default ConversationMessagesList;

@@ -3,11 +3,11 @@ import useClickOutside from 'react-hooks/ClickOutside';
 import { useSelector } from 'react-redux';
 import { selectLoginContext } from 'redux/slices/LoginContextSlice';
 import { userSelectById } from 'redux/slices/MessagesSlice';
-import IMessage from 'typescript-types/Messages/IMessage';
+import ConversationMessageProps from 'typescript-types/Messages/ConversationMessageProps';
 
 import './DeletedMessage.scss';
 
-const TextMessage: React.FunctionComponent<{ message: IMessage, isReply?: boolean, onClick?: () => void, onClickOutside?: () => void }> = props => {
+const TextMessage: React.FunctionComponent<ConversationMessageProps> = props => {
 
 	const loggedInUsername = useSelector(selectLoginContext).username,
 		senderUsername = useSelector(userSelectById(props.message.SenderId))?.Username,
