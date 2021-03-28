@@ -15,17 +15,16 @@
     }
 
     .secondary-view {
-        width: 400px;
-        opacity: 1;
-        transition: width 500ms ease-in-out, opacity 500ms ease-in-out, border-color 500ms ease-in-out;
-        border-right: 5px solid #16308b99;
+        width: 0;
+        opacity: 0;
+        background-color: #16308b66;
+        transition: width 500ms ease-in-out, opacity 500ms ease-in-out;
     }
 
-    @media (max-width: 801px) {
+    @media (min-width: 801px) {
         .secondary-view {
-            width: 0;
-            opacity: 0;
-            border-color: #16308b00;
+            width: 400px;
+            opacity: 1;
         }
     }
 }

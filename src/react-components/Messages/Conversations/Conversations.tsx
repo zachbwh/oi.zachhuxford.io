@@ -16,7 +16,7 @@ function Conversations() {
 	<div className="conversations">
 		<Switch>
 			<Route path={`${match.path}/:conversationId`}>
-				<div className="secondary-view">
+				<div className="secondary-view" style={ window.innerWidth < 801 ? {display: "none"} : {}}>
 					<ConversationSearch onSearchTermUpdated={setSearchTerm}></ConversationSearch>
 					<ConversationsList searchTerm={searchTerm} />
 				</div>
