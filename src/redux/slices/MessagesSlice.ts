@@ -91,11 +91,7 @@ export const messagesSlice = createSlice({
 		setConversationDraftMessage: (state, action: PayloadAction<IDraftMessage>) => {
 			state.conversations.entities[action.payload.ConversationId].DraftMessage = action.payload;
 			return state;
-		},
-		removeConversationDraftMessage: (state, action: PayloadAction<string | number>) => {
-			delete state.conversations.entities[action.payload].DraftMessage;
-			return state;
-		},
+		}
 	}
 });
 
@@ -146,7 +142,7 @@ export const messageSelectTotal = () => (state: RootState) => messagesSelectors.
 export const messageSelectById = (id: string | number) => (state: RootState) => messagesSelectors.selectById(state.messages.messages, id)
 
 
-export const { setConversations, addMessage, deleteMessage, setConversationDraftMessage, removeConversationDraftMessage } = messagesSlice.actions;
+export const { setConversations, addMessage, deleteMessage, setConversationDraftMessage } = messagesSlice.actions;
 
 
 export default messagesSlice.reducer;

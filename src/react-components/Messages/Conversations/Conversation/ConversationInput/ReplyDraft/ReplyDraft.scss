@@ -1,0 +1,44 @@
+.reply-draft {
+    height: 100%;
+    opacity: 1;
+    transition: height 200ms ease-in-out, margin 200ms ease-in-out, opacity 200ms ease-in-out;
+    z-index: 200;
+    background-color: #1e42c4;
+    margin-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+    border-radius: 0.25em;
+    border-top-left-radius: 1.5em;
+    border-top-right-radius: 1.5em;
+
+    overflow: hidden;
+
+    .text-message {
+        .body {
+            max-width: 100%;
+        }
+    }
+
+    .images-message {
+        .body {
+            display: flex;
+            flex-direction: row;
+            .images-preview {
+                max-width: 5em;
+                border-radius: 1em;
+            }
+            max-width: 100%;
+            width: 100%;
+            align-items: center;
+        }
+    }
+    
+    .fa-times-circle {
+        padding: 0.5em;
+        line-height: 1;
+    }
+
+    > :not(.gradient-background) {
+        z-index: 2;
+    }
+}
