@@ -1,15 +1,14 @@
 .conversation-search {
     display: flex;
     align-items: center;
-    border-radius: 3em;
+    border-radius: 2em;
     padding: 0.5em;
-    
 
     .input-wrapper {
         background-color: #1e42c4;
         color: #FFFFFF;
         flex-grow: 1;
-        border-radius: 3em;
+        border-radius: 2em;
         display: flex;
         padding: 0.75em;
         align-items: center;
@@ -23,6 +22,7 @@
             border: 0px solid;
             box-sizing: border-box;
             background-color: #1e42c4;
+            color: #ffffff;
         }
     
         input:focus {
