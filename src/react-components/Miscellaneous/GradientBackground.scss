@@ -1,0 +1,10 @@
+.gradient-background {
+    background-image: linear-gradient(#18318b,#2e5dff);
+    position: fixed;
+    height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+    height: calc(max(var(--vh-gradient, 1vh) * 100, 100vh));
+    width: 100vw;
+    top: 0;
+    pointer-events: none;
+    z-index: -1;
+}
