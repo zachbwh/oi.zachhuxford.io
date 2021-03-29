@@ -7,7 +7,7 @@ import ConversationMessageProps from 'typescript-types/Messages/ConversationMess
 
 import './DeletedMessage.scss';
 
-const TextMessage: React.FunctionComponent<ConversationMessageProps> = props => {
+const DeletedMessage: React.FunctionComponent<ConversationMessageProps> = props => {
 
 	const loggedInUsername = useSelector(selectLoginContext).username,
 		senderUsername = useSelector(userSelectById(props.message.SenderId))?.Username,
@@ -34,4 +34,4 @@ const TextMessage: React.FunctionComponent<ConversationMessageProps> = props => 
 	);
 }
 
-export default TextMessage;
+export default DeletedMessage;
