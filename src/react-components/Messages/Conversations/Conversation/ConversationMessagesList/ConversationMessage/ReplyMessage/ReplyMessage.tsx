@@ -9,6 +9,7 @@ import './ReplyMessage.scss';
 import TextMessage from '../TextMessage/TextMessage';
 import DeletedMessage from '../DeletedMessage/DeletedMessage';
 import useLongPress from 'react-hooks/LongPress';
+import ImagesMessage from '../ImagesMessage/ImagesMessage';
 
 const ReplyMessage: React.FunctionComponent<ConversationMessageProps> = props => {
 
@@ -40,6 +41,10 @@ const ReplyMessage: React.FunctionComponent<ConversationMessageProps> = props =>
 		case "deleted":
 			replyToComponent = <DeletedMessage message={replyToMessage} isReply={true}></DeletedMessage>
 		break;
+		case "images":
+			replyToComponent = <ImagesMessage message={replyToMessage} isReply={true}></ImagesMessage>
+		break;
+
 	}
 
 	useClickOutside(bodyRef, props.onClickOutside);
