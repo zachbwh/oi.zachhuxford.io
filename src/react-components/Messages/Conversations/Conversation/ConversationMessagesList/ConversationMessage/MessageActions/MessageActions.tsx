@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useRef } from 'react';
 import useFocusOut from 'react-hooks/FocusOut';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteMessage, messageSelectById } from 'redux/slices/MessagesSlice';
+import { conversationSelectById, deleteMessage, messageSelectById, setConversationDraftMessage } from 'redux/slices/MessagesSlice';
+import IDraftMessage from 'typescript-types/Messages/IDraftMessage';
 
 import './MessageActions.scss';
 
@@ -15,6 +16,7 @@ interface IAction {
 
 const MessageActions: React.FunctionComponent<{ messageId: string, close: () => void }> = props => {
     const message = useSelector(messageSelectById(props.messageId))
+    const conversation = useSelector(conversationSelectById(message?.ConversationId || ""));
     if (!message) {
         props.close();
     }
@@ -31,7 +33,12 @@ const MessageActions: React.FunctionComponent<{ messageId: string, close: () => 
             icon: <FontAwesomeIcon icon={faCopy}></FontAwesomeIcon>,
             action: () => {
                 if (message) {
-                    // to do copy implementation
+                    var inputFieldClear = document.createElement("input");
+                    inputFieldClear.setAttribute("value", message.MessageText || "");
+                    document.body.appendChild(inputFieldClear);
+                    inputFieldClear.select();
+                    document.execCommand('copy');
+                    inputFieldClear.remove();
                 }
             }
         },
@@ -48,6 +55,17 @@ const MessageActions: React.FunctionComponent<{ messageId: string, close: () => 
             actionName: "Reply",
             icon: <FontAwesomeIcon icon={faReply}></FontAwesomeIcon>,
             action: () => {
+                if (message && conversation) {
+                    const oldDraftMessage = conversation.DraftMessage,
+                        newDraftMessage: IDraftMessage = {
+                            ConversationId: conversation.ConversationId,
+                            MessageType: "reply",
+                            MessageText: oldDraftMessage?.MessageText,
+                            ImageUrls: oldDraftMessage?.ImageUrls,
+                            ReferenceMessageId: message.MessageId
+                        };
+                    dispatch(setConversationDraftMessage(newDraftMessage));
+                }
                 // todo: create reply input view
             }
         },
@@ -87,7 +105,7 @@ const MessageActions: React.FunctionComponent<{ messageId: string, close: () => 
 
     const messageActions = filteredActions.map((action) => {
         return (
-            <div className="action" onClick={action.action} key={action.actionName}>
+            <div className="action" onClick={() => { props.close(); action.action() }} key={action.actionName}>
                 {action.icon}
                 <div>{action.actionName}</div>
             </div>

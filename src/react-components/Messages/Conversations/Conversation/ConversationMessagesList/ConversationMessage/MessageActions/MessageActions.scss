@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    position: fixed;
+    position: absolute;
     opacity: 1;
     transition: bottom 500ms ease-in-out;
     bottom: 0;
