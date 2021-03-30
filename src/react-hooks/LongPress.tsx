@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 
 export default function useLongPress(callback = () => {}, ms = 750) {
 	const [startLongPress, setStartLongPress] = useState(false);
+	const [referenceTouch, setReferenceTouch] = useState<React.Touch | null>(null);
 
 	useEffect(() => {
 		let timerId : NodeJS.Timeout;
@@ -17,11 +18,37 @@ export default function useLongPress(callback = () => {}, ms = 750) {
 		};
 	}, [callback, ms, startLongPress]);
 
-	const start = useCallback(() => {
+	const start = useCallback((event: any) => {
+		if (event.targetTouches) {
+			// if a touch event
+			setReferenceTouch(event.targetTouches.item(0));
+		}
 		setStartLongPress(true);
 	}, []);
+	const move = useCallback((event: React.TouchEvent) => {
+		// if distance moved since long press started is sufficiently large
+		const magicNumber = 5;
+		// then cancel long press
+		// user is probably scrolling or doing some other gesture
+		if (referenceTouch) {
+			const refX = referenceTouch.pageX,
+			refY = referenceTouch.pageY,
+			newTouch = event.targetTouches.item(0),
+			newX = newTouch.pageX,
+			newY = newTouch.pageY,
+			deltaX = Math.abs(refX - newX),
+			deltaY = Math.abs(refY - newY);
+			
+			if (Math.sqrt((deltaX ^ 2) + (deltaY ^ 2)) > magicNumber) {
+				setStartLongPress(false);
+			}
+		}
+		
+	}, [referenceTouch]);
 	const stop = useCallback(() => {
+		setReferenceTouch(null);
 		setStartLongPress(false);
+		
 	}, []);
 
 	return {
@@ -29,6 +56,7 @@ export default function useLongPress(callback = () => {}, ms = 750) {
 		onMouseUp: stop,
 		onMouseLeave: stop,
 		onTouchStart: start,
+		onTouchMove: move,
 		onTouchEnd: stop,
 	};
 }
