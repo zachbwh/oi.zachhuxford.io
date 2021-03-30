@@ -1,12 +1,13 @@
 import moment from 'moment';
 import React, { useState } from 'react';
 import IMessage from 'typescript-types/Messages/IMessage';
-
-import './ConversationMessage.scss';
 import DeletedMessage from './DeletedMessage/DeletedMessage';
 import ImagesMessage from './ImagesMessage/ImagesMessage';
 import ReplyMessage from './ReplyMessage/ReplyMessage';
 import TextMessage from './TextMessage/TextMessage';
+
+import './ConversationMessage.scss';
+import ReplyableMessage from './ReplyableMessage/ReplyableMessage';
 
 const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMessageActions: (messageId: string) => void }> = props => {
 	function showMessageActions() {
@@ -23,30 +24,30 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 
 	switch (props.message.MessageType) {
 		case "reply":
-			messageComponent = <ReplyMessage
+			messageComponent = <ReplyableMessage message={props.message}><ReplyMessage
 				message={props.message}
 				onClick={toggleDetailVisible}
 				onClickOutside={() => setDetailVisible(false)}
 				onLongPress={showMessageActions}
-			></ReplyMessage>
+			></ReplyMessage></ReplyableMessage>
 			break;
 
 		case "text":
-			messageComponent = <TextMessage
+			messageComponent = <ReplyableMessage message={props.message}><TextMessage
 				message={props.message}
 				onClick={toggleDetailVisible}
 				onClickOutside={() => setDetailVisible(false)}
 				onLongPress={showMessageActions}
-			></TextMessage>
+			></TextMessage></ReplyableMessage>
 			break;
 
 		case "images":
-			messageComponent = <ImagesMessage
+			messageComponent = <ReplyableMessage message={props.message}><ImagesMessage
 				message={props.message}
 				onClick={toggleDetailVisible}
 				onClickOutside={() => setDetailVisible(false)}
 				onLongPress={showMessageActions}
-			></ImagesMessage>
+			></ImagesMessage></ReplyableMessage>
 			break;
 			
 		default:
@@ -59,7 +60,7 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 	}
 
 	return (
-	<div className="conversation-message">
+	<div className="conversation-message" >
 		<div className={"date " + (!detailVisible ? "hidden" : "")}>{moment(props.message.DateTime).format('ddd Do MMMM  YY h:mm a')}</div>
 		{messageComponent}
 	</div>

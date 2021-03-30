@@ -39,7 +39,7 @@ const ConversationMessagesList: React.FunctionComponent<{ conversationId: string
 	return (
 	<div className="conversation-messages-list">
 		<Scrollbars ref={listRef}>
-			{conversationBody}
+			<div className="messages-wrapper">{conversationBody}</div>
 		</Scrollbars>
 	</div>
 	);

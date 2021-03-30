@@ -1,0 +1,23 @@
+.replyable-message {
+    flex-grow: 1;
+    display: flex;
+	will-change: transform, opacity;
+    transition: transform 200ms linear, opacity 200ms linear;
+    
+    &.left-align {
+        .reply-to-icon {
+            left: -2em;
+        }
+    }
+
+    &.right-align {
+        .reply-to-icon {
+            right: -2em;
+        }
+    }
+
+    .reply-to-icon {
+        position: absolute;
+        height: 100%;
+    }
+}
