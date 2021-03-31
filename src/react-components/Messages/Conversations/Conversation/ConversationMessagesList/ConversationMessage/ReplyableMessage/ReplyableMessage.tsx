@@ -31,11 +31,11 @@ const ReplyableMessage: React.FunctionComponent<{message: Message, children: Rea
 
 		if (alignClassName === "right-align") {
 			// must be between -110 and 0
-			newDeltaX = Math.max(newDeltaX, -70);
+			newDeltaX = Math.max(newDeltaX, -200);
 			newDeltaX = Math.min(newDeltaX, 0);
 		} else {
 			// must be between 0 and 110
-			newDeltaX = Math.min(newDeltaX, 70);
+			newDeltaX = Math.min(newDeltaX, 200);
 			newDeltaX = Math.max(newDeltaX, 0);
 		}
 
@@ -58,17 +58,28 @@ const ReplyableMessage: React.FunctionComponent<{message: Message, children: Rea
 	
 
 	function swipeTouchEnd() {
-		if (Math.abs(replyProgress) > 60) {
+		if (Math.abs(replyProgress) > 100) {
 			setReplyMessage();
 		}
 		setReplyProgress(0);
 	}
 
+	let replyProgressTranslateValue;
+	if (replyProgress < 10 && replyProgress > -10) {
+		replyProgressTranslateValue = 0
+	} else if (replyProgress < -100) {
+		replyProgressTranslateValue = -100 + (0.1 * replyProgress)
+	} else if (replyProgress > 100) {
+		replyProgressTranslateValue = 100 + (0.1 * replyProgress)
+	} else {
+		replyProgressTranslateValue = replyProgress;
+	}
+
 	const replyTouchHandlers = useSwipeMove(swipeTouchMove, swipeTouchEnd)
 
 	return (
-	<div className={"replyable-message " +  alignClassName}  {...replyTouchHandlers} style={{transform: `translateX(${replyProgress * 1}px)` }}>
-		<FontAwesomeIcon icon={faReply} className="reply-to-icon" style={{opacity: 0.01 * Math.abs(replyProgress)}}></FontAwesomeIcon>
+	<div className={"replyable-message " +  alignClassName + (replyProgress < -100 && replyProgress > 100 ? " slow" : "")}  {...replyTouchHandlers} style={{transform: `translateX(${replyProgressTranslateValue * 1}px)` }}>
+		<FontAwesomeIcon icon={faReply} className={"reply-to-icon" + (Math.abs(replyProgress) > 100 ? " animate" : "")} style={{opacity: 0.01 * Math.abs(replyProgress)}}></FontAwesomeIcon>
 		{props.children}
 	</div>
 	);
