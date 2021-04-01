@@ -1,24 +1,6 @@
 .text-message {
     flex-grow: 1;
     display: flex;
-    
-    &.left-align {
-        justify-content: flex-start;
-
-        .body {
-            border-bottom-left-radius: 0.25em;
-    		background-color: #16308b;
-        }
-    }
-
-    &.right-align {
-        justify-content: flex-end;
-
-        .body {
-            border-bottom-right-radius: 0.25em;
-            background-color: #2e5dff;
-        }
-    }
 
     .body {
         display: flex;
@@ -26,5 +8,26 @@
         max-width: 75%;
         border-radius: 1em;
     }
-    
+}
+
+.left-align {
+    .text-message {
+        justify-content: flex-start;
+
+        .body {
+            border-bottom-left-radius: 0.25em;
+            background-color: #16308b;
+        }
+    }
+}
+
+.right-align {
+    .text-message {
+        justify-content: flex-end;
+
+        .body {
+            border-bottom-right-radius: 0.25em;
+            background-color: #2e5dff;
+        }
+    }
 }

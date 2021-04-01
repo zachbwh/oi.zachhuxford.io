@@ -8,8 +8,23 @@ import TextMessage from './TextMessage/TextMessage';
 
 import './ConversationMessage.scss';
 import ReplyableMessage from './ReplyableMessage/ReplyableMessage';
+import { useSelector } from 'react-redux';
+import { conversationSelectById, userSelectById } from 'redux/slices/MessagesSlice';
+import { selectLoginContext } from 'redux/slices/LoginContextSlice';
 
 const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMessageActions: (messageId: string) => void }> = props => {
+	const loggedInUsername = useSelector(selectLoginContext).username,
+		senderUsername = useSelector(userSelectById(props.message.SenderId))?.Username,
+    	conversation = useSelector(conversationSelectById(props.message.ConversationId || ""));
+
+	let alignClassName : string;
+	
+	if (senderUsername === loggedInUsername) {
+		alignClassName = "right-align"
+	} else {
+		alignClassName = "left-align"
+	}
+
 	function showMessageActions() {
 		props.showMessageActions(props.message.MessageId)
 	}
@@ -60,7 +75,7 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 	}
 
 	return (
-	<div className="conversation-message" >
+	<div className={"conversation-message " + alignClassName} >
 		<div className={"date " + (!detailVisible ? "hidden" : "")}>{moment(props.message.DateTime).format('ddd Do MMMM  YY h:mm a')}</div>
 		{messageComponent}
 	</div>

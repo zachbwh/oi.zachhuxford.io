@@ -9,29 +9,17 @@ import './TextMessage.scss';
 import useLongPress from 'react-hooks/LongPress';
 
 const TextMessage: React.FunctionComponent<ConversationMessageProps> = props => {
-
-	const loggedInUsername = useSelector(selectLoginContext).username,
-		senderUsername = useSelector(userSelectById(props.message.SenderId))?.Username,
-		bodyRef = useRef(null),
+	const bodyRef = useRef(null),
 		messageLongPressHandlers = useLongPress(() => {
 			if (props.onLongPress) {
 				props.onLongPress();
 			}
 		});
-	let alignClassName;
-	
-	if (props.isReply) {
-		alignClassName = ""
-	} else if (senderUsername === loggedInUsername) {
-		alignClassName = "right-align"
-	} else {
-		alignClassName = "left-align"
-	}
 
 	useClickOutside(bodyRef, props.onClickOutside);
 
 	return (
-	<div className={"text-message " +  alignClassName}>
+	<div className="text-message">
 		<div className="body" onClick={props?.onClick} ref={bodyRef} {...messageLongPressHandlers}>
 			{props.message.MessageText}
 		</div>

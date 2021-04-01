@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { selectLoginContext } from 'redux/slices/LoginContextSlice';
-import { messageSelectById, userSelectById } from 'redux/slices/MessagesSlice';
+import { messageSelectById } from 'redux/slices/MessagesSlice';
 import ConversationMessageProps from 'typescript-types/Messages/ConversationMessageProps';
 import useClickOutside from 'react-hooks/ClickOutside';
 
@@ -12,10 +11,7 @@ import useLongPress from 'react-hooks/LongPress';
 import ImagesMessage from '../ImagesMessage/ImagesMessage';
 
 const ReplyMessage: React.FunctionComponent<ConversationMessageProps> = props => {
-
-	const loggedInUsername = useSelector(selectLoginContext).username,
-		senderUsername = useSelector(userSelectById(props.message.SenderId))?.Username,
-		bodyRef = useRef(null),
+	const bodyRef = useRef(null),
 		replyToMessage = useSelector(messageSelectById(props.message.ReferenceMessageId || "")),
 		messageLongPressHandlers = useLongPress(() => {
 			if (props.onLongPress) {
@@ -23,15 +19,7 @@ const ReplyMessage: React.FunctionComponent<ConversationMessageProps> = props =>
 			}
 		});
 
-	let alignClassName,
-		replyToComponent;
-
-	
-	if (senderUsername === loggedInUsername) {
-		alignClassName = "right-align"
-	} else {
-		alignClassName = "left-align"
-	}
+	let replyToComponent;
 
 	switch (replyToMessage?.MessageType) {
 		case "text":
@@ -50,7 +38,7 @@ const ReplyMessage: React.FunctionComponent<ConversationMessageProps> = props =>
 	useClickOutside(bodyRef, props.onClickOutside);
 
 	return (
-	<div className={"reply-message " +  alignClassName}>
+	<div className="reply-message">
 		<div className="body" onClick={props?.onClick} ref={bodyRef} {...messageLongPressHandlers}>
 			<div className="reply-to">{replyToComponent}</div>
 			<div className="reply-text">{props.message.MessageText}</div>

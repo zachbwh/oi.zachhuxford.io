@@ -1,17 +1,16 @@
-.deleted-message {
-    flex-grow: 1;
-    display: flex;
-    
-    &.left-align {
+.left-align {
+    .deleted-message {
         justify-content: flex-start;
 
         .body {
             border-bottom-left-radius: 0.25em;
-    		background-color: #16308b;
+            background-color: #16308b;
         }
     }
+}
 
-    &.right-align {
+.right-align {
+    .deleted-message {
         justify-content: flex-end;
 
         .body {
@@ -19,6 +18,11 @@
             background-color: #2e5dff;
         }
     }
+}
+
+.deleted-message {
+    flex-grow: 1;
+    display: flex;
 
     .body {
         font-style: italic;

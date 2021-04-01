@@ -1,17 +1,16 @@
-.reply-message {
-    flex-grow: 1;
-    display: flex;
-    
-    &.left-align {
+.left-align {
+    .reply-message {
         justify-content: flex-start;
 
         .reply-text, .reply-to {
             border-bottom-left-radius: 0.25em;
-    		background-color: #16308b;
+            background-color: #16308b;
         }
     }
+}
 
-    &.right-align {
+.right-align {
+    .reply-message {
         justify-content: flex-end;
 
         .reply-text, .reply-to {
@@ -19,6 +18,11 @@
             background-color: #2e5dff;
         }
     }
+}
+
+.reply-message {
+    flex-grow: 1;
+    display: flex;
 
     .reply-to {
         filter: brightness(75%);

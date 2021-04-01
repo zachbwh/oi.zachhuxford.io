@@ -1,20 +1,19 @@
-.images-message {
-    flex-grow: 1;
-    display: flex;
-
-    &.left-align {
+.left-align {
+    .images-message {
         justify-content: flex-start;
 
         .images-preview, .images-text {
-    		background-color: #16308b;
+            background-color: #16308b;
         }
 
         .body .images-text {
             border-bottom-left-radius: 0.25em;
         }
     }
+}
 
-    &.right-align {
+.right-align {
+    .images-message {
         justify-content: flex-end;
 
         .images-preview, .images-text {
@@ -25,6 +24,11 @@
             border-bottom-right-radius: 0.25em;
         }
     }
+}
+
+.images-message {
+    flex-grow: 1;
+    display: flex;
 
     .body {
         display: flex;
