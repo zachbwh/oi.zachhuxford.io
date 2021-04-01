@@ -18,13 +18,13 @@ const ReplyDraft: React.FunctionComponent<{ conversationId: string, replyToMessa
 	switch (replyToMessage?.MessageType) {
 		case "text":
 		case "reply":
-			replyToComponent = <TextMessage message={replyToMessage} isReply={true}></TextMessage>
+			replyToComponent = <TextMessage message={replyToMessage}></TextMessage>
 			break;
 		case "deleted":
-			replyToComponent = <DeletedMessage message={replyToMessage} isReply={true}></DeletedMessage>
+			replyToComponent = <DeletedMessage message={replyToMessage}></DeletedMessage>
 		break;
 		case "images":
-			replyToComponent = <ImagesMessage message={replyToMessage} isReply={true}></ImagesMessage>
+			replyToComponent = <ImagesMessage message={replyToMessage}></ImagesMessage>
 		break;
 	}
 

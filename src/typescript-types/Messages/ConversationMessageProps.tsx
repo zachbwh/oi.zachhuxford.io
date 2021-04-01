@@ -5,7 +5,6 @@ interface ConversationMessageProps {
     onClick?: () => void,
     onClickOutside?: () => void,
     onLongPress?: () => void,
-    isReply?: boolean
 };
 
 export default ConversationMessageProps;
