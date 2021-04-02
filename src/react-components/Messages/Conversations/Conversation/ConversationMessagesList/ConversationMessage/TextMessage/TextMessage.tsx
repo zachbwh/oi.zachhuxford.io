@@ -1,7 +1,4 @@
 import React, { useRef } from 'react';
-import { useSelector } from 'react-redux';
-import { selectLoginContext } from 'redux/slices/LoginContextSlice';
-import { userSelectById } from 'redux/slices/MessagesSlice';
 import ConversationMessageProps from 'typescript-types/Messages/ConversationMessageProps';
 import useClickOutside from 'react-hooks/ClickOutside';
 
