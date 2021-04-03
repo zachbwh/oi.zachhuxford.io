@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import './Modal.scss';
 
 const Modal: React.FunctionComponent<{children: React.ReactNode, modalRootId: string, closeModal: () => void}> = props => {
-    const modalRoot: Element = document.getElementById(props.modalRootId) as HTMLElement;
+    const modalRoot: Element = document.getElementById(props.modalRootId) || document.createElement("div") as HTMLElement;
 
     const close = useCallback((event: any) => {
         if (event.target === modalRoot) {
