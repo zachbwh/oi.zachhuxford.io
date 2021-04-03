@@ -121,6 +121,23 @@ export const selectLastMessageFromConversation = (id: string | number) => functi
 	return orderedMessages[orderedMessages.length - 1];
 };
 
+export const selectUserConversationName = (conversationId: string, userId: string) => function(state: RootState) {
+	// try looking up user in conversation nicknames list
+	const conversation = state.messages.conversations.entities[conversationId];
+	const nickName = conversation?.NickNames?.find(nickName => nickName.UserId = userId);
+
+	if (nickName && nickName.NickName) {
+		return nickName.NickName;
+	}
+	// otherwise default to Firstname Lastname
+	const user = state.messages.users.entities[userId]
+	if (user) {
+		return `${user.FirstName} ${user.LastName}`;
+	}
+
+	return "Default Name";
+};
+
 const usersSelectors = usersAdapter.getSelectors<UsersState>(
 	(state) => state
 );
