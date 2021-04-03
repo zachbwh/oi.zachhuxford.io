@@ -16,7 +16,7 @@ import SwipeUserProfile from "react-components/Swipe/SwipeUserProfile/SwipeUserP
 import SwipeSettings from "react-components/Swipe/SwipeSettings/SwipeSettings";
 import SwipeSettingsLookingFor from "react-components/Swipe/SwipeSettings/SwipeSettingsLookingFor/SwipeSettingsLookingFor";
 import Conversations from "react-components/Messages/Conversations/Conversations";
-import GradientBackground from "react-components/Miscellaneous/GradientBackground";
+import GradientBackground from "react-components/ComponentLibrary/GradientBackground/GradientBackground";
 
 function App() {
 	let vh = window.innerHeight * 0.01;
@@ -71,6 +71,7 @@ function App() {
 				</Router>
 			</header>
 			<GradientBackground></GradientBackground>
+			<div id="modal-root" className="hidden"></div>
 		</div>
 	);
 }
