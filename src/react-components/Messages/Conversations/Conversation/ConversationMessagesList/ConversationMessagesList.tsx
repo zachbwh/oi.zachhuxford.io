@@ -29,9 +29,9 @@ const ConversationMessagesList: React.FunctionComponent<{ conversationId: string
 	// This is so when the list height it increased, it expands upwards instead of downwards
 	messages = messages.sort((b, a) => (new Date(a?.DateTime) || new Date()).getTime()  - (new Date(b?.DateTime) || new Date()).getTime());
 
-	var conversationMessages = messages.map(message => {
+	var conversationMessages = messages.map((message, index) => {
 		const messageId = message.MessageId;
-		return (<ConversationMessage message={message} key={messageId} showMessageActions={props.showMessageActions}></ConversationMessage>);
+		return (<ConversationMessage message={message} key={messageId} showMessageActions={props.showMessageActions} zIndex={2000 - index}></ConversationMessage>);
 	});
 
 	conversationBody = conversationMessages;

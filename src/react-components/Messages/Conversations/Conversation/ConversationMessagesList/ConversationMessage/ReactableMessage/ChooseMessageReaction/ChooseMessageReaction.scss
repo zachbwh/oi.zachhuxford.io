@@ -1,0 +1,44 @@
+.choose-message-reaction {
+    position: absolute;
+    display: flex;
+    opacity: 1;
+    transition: opacity 200ms ease-in-out;
+    top: -3em;
+    background-color: #16308b;
+    padding: 0.5em 0.75em;
+    border-radius: 1.5em;
+    z-index: 101;
+    box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.3);
+
+    &.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .message-reaction {
+        padding-right: 0.5em;
+        cursor: pointer;
+        font-size: 2em;
+        transition: transform 200ms ease-out;
+    }
+
+    .message-reaction:last-child {
+        padding-right: 0;
+    }
+
+    .message-reaction:hover {
+        transform: scale(120%);
+    }
+}
+
+.left-align {
+    .choose-message-reaction {
+        left: 0;
+    }
+}
+
+.right-align {
+    .choose-message-reaction {
+        right: 0;
+    }
+}

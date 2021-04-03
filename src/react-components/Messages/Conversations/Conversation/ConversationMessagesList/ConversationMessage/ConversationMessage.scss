@@ -1,4 +1,5 @@
 .conversation-message {
+    position: relative;
     display: flex;
     flex-direction: column;
     padding-top: 1em;
@@ -22,7 +23,7 @@
     }
 
     &:last-child {
-        padding-bottom: 1em
+        padding-top: 3em
     }
     &:first-child {
         padding-bottom: 1em;

@@ -1,0 +1,13 @@
+.message-reactions-list {
+    padding: 1em;
+    border-radius: 1em;
+    background-color: #16308b;
+    width: 80%;
+
+    .heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 0.5em;
+    }
+}

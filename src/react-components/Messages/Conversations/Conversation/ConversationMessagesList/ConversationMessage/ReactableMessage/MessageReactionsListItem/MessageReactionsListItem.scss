@@ -1,0 +1,26 @@
+.message-reactions-list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em 0;
+
+    .reacting-user {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        img {
+            height: 2.8em;
+            width: 2.8em;
+            border-radius: 1.4em;
+            object-fit: cover;
+        }
+
+        .name {
+            padding: 0 0.5em;
+        }
+    }
+
+    .message-reaction {
+        font-size: 2em;
+    }
+}

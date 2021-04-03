@@ -8,14 +8,14 @@ import TextMessage from './TextMessage/TextMessage';
 
 import './ConversationMessage.scss';
 import ReplyableMessage from './ReplyableMessage/ReplyableMessage';
+import ReactableMessage from './ReactableMessage/ReactableMessage';
 import { useSelector } from 'react-redux';
-import { conversationSelectById, userSelectById } from 'redux/slices/MessagesSlice';
+import { userSelectById } from 'redux/slices/MessagesSlice';
 import { selectLoginContext } from 'redux/slices/LoginContextSlice';
 
-const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMessageActions: (messageId: string) => void }> = props => {
+const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMessageActions: (messageId: string) => void, zIndex?: number }> = props => {
 	const loggedInUsername = useSelector(selectLoginContext).username,
-		senderUsername = useSelector(userSelectById(props.message.SenderId))?.Username,
-    	conversation = useSelector(conversationSelectById(props.message.ConversationId || ""));
+		senderUsername = useSelector(userSelectById(props.message.SenderId))?.Username;
 
 	let alignClassName : string;
 	
@@ -39,30 +39,48 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 
 	switch (props.message.MessageType) {
 		case "reply":
-			messageComponent = <ReplyableMessage message={props.message}><ReplyMessage
-				message={props.message}
-				onClick={toggleDetailVisible}
-				onClickOutside={() => setDetailVisible(false)}
-				onLongPress={showMessageActions}
-			></ReplyMessage></ReplyableMessage>
+			messageComponent = (
+				<ReplyableMessage message={props.message}>
+					<ReactableMessage message={props.message}>
+						<ReplyMessage
+							message={props.message}
+							onClick={toggleDetailVisible}
+							onClickOutside={() => setDetailVisible(false)}
+							onLongPress={showMessageActions}>
+						</ReplyMessage>
+					</ReactableMessage>
+				</ReplyableMessage>
+			);
 			break;
 
 		case "text":
-			messageComponent = <ReplyableMessage message={props.message}><TextMessage
-				message={props.message}
-				onClick={toggleDetailVisible}
-				onClickOutside={() => setDetailVisible(false)}
-				onLongPress={showMessageActions}
-			></TextMessage></ReplyableMessage>
+			messageComponent = (
+				<ReplyableMessage message={props.message}>
+					<ReactableMessage message={props.message}>
+						<TextMessage
+							message={props.message}
+							onClick={toggleDetailVisible}
+							onClickOutside={() => setDetailVisible(false)}
+							onLongPress={showMessageActions}>
+						</TextMessage>
+					</ReactableMessage>
+				</ReplyableMessage>
+			);
 			break;
 
 		case "images":
-			messageComponent = <ReplyableMessage message={props.message}><ImagesMessage
-				message={props.message}
-				onClick={toggleDetailVisible}
-				onClickOutside={() => setDetailVisible(false)}
-				onLongPress={showMessageActions}
-			></ImagesMessage></ReplyableMessage>
+			messageComponent = (
+				<ReplyableMessage message={props.message}>
+					<ReactableMessage message={props.message}>
+						<ImagesMessage
+							message={props.message}
+							onClick={toggleDetailVisible}
+							onClickOutside={() => setDetailVisible(false)}
+							onLongPress={showMessageActions}>
+						</ImagesMessage>
+					</ReactableMessage>
+				</ReplyableMessage>
+			);
 			break;
 			
 		default:
@@ -75,7 +93,7 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 	}
 
 	return (
-	<div className={"conversation-message " + alignClassName} >
+	<div className={"conversation-message " + alignClassName} style={{zIndex: props.zIndex}}>
 		<div className={"date " + (!detailVisible ? "hidden" : "")}>{moment(props.message.DateTime).format('ddd Do MMMM  YY h:mm a')}</div>
 		{messageComponent}
 	</div>

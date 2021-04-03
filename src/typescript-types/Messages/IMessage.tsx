@@ -12,8 +12,8 @@ interface IMessage {
 
 export interface IReaction {
 	ReactionType: "love" | "laugh" | "angry" | "wow" | "thumbs-up" | "thumbs-down",
-	UserId: string,
-	MessageId: string,
+	UserId?: string,
+	MessageId?: string
 };
 
 

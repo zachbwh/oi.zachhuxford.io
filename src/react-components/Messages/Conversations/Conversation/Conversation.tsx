@@ -38,6 +38,7 @@ function Conversation() {
 		<ConversationMessagesList conversationId={conversationId} showMessageActions={(messageId: string) => {setActionsMessageId(messageId)}}></ConversationMessagesList>
 		<ConversationInput conversationId={conversationId}></ConversationInput>
 		{messageActions}
+		<div id="conversation-modal-root" className="modal-root hidden"></div>
 	</div>
 	);
 }

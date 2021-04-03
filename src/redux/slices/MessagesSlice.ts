@@ -1,10 +1,10 @@
-import { createSlice, createEntityAdapter, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createEntityAdapter, PayloadAction, Update } from '@reduxjs/toolkit'
 import { nanoid } from '@reduxjs/toolkit'
 
 import { RootState } from 'redux/StateTypes';
 import Conversation from 'typescript-types/Messages/IConversation';
 import IDraftMessage from 'typescript-types/Messages/IDraftMessage';
-import IMessage from 'typescript-types/Messages/IMessage';
+import IMessage, { IReaction } from 'typescript-types/Messages/IMessage';
 import Message from 'typescript-types/Messages/IMessage';
 import User from 'typescript-types/Messages/IUser';
 
@@ -88,6 +88,27 @@ export const messagesSlice = createSlice({
 
 			return state;
 		},
+		addReactionToMessage: (state, action: PayloadAction<{newReaction: IReaction, currentReactions: IReaction[]}>) => {
+			const newReaction = action.payload.newReaction,
+				currentReactions = action.payload.currentReactions;
+
+			if (!newReaction.MessageId || !newReaction.UserId) {
+				return;
+			}
+			const messageChanges: Update<IMessage> = {
+				id: newReaction.MessageId,
+				changes: { Reactions: [] }
+			}
+			currentReactions.forEach((reaction, index) => {
+				if (reaction.UserId !== newReaction.UserId) {
+					messageChanges.changes.Reactions?.push(reaction)
+				}
+			});
+
+			messageChanges.changes.Reactions?.push(action.payload.newReaction)
+
+			messagesAdapter.updateOne(state.messages, messageChanges);
+		},
 		setConversationDraftMessage: (state, action: PayloadAction<IDraftMessage>) => {
 			state.conversations.entities[action.payload.ConversationId].DraftMessage = action.payload;
 			return state;
@@ -159,7 +180,7 @@ export const messageSelectTotal = () => (state: RootState) => messagesSelectors.
 export const messageSelectById = (id: string | number) => (state: RootState) => messagesSelectors.selectById(state.messages.messages, id)
 
 
-export const { setConversations, addMessage, deleteMessage, setConversationDraftMessage } = messagesSlice.actions;
+export const { setConversations, addMessage, deleteMessage, addReactionToMessage, setConversationDraftMessage } = messagesSlice.actions;
 
 
 export default messagesSlice.reducer;

@@ -9,5 +9,7 @@
 
     .messages-wrapper {
         overflow-x: hidden;
+        min-height: 100%;
+        height: max-content;
     }
 }

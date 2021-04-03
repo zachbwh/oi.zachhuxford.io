@@ -1,0 +1,24 @@
+.message-reactions-preview {
+    position: absolute;
+    bottom: -0.75em;
+    display: flex;
+    padding: 0.5em 0.75em;
+    border-radius: 1.5em;
+    z-index: 20;
+
+    .message-reaction {
+        padding-right: 0.3em;
+    }
+}
+
+.left-align {
+    .message-reactions-preview {
+        background-color: #2e5dff;
+    }
+}
+
+.right-align {
+    .message-reactions-preview {
+        background-color: #16308b;
+    }
+}

@@ -99,7 +99,19 @@
 				"SenderId": "12drt",
 				"DateTime": "2021-03-18T08:06:48.905Z",
 				"ImageUrls": ["/assets/swipe-images/food fiend/isolation-March 29, 2020.jpg"],
-				"MessageText": "image caption"
+				"MessageText": "image caption",
+				"Reactions": [
+					{
+						"ReactionType": "love",
+						"UserId": "12drt"
+
+					},
+					{
+						"ReactionType": "angry",
+						"UserId": "f73287"
+
+					}
+				]
 			}
 		},
 		"ids": ["1", "2", "3", "4", "5", "6", "7"]

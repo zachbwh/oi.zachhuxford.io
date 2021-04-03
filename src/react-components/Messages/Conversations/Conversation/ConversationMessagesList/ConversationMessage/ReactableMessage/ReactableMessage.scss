@@ -1,0 +1,26 @@
+.left-align {
+    .message-reactions-preview {
+        left: 0;
+    }
+}
+
+.right-align {
+    .message-reactions-preview {
+        right: 0;
+    }
+}
+
+.reactable-message {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    transition: padding 200ms ease-in-out, opacity 200ms ease-in-out;
+
+    &.has-reactions {
+        padding-bottom: 1.25em;
+    }
+    &:not(.has-reactions) .message-reactions-preview {
+        opacity: 0;
+    }
+    
+}
