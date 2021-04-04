@@ -16,6 +16,9 @@
         .reply-to-text {
             flex-direction: row-reverse;
         }
+        .body {
+            align-items: flex-end;
+        }
     }
 }
 
@@ -54,6 +57,7 @@
         padding: 0.5em 0.75em;
         border-radius: 1em;
         z-index: 2;
+        max-width: max-content;
     }
 
     .body {
