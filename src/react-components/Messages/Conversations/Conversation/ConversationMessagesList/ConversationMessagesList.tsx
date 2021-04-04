@@ -29,7 +29,7 @@ const ConversationMessagesList: React.FunctionComponent<{ conversationId: string
 
 	var conversationMessages = messages.map((message, index) => {
 		const messageId = message.MessageId;
-		return (<ConversationMessage message={message} key={messageId} showMessageActions={props.showMessageActions} zIndex={2000 - index}></ConversationMessage>);
+		return (<ConversationMessage message={message} key={messageId} showMessageActions={props.showMessageActions} zIndex={index}></ConversationMessage>);
 	});
 
 	return (
