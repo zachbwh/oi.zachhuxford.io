@@ -145,7 +145,7 @@ export const selectLastMessageFromConversation = (id: string | number) => functi
 export const selectUserConversationName = (conversationId: string, userId: string) => function(state: RootState) {
 	// try looking up user in conversation nicknames list
 	const conversation = state.messages.conversations.entities[conversationId];
-	const nickName = conversation?.NickNames?.find(nickName => nickName.UserId = userId);
+	const nickName = conversation?.NickNames?.find(nickName => nickName.UserId === userId);
 
 	if (nickName && nickName.NickName) {
 		return nickName.NickName;
