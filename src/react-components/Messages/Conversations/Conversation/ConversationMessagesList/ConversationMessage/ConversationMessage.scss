@@ -22,10 +22,32 @@
 		}
     }
 
-    &:last-child {
+    &.left-align {
+        .message-component {
+            justify-content: flex-start;
+        }
+    }
+    
+    &.right-align {
+        .message-component {
+            justify-content: flex-end;
+        }
+    }
+
+    .message-component {
+        display: flex;
+        flex-grow: 1;
+
+        > * {
+            max-width: 75%;
+            width: max-content;
+        }
+    }
+
+    &:first-child {
         padding-top: 3em
     }
-    &:first-child {
+    &:last-child {
         padding-bottom: 1em;
     }
 }

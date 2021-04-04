@@ -95,7 +95,9 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 	return (
 	<div className={"conversation-message " + alignClassName} style={{zIndex: props.zIndex}}>
 		<div className={"date " + (!detailVisible ? "hidden" : "")}>{moment(props.message.DateTime).format('ddd Do MMMM  YY h:mm a')}</div>
-		{messageComponent}
+		<div className="message-component">
+			{messageComponent}
+		</div>
 	</div>
 	);
 }

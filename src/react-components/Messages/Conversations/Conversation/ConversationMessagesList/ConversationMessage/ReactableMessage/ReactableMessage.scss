@@ -12,9 +12,10 @@
 
 .reactable-message {
     display: flex;
-    flex-grow: 1;
     position: relative;
     transition: padding 200ms ease-in-out, opacity 200ms ease-in-out;
+    max-width: 100%;
+    width: max-content;
 
     &.has-reactions {
         padding-bottom: 1.25em;

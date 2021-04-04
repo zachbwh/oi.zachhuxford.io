@@ -1,9 +1,10 @@
 .replyable-message {
-    flex-grow: 1;
     display: flex;
+    align-items: center;
 	will-change: transform, opacity;
     transition: transform 200ms linear, opacity 200ms linear;
-
+    width: 100%;
+    
     &.slow {
         transition: transform 1s linear;
     }
@@ -22,7 +23,6 @@
 
     .reply-to-icon {
         position: absolute;
-        height: 100%;
     }
 
     .reply-to-icon.animate {
@@ -35,5 +35,4 @@
         50% {transform: scale(150%);}
         100% {transform: scale(100%);}
     }
-    
 }

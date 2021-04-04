@@ -5,15 +5,13 @@
     .body {
         display: flex;
         padding: 0.5em 0.75em;
-        max-width: 75%;
+        max-width: max-content;
         border-radius: 1em;
     }
 }
 
 .left-align {
     .text-message {
-        justify-content: flex-start;
-
         .body {
             border-bottom-left-radius: 0.25em;
             background-color: #16308b;
@@ -23,8 +21,6 @@
 
 .right-align {
     .text-message {
-        justify-content: flex-end;
-
         .body {
             border-bottom-right-radius: 0.25em;
             background-color: #2e5dff;

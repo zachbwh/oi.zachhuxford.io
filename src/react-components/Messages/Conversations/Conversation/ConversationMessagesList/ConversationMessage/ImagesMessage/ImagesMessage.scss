@@ -1,7 +1,5 @@
 .left-align {
     .images-message {
-        justify-content: flex-start;
-
         .images-preview, .images-text {
             background-color: #16308b;
         }
@@ -14,8 +12,6 @@
 
 .right-align {
     .images-message {
-        justify-content: flex-end;
-
         .images-preview, .images-text {
             background-color: #2e5dff;
         }
