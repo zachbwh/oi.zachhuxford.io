@@ -8,8 +8,6 @@ import ConversationMessage from './ConversationMessage/ConversationMessage';
 import IMessage from 'typescript-types/Messages/IMessage';
 
 const ConversationMessagesList: React.FunctionComponent<{ conversationId: string, showMessageActions: (messageId: string) => void  }> = props => {
-	let conversationBody;
-
 	const listRef = useRef<Scrollbars>(null);
 
 	const lastConversationMessage = useSelector(selectLastMessageFromConversation(props.conversationId))
@@ -27,19 +25,17 @@ const ConversationMessagesList: React.FunctionComponent<{ conversationId: string
 
 	// Sort order is reversed as the List is flipped and it's Children are flipped back
 	// This is so when the list height it increased, it expands upwards instead of downwards
-	messages = messages.sort((b, a) => (new Date(a?.DateTime) || new Date()).getTime()  - (new Date(b?.DateTime) || new Date()).getTime());
+	messages = messages.sort((a, b) => (new Date(a?.DateTime) || new Date()).getTime()  - (new Date(b?.DateTime) || new Date()).getTime());
 
 	var conversationMessages = messages.map((message, index) => {
 		const messageId = message.MessageId;
 		return (<ConversationMessage message={message} key={messageId} showMessageActions={props.showMessageActions} zIndex={2000 - index}></ConversationMessage>);
 	});
 
-	conversationBody = conversationMessages;
-
 	return (
 	<div className="conversation-messages-list">
 		<Scrollbars ref={listRef}>
-			<div className="messages-wrapper">{conversationBody}</div>
+			<div className="messages-wrapper">{conversationMessages}</div>
 		</Scrollbars>
 	</div>
 	);
