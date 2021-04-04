@@ -16,7 +16,7 @@ const MessageReactionsListItem: React.FunctionComponent<{reaction: IReaction, co
 			<img src={user?.ProfileImage} alt={user?.ProfileImageAltText}></img>
 			<div className="name">{userConversationName}</div>
 		</div>
-		<MessageReaction reaction={props.reaction} key=""></MessageReaction>
+		<MessageReaction reaction={props.reaction}></MessageReaction>
 	</div>
 	);
 }
