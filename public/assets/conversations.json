@@ -15,6 +15,9 @@
 				"ConversationImage": "/assets/swipe-images/disbelievingly debonair/isolation-April 07, 2020-8.jpg",
 				"ConversationImageAltText": "Zach relaxing in his dressing gown using his phone on an orange chair after a long day",
 				"Participants": ["12drt", "f73287"],
+				"NickNames": [
+					{"UserId": "12drt", "NickName": "Not Zach"}
+				],
 				"Messages": ["3", "4", "5", "6", "7"]
 			}
 		},
