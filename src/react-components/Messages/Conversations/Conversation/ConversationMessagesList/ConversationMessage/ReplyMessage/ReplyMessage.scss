@@ -9,6 +9,7 @@
 
 .right-align {
     .reply-message {
+        align-items: flex-end;
         .reply-text, .reply-to {
             border-bottom-right-radius: 0.25em;
             background-color: #2e5dff;
