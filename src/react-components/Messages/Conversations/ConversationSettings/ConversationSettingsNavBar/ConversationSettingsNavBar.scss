@@ -1,4 +1,4 @@
-.conversation-nav-bar {
+.conversation-settings-nav-bar {
 	display: flex;
 	align-items: center;
 	width: 100%;
@@ -23,11 +23,6 @@
 
 	svg, a:hover svg {
 		color: #2E5DFF;
-		text-decoration: none;
-	}
-
-	a, a:hover {
-		color: white;
 		text-decoration: none;
 	}
 

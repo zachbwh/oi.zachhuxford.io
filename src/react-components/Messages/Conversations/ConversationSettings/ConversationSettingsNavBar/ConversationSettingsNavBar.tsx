@@ -1,28 +1,27 @@
 import React from "react";
 
-import './ConversationNavBar.scss';
+import './ConversationSettingsNavBar.scss';
 
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faCog } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 import { useSelector } from "react-redux";
 import { conversationSelectById } from "redux/slices/MessagesSlice";
 
 
-const ConversationNavBar: React.FunctionComponent<{conversationId: string}> = props => {
+const ConversationSettingsNavBar: React.FunctionComponent<{conversationId: string}> = props => {
 	const conversation = useSelector(conversationSelectById(props.conversationId));
 
 	return (
-		<div className="conversation-nav-bar">
+		<div className="conversation-settings-nav-bar">
 			<div className="nav-bar-content">
-				<Link to="/messages"><FontAwesomeIcon icon={faChevronLeft} /></Link>
+				<Link to={`/messages/${props.conversationId}`}><FontAwesomeIcon icon={faChevronLeft} /></Link>
 		        <div className="conversation-icon"><img src={conversation?.ConversationImage} alt={conversation?.ConversationImageAltText}></img></div>
-                <div className="conversation-title">{conversation?.ConversationName}</div>
-				<Link to={`/messages/settings/${props.conversationId}`}><FontAwesomeIcon icon={faCog} /></Link>
+                <div className="conversation-title">Conversation Settings</div>
 			</div>
 		</div>
 	);
 }
 
-export default ConversationNavBar;
+export default ConversationSettingsNavBar;

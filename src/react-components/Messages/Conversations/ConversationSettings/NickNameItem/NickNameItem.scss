@@ -1,0 +1,29 @@
+.nickname-item {
+    display: flex;
+    cursor: pointer;
+
+    .user-img {
+        height: 2.8em;
+        width: 2.8em;
+        border-radius: 1.4em;
+        object-fit: cover;
+        margin-right: 0.5em;
+        align-self: center;
+    }
+
+    .user-nickname {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        align-items: flex-start;
+
+        .nickname {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .actual-name {
+            font-size: 1em;
+        }
+    }
+}
