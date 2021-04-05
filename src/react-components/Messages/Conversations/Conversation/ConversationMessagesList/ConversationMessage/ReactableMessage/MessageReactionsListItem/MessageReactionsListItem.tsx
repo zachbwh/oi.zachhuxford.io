@@ -11,7 +11,7 @@ const MessageReactionsListItem: React.FunctionComponent<{reaction: IReaction, co
 	const user = useSelector(userSelectById(props.reaction.UserId || ""));
 
 	return (
-	<div className="message-reactions-list-item" key={props.reaction.UserId}>
+	<div className="message-reactions-list-item">
 		<div className="reacting-user">
 			<img src={user?.ProfileImage} alt={user?.ProfileImageAltText}></img>
 			<div className="name">{userConversationName}</div>
