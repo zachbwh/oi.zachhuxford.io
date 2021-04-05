@@ -14,12 +14,12 @@ import { userSelectById } from 'redux/slices/MessagesSlice';
 import { selectLoginContext } from 'redux/slices/LoginContextSlice';
 
 const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMessageActions: (messageId: string) => void, zIndex?: number }> = props => {
-	const loggedInUsername = useSelector(selectLoginContext).username,
-		senderUsername = useSelector(userSelectById(props.message.SenderId))?.Username;
+	const loggedInUser = useSelector(selectLoginContext),
+		senderUser = useSelector(userSelectById(props.message.SenderId));
 
 	let alignClassName : string;
 	
-	if (senderUsername === loggedInUsername) {
+	if (senderUser?.UserId === loggedInUser.userId) {
 		alignClassName = "right-align"
 	} else {
 		alignClassName = "left-align"
@@ -35,6 +35,14 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 		setDetailVisible(!detailVisible);
 	}
 
+	let imageComponent;
+
+	if (senderUser?.UserId !== loggedInUser.userId) {
+		imageComponent = (
+			<img className="sender-img" src={senderUser?.ProfileImage} alt={senderUser?.ProfileImageAltText}></img>
+		);
+	}
+
 	let messageComponent;
 
 	switch (props.message.MessageType) {
@@ -42,6 +50,7 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 			messageComponent = (
 				<ReplyableMessage message={props.message}>
 					<ReactableMessage message={props.message}>
+						{imageComponent}
 						<ReplyMessage
 							message={props.message}
 							onClick={toggleDetailVisible}
@@ -57,6 +66,7 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 			messageComponent = (
 				<ReplyableMessage message={props.message}>
 					<ReactableMessage message={props.message}>
+						{imageComponent}
 						<TextMessage
 							message={props.message}
 							onClick={toggleDetailVisible}
@@ -72,6 +82,7 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 			messageComponent = (
 				<ReplyableMessage message={props.message}>
 					<ReactableMessage message={props.message}>
+						{imageComponent}
 						<ImagesMessage
 							message={props.message}
 							onClick={toggleDetailVisible}
@@ -84,11 +95,14 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 			break;
 			
 		default:
-			messageComponent = <DeletedMessage
-				message={props.message}
-				onClick={toggleDetailVisible}
-				onClickOutside={() => setDetailVisible(false)}
-			></DeletedMessage>
+			messageComponent = <div className="message-component">
+				{imageComponent}
+				<DeletedMessage
+					message={props.message}
+					onClick={toggleDetailVisible}
+					onClickOutside={() => setDetailVisible(false)}
+				></DeletedMessage>
+			</div>
 			break;
 	}
 
