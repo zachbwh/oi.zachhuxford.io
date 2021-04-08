@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useHotkeys } from 'react-hotkeys-hook';
+import useHistoryStatePop from 'react-hooks/HistoryStatePop';
 
 import './Modal.scss';
 
@@ -14,6 +15,7 @@ const Modal: React.FunctionComponent<{children: React.ReactNode, modalRootId: st
     }, [modalRoot, props]);
 
     useHotkeys("esc", () => props.closeModal());
+    useHistoryStatePop(() => props.closeModal());
 
     useEffect(() => {
         if (!props.children) {
