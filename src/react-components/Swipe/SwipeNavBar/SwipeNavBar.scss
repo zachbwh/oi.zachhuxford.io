@@ -8,7 +8,7 @@
 	.nav-bar-content {
 		z-index: 1;
 		width: 100%;
-		padding: 10px;
+		padding: 0.5em;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -24,51 +24,17 @@
 		text-decoration: none;
 	}
 
-	@media (min-width: 601px) {
-		.nav-bar-content {
-			padding: 10px;
-			justify-content: space-between;
-	
-			.square-icon {
-				font-size: 3em;
-			}
+	.nav-bar-content {
+		padding: 10px;
+		justify-content: space-between;
 
-			a > svg {
-				font-size: 2.8em;
-				padding: 0.25em;
-			}
+		.square-icon {
+			font-size: 1.8em;
 		}
-	}
 
-	@media (max-width: 601px) {
-		.nav-bar-content {
-			padding: 10px;
-			justify-content: space-between;
-	
-			.square-icon {
-				font-size: 2em;
-			}
-
-			a > svg {
-				font-size: 1.8em;
-				padding: 0.25em;
-			}
-		}
-	}
-	
-	@media (max-width: 400px) {
-		.nav-bar-content {
-			padding: 5px;
-			justify-content: space-between;
-	
-			.square-icon {
-				font-size: 1.5em;
-			}
-
-			a > svg {
-				font-size: 1.3em;
-				padding: 0.225em;
-			}
+		a > svg {
+			font-size: 1.8em;
+			padding: 0.25em;
 		}
 	}
 }
