@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 import './Modal.scss';
 
@@ -11,6 +12,8 @@ const Modal: React.FunctionComponent<{children: React.ReactNode, modalRootId: st
             props.closeModal();
         }
     }, [modalRoot, props]);
+
+    useHotkeys("esc", () => props.closeModal());
 
     useEffect(() => {
         if (!props.children) {
