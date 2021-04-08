@@ -89,7 +89,7 @@ const ConversationInput: React.FunctionComponent<{ conversationId: string}> = pr
 	<div className="conversation-input">
         <div className="input-wrapper">
             <ReplyDraft conversationId={props.conversationId} replyToMessageId={replyToMessageId} closeReply={removeConversationDraftReplyToMessage}></ReplyDraft>
-            <input autoFocus type="text" placeholder="Send Message" onChange={inputChanged} value={messageDraftTextValue} onKeyDown={handleKeyDown} ref={inputRef}></input>
+            <input type="text" placeholder="Send Message" onChange={inputChanged} value={messageDraftTextValue} onKeyDown={handleKeyDown} ref={inputRef}></input>
         </div>
         <FontAwesomeIcon icon={faArrowRight} onClick={sendMessage}></FontAwesomeIcon>
 	</div>

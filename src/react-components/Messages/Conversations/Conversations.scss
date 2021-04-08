@@ -15,16 +15,44 @@
     }
 
     .secondary-view {
-        width: 0;
-        opacity: 0;
         background-color: #16308b66;
+    }
+
+    .hide-mobile {
         transition: width 500ms ease-in-out, opacity 500ms ease-in-out;
+    }
+
+    @media (max-width: 801px) {
+        .hide-mobile {
+            width: 0;
+            opacity: 0;
+            flex-grow: 0;
+        }
+
+        .primary-mobile {
+            flex-grow: 1;
+        }
+
+        .primary-view {
+            max-width: 100%;
+        }
+
+        .choose-conversation {
+            opacity: 0;
+        }
     }
 
     @media (min-width: 801px) {
         .secondary-view {
             width: 400px;
-            opacity: 1;
         }
+    }
+
+    .choose-conversation {
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
     }
 }

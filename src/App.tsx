@@ -28,10 +28,10 @@ function App() {
 				<Router>
 					<Switch>
 						<Route exact path="/">
-							<SwipeNavBar />
+							<SwipeNavBar showMessagesLink={true} />
 						</Route>
 						<Route path="/swipe">
-							<SwipeNavBar />
+							<SwipeNavBar showMessagesLink={true} />
 						</Route>
 						<Route path="/register">
 							<LoginNavBar />

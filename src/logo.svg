@@ -80,10 +80,10 @@
          y="144.50687"
          id="text64"><tspan
            sodipodi:role="line"
-           id="tspan62"
            x="36.840816"
            y="144.50687"
-           style="fill:#000000;stroke-width:0.264583">OI</tspan></text>
+           style="fill:#000000;stroke-width:0.264583"
+           id="tspan69">Oi</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:italic;font-weight:bold;font-size:140px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:'Roboto, Bold Italic';letter-spacing:13.2292px;opacity:0.990891;stroke-width:0.264583"
@@ -94,7 +94,12 @@
            id="tspan889"
            x="40.040817"
            y="147.70686"
-           style="fill:#000000;stroke-width:0.264583">OI</tspan></text>
+           style="fill:#000000;stroke-width:0.264583">Oi</tspan><tspan
+           sodipodi:role="line"
+           x="40.040817"
+           y="322.70685"
+           style="fill:#000000;stroke-width:0.264583"
+           id="tspan67" /></text>
       <text
          xml:space="preserve"
          style="font-style:italic;font-weight:bold;font-size:140px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:'Roboto, Bold Italic';letter-spacing:13.2292px;stroke-width:0.264583"
@@ -105,22 +110,38 @@
            id="tspan64"
            x="33.640816"
            y="141.30687"
-           style="fill:#000000;stroke-width:0.264583">OI</tspan></text>
+           style="fill:#000000;stroke-width:0.264583">Oi</tspan></text>
       <rect
          style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke-width:0.169559;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
          id="rect913"
          width="13.531521"
          height="11.67405"
-         x="197.31094"
-         y="-12.890177"
+         x="196.2197"
+         y="-11.730297"
          transform="matrix(0.70946049,0.70474521,-0.70946049,0.70474521,0,0)" />
       <rect
          style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke-width:0.169559;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
          id="rect915"
          width="13.531521"
          height="11.67405"
-         x="152.8812"
-         y="-98.24675"
+         x="150.32019"
+         y="-95.056511"
+         transform="matrix(0.70946049,0.70474521,-0.70946049,0.70474521,0,0)" />
+      <rect
+         style="font-variation-settings:normal;display:inline;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke-width:0.169559;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+         id="rect915-3"
+         width="13.531521"
+         height="11.67405"
+         x="148.56143"
+         y="-85.479851"
+         transform="matrix(0.70946049,0.70474521,-0.70946049,0.70474521,0,0)" />
+      <rect
+         style="font-variation-settings:normal;display:inline;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke-width:0.169559;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+         id="rect913-6"
+         width="13.531521"
+         height="11.67405"
+         x="166.30365"
+         y="-75.419334"
          transform="matrix(0.70946049,0.70474521,-0.70946049,0.70474521,0,0)" />
       <text
          xml:space="preserve"
@@ -132,7 +153,7 @@
            id="tspan50"
            x="30.440817"
            y="138.10687"
-           style="fill:#ffffff;stroke-width:0.264583">OI</tspan></text>
+           style="fill:#ffffff;stroke-width:0.264583">Oi</tspan></text>
     </g>
   </g>
 </svg>

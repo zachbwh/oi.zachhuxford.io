@@ -23,15 +23,11 @@ const SetNickName: React.FunctionComponent<{conversation: IConversation, userId:
 		props.close();
 	}
 
-	function handleFocus(event: React.FocusEvent<HTMLInputElement>) {
-		event.target.select();
-	}
-
 	return (
 		<div className="set-nickname">
 			<div className="instructions">Set Nickname for {userFullName}</div>
 			<div className="input-wrapper">
-				<input autoFocus onFocus={handleFocus} type="text" value={newNickName} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setNewNickName(event.target.value)}/>
+				<input autoFocus type="text" value={newNickName} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setNewNickName(event.target.value)}/>
 			</div>
 			<div className="actions">
 				<div onClick={() => props.close()}>Cancel</div>
