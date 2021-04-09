@@ -25,7 +25,11 @@ function ConversationNavBar() {
 	}
 	let setNickName
 	if (showSetNickNameUserId && conversation) {
-		setNickName = <SetNickName userId={showSetNickNameUserId} conversation={conversation} close={closeSetNickNameModal}></SetNickName>
+		setNickName = (
+		<Modal closeModal={closeSetNickNameModal} modalRootId="conversation-settings-modal-root">
+			<SetNickName userId={showSetNickNameUserId} conversation={conversation} close={closeSetNickNameModal}></SetNickName>
+		</Modal>
+		)
 	}
 	return (
 		<div className="conversation-settings">
@@ -39,7 +43,7 @@ function ConversationNavBar() {
 				</div>
 			</Scrollbars>
 			<div id="conversation-settings-modal-root" className="modal-root hidden"></div>
-			<Modal closeModal={closeSetNickNameModal} modalRootId="conversation-settings-modal-root">{setNickName}</Modal>
+			{setNickName}
 		</div>
 	);
 }

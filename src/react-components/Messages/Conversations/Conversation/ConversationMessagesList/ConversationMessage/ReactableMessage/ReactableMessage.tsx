@@ -20,7 +20,10 @@ const ReactableMessage: React.FunctionComponent<{message: Message, children: Rea
 
 	let messageReactionsList;
 	if (showReactionsModal) {
-		messageReactionsList = <MessageReactionsList message={props.message} close={() => setShowReactionsModal(false)}></MessageReactionsList>;
+		messageReactionsList = (
+		<Modal closeModal={() => setShowReactionsModal(false)} modalRootId="conversation-modal-root">
+			<MessageReactionsList message={props.message} close={() => setShowReactionsModal(false)}></MessageReactionsList>
+		</Modal>);
 	}
 
 	return (
@@ -28,7 +31,7 @@ const ReactableMessage: React.FunctionComponent<{message: Message, children: Rea
 		<ChooseMessageReaction message={props.message} isVisible={showReactions} close={() => setShowReactions(false)}></ChooseMessageReaction>
 		{props.children}
 		<MessageReactionsPreview message={props.message} onClick={() => setShowReactionsModal(true)}></MessageReactionsPreview>
-		<Modal closeModal={() => setShowReactionsModal(false)} modalRootId="conversation-modal-root">{messageReactionsList}</Modal>
+		{messageReactionsList}
 	</div>
 	);
 }
