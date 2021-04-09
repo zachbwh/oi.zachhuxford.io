@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useHotkeys } from 'react-hotkeys-hook';
 import useHistoryStatePop from 'react-hooks/HistoryStatePop';
@@ -7,8 +7,10 @@ import './Modal.scss';
 
 const Modal: React.FunctionComponent<{children: React.ReactNode, modalRootId: string, closeModal: () => void}> = props => {
     const modalRoot: Element = document.getElementById(props.modalRootId) || document.createElement("div") as HTMLElement;
+    let close: () => void;
+    const stateFlagKey = useHistoryStatePop(() => close());
 
-    const close = useCallback(() => {
+    close = useCallback(() => {
         // make sure to always hide modal root before closing
         modalRoot.classList.add("hidden");
 
@@ -20,16 +22,15 @@ const Modal: React.FunctionComponent<{children: React.ReactNode, modalRootId: st
             window.history.back();
         }
 
-    }, [modalRoot, props.closeModal]);
+    }, [modalRoot, props, stateFlagKey]);
 
     const closeClick = useCallback((event: any) => {
         if (event.target === modalRoot) {
             close();
         }
-    }, [modalRoot, props, close]);
+    }, [modalRoot, close]);
 
     useHotkeys("esc", () => close());
-    var stateFlagKey = useHistoryStatePop(() => close());
 
     useEffect(() => {
         if (!props.children) {
@@ -40,6 +41,10 @@ const Modal: React.FunctionComponent<{children: React.ReactNode, modalRootId: st
             modalRoot.classList.remove("hidden");
             modalRoot.addEventListener("click", closeClick);
 
+        }
+
+        return function cleanUp() {
+            modalRoot.classList.add("hidden");
         }
     }, [props.children, modalRoot, modalRoot.classList, closeClick]);
 

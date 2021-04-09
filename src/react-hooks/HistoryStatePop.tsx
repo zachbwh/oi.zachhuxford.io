@@ -9,7 +9,7 @@ import { useHistory } from "react-router";
  * Useful if you want something to respond to the back button being pressed
  */
 function useHistoryStatePop(historyStateFlagPopped: () => void, newTitle? :string) {
-    const [stateFlagKey, setStateFlagKey] = useState(nanoid());
+    const [stateFlagKey] = useState(nanoid());
     const [popStateFired, setPopStateFired] = useState(false);
     const history = useHistory()
 
@@ -38,7 +38,7 @@ function useHistoryStatePop(historyStateFlagPopped: () => void, newTitle? :strin
                 handlePopState(location);
             }
         });
-    }, [historyStateFlagPopped, newTitle, stateFlagKey]);
+    }, [historyStateFlagPopped, newTitle, stateFlagKey, history, popStateFired]);
 
     return stateFlagKey;
 }
