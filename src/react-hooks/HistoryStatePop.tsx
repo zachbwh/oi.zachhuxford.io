@@ -39,6 +39,8 @@ function useHistoryStatePop(historyStateFlagPopped: () => void, newTitle? :strin
             }
         });
     }, [historyStateFlagPopped, newTitle, stateFlagKey]);
+
+    return stateFlagKey;
 }
 
 export default useHistoryStatePop;
