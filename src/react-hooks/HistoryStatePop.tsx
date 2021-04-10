@@ -11,7 +11,7 @@ import { useHistory } from "react-router";
 function useHistoryStatePop(historyStateFlagPopped: () => void, newTitle? :string) {
     const [stateFlagKey] = useState(nanoid());
     const [popStateFired, setPopStateFired] = useState(false);
-    const history = useHistory()
+    const history = useHistory();
 
     useEffect(() => {
         /**
@@ -33,14 +33,19 @@ function useHistoryStatePop(historyStateFlagPopped: () => void, newTitle? :strin
         stateFlagObject[stateFlagKey] = true;
         window.history.pushState(stateFlagObject, newTitle || document.title);
 
-        history.listen(location => {
+        const removeListener = history.listen(location => {
             if (history.action === "POP") {
                 handlePopState(location);
             }
+            removeListener();
         });
+
+        return function cleanUp() {
+            // pop state to ensure back button has expected behaviour
+            window.history.back();
+        }
     }, [historyStateFlagPopped, newTitle, stateFlagKey, history, popStateFired]);
 
-    return stateFlagKey;
 }
 
 export default useHistoryStatePop;
