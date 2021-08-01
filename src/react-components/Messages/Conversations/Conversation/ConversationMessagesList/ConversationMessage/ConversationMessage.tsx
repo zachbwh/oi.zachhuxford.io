@@ -5,6 +5,10 @@ import DeletedMessage from './DeletedMessage/DeletedMessage';
 import ImagesMessage from './ImagesMessage/ImagesMessage';
 import ReplyMessage from './ReplyMessage/ReplyMessage';
 import TextMessage from './TextMessage/TextMessage';
+import {isTextMessage} from 'typescript-types/Messages/ITextMessage';
+import {isReplyMessage} from 'typescript-types/Messages/IReplyMessage';
+import {isDeletedMessage} from 'typescript-types/Messages/IDeletedMessage';
+import {isImagesMessage} from 'typescript-types/Messages/IImagesMessage';
 
 import './ConversationMessage.scss';
 import ReplyableMessage from './ReplyableMessage/ReplyableMessage';
@@ -45,57 +49,50 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 
 	let messageComponent;
 
-	switch (props.message.MessageType) {
-		case "reply":
-			messageComponent = (
-				<ReplyableMessage message={props.message}>
-					<ReactableMessage message={props.message}>
-						{imageComponent}
-						<ReplyMessage
-							message={props.message}
-							onClick={toggleDetailVisible}
-							onClickOutside={() => setDetailVisible(false)}
-							onLongPress={showMessageActions}>
-						</ReplyMessage>
-					</ReactableMessage>
-				</ReplyableMessage>
-			);
-			break;
-
-		case "text":
-			messageComponent = (
-				<ReplyableMessage message={props.message}>
-					<ReactableMessage message={props.message}>
-						{imageComponent}
-						<TextMessage
-							message={props.message}
-							onClick={toggleDetailVisible}
-							onClickOutside={() => setDetailVisible(false)}
-							onLongPress={showMessageActions}>
-						</TextMessage>
-					</ReactableMessage>
-				</ReplyableMessage>
-			);
-			break;
-
-		case "images":
-			messageComponent = (
-				<ReplyableMessage message={props.message}>
-					<ReactableMessage message={props.message}>
-						{imageComponent}
-						<ImagesMessage
-							message={props.message}
-							onClick={toggleDetailVisible}
-							onClickOutside={() => setDetailVisible(false)}
-							onLongPress={showMessageActions}>
-						</ImagesMessage>
-					</ReactableMessage>
-				</ReplyableMessage>
-			);
-			break;
-			
-		default:
-			messageComponent = <div className="message-component">
+	if (isReplyMessage(props.message)) {
+		messageComponent = (
+			<ReplyableMessage message={props.message}>
+				<ReactableMessage message={props.message}>
+					{imageComponent}
+					<ReplyMessage
+						message={props.message}
+						onClick={toggleDetailVisible}
+						onClickOutside={() => setDetailVisible(false)}
+						onLongPress={showMessageActions}>
+					</ReplyMessage>
+				</ReactableMessage>
+			</ReplyableMessage>
+		);
+	} else if (isTextMessage(props.message)) {
+		messageComponent = (
+			<ReplyableMessage message={props.message}>
+				<ReactableMessage message={props.message}>
+					{imageComponent}
+					<TextMessage
+						message={props.message}
+						onClick={toggleDetailVisible}
+						onClickOutside={() => setDetailVisible(false)}
+						onLongPress={showMessageActions}>
+					</TextMessage>
+				</ReactableMessage>
+			</ReplyableMessage>
+		);
+	} else if (isImagesMessage(props.message)) {
+		messageComponent = (
+			<ReplyableMessage message={props.message}>
+				<ReactableMessage message={props.message}>
+					{imageComponent}
+					<ImagesMessage
+						message={props.message}
+						onClick={toggleDetailVisible}
+						onClickOutside={() => setDetailVisible(false)}
+						onLongPress={showMessageActions}>
+					</ImagesMessage>
+				</ReactableMessage>
+			</ReplyableMessage>
+		);
+	} else if (isDeletedMessage(props.message)) {
+		messageComponent = <div className="message-component">
 				{imageComponent}
 				<DeletedMessage
 					message={props.message}
@@ -103,7 +100,6 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 					onClickOutside={() => setDetailVisible(false)}
 				></DeletedMessage>
 			</div>
-			break;
 	}
 
 	return (

@@ -4,7 +4,9 @@ import React, { useRef } from 'react';
 import useFocusOut from 'react-hooks/FocusOut';
 import { useDispatch, useSelector } from 'react-redux';
 import { conversationSelectById, deleteMessage, messageSelectById, setConversationDraftMessage } from 'redux/slices/MessagesSlice';
+import { isDeletedMessage } from 'typescript-types/Messages/IDeletedMessage';
 import IDraftMessage from 'typescript-types/Messages/IDraftMessage';
+import { isTextMessage } from 'typescript-types/Messages/ITextMessage';
 
 import './MessageActions.scss';
 
@@ -32,9 +34,9 @@ const MessageActions: React.FunctionComponent<{ messageId: string, close: () => 
             actionName: "Copy",
             icon: <FontAwesomeIcon icon={faCopy}></FontAwesomeIcon>,
             action: () => {
-                if (message) {
+                if (message && isTextMessage(message)) {
                     var inputFieldClear = document.createElement("input");
-                    inputFieldClear.setAttribute("value", message.MessageText || "");
+                    inputFieldClear.setAttribute("value", message.MessageText);
                     document.body.appendChild(inputFieldClear);
                     inputFieldClear.select();
                     document.execCommand('copy');
@@ -80,19 +82,19 @@ const MessageActions: React.FunctionComponent<{ messageId: string, close: () => 
 
         switch (action.actionName) {
             case "Copy":
-                if (message.MessageType === "deleted") {
+                if (isDeletedMessage(message)) {
                     shouldShowAction = false;
                 }
                 break;
 
             case "Delete":
-                if (message.MessageType === "deleted") {
+                if (isDeletedMessage(message)) {
                     shouldShowAction = false;
                 }
                 break;
 
             case "Reply":
-                if (message.MessageType === "deleted") {
+                if (isDeletedMessage(message)) {
                     shouldShowAction = false;
                 }
                 break;

@@ -12,8 +12,12 @@ import ImagesMessage from '../ImagesMessage/ImagesMessage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReply } from '@fortawesome/free-solid-svg-icons';
 import { selectLoginContext } from 'redux/slices/LoginContextSlice';
+import IReplyMessage, { isReplyMessage } from 'typescript-types/Messages/IReplyMessage';
+import { isTextMessage } from 'typescript-types/Messages/ITextMessage';
+import { isDeletedMessage } from 'typescript-types/Messages/IDeletedMessage';
+import { isImagesMessage } from 'typescript-types/Messages/IImagesMessage';
 
-const ReplyMessage: React.FunctionComponent<ConversationMessageProps> = props => {
+const ReplyMessage: React.FunctionComponent<ConversationMessageProps<IReplyMessage>> = props => {
 	const bodyRef = useRef(null),
 		replyToMessage = useSelector(messageSelectById(props.message.ReferenceMessageId || "")),
 		messageLongPressHandlers = useLongPress(() => {
@@ -40,18 +44,16 @@ const ReplyMessage: React.FunctionComponent<ConversationMessageProps> = props =>
 
 	let replyToComponent;
 
-	switch (replyToMessage?.MessageType) {
-		case "text":
-		case "reply":
-			replyToComponent = <TextMessage message={replyToMessage}></TextMessage>
-			break;
-		case "deleted":
-			replyToComponent = <DeletedMessage message={replyToMessage}></DeletedMessage>
-		break;
-		case "images":
-			replyToComponent = <ImagesMessage message={replyToMessage}></ImagesMessage>
-		break;
+	if (typeof replyToMessage === "undefined") {
+		
+	} else if (isTextMessage(replyToMessage) || isReplyMessage(replyToMessage)) {
+		replyToComponent = <TextMessage message={replyToMessage}></TextMessage>
 
+	} else if (isDeletedMessage(replyToMessage)) {
+		replyToComponent = <DeletedMessage message={replyToMessage}></DeletedMessage>
+
+	} else if (isImagesMessage(replyToMessage)) {
+		replyToComponent = <ImagesMessage message={replyToMessage}></ImagesMessage>
 	}
 
 	useClickOutside(bodyRef, props.onClickOutside);

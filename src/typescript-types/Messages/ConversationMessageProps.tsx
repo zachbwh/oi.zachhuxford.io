@@ -1,7 +1,7 @@
 import Message from './IMessage';
 
-interface ConversationMessageProps {
-    message: Message,
+interface ConversationMessageProps<MessageType extends Message> {
+    message: MessageType,
     onClick?: () => void,
     onClickOutside?: () => void,
     onLongPress?: () => void,

@@ -4,10 +4,12 @@ interface IMessage {
 	MessageType: "text" | "reply" | "images" | "deleted",
 	SenderId: string,
 	DateTime: string,
+	Reactions?: IReaction[],
+	// The following properties do not belong on this interface
+	// the only reason they exist is to allow for the redux deleteMessage action
 	MessageText?: string,
 	ImageUrls?: string[],
-	ReferenceMessageId?: string,
-	Reactions?: IReaction[]
+	ReferenceMessageId?: string
 };
 
 export interface IReaction {

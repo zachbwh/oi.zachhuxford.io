@@ -83,6 +83,11 @@ export const messagesSlice = createSlice({
 		deleteMessage: (state, action: PayloadAction<IMessage>) => {
 			// set message type to deleted and stripped all other content
 			state.messages.entities[action.payload.MessageId].MessageType = "deleted";
+			// TODO
+			/* 
+				move deletion logic server side so these properties
+				can be removed from the IMessage interface
+			*/
 			state.messages.entities[action.payload.MessageId].MessageText = "";
 			state.messages.entities[action.payload.MessageId].ReferenceMessageId = "";
 			state.messages.entities[action.payload.MessageId].ImageUrls = [];

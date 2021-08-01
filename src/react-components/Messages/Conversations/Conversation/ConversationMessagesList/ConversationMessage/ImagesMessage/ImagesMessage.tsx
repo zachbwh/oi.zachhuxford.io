@@ -1,12 +1,13 @@
 import React, { useRef, useState } from 'react';
 import ConversationMessageProps from 'typescript-types/Messages/ConversationMessageProps';
+import IImagesMessage from 'typescript-types/Messages/IImagesMessage';
 import useClickOutside from 'react-hooks/ClickOutside';
 
 import './ImagesMessage.scss';
 import useLongPress from 'react-hooks/LongPress';
 import Modal from 'react-components/ComponentLibrary/Modal/Modal';
 
-const ImagesMessage: React.FunctionComponent<ConversationMessageProps> = props => {
+const ImagesMessage: React.FunctionComponent<ConversationMessageProps<IImagesMessage>> = props => {
 	const [showImageModal, setShowImageModal] = useState(false);
 	let imageView;
 	if (showImageModal && props.message.ImageUrls?.length === 1) {
