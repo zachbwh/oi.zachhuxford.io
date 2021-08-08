@@ -10,7 +10,6 @@ import DeletedMessage from 'react-components/Messages/Conversations/Conversation
 import ImagesMessage from 'react-components/Messages/Conversations/Conversation/ConversationMessagesList/ConversationMessage/ImagesMessage/ImagesMessage';
 import {isTextMessage} from 'typescript-types/Messages/ITextMessage';
 import {isReplyMessage} from 'typescript-types/Messages/IReplyMessage';
-import {isDeletedMessage} from 'typescript-types/Messages/IDeletedMessage';
 import {isImagesMessage} from 'typescript-types/Messages/IImagesMessage';
 
 const ReplyDraft: React.FunctionComponent<{ conversationId: string, replyToMessageId: string, closeReply: () => void}> = props => {
@@ -21,11 +20,11 @@ const ReplyDraft: React.FunctionComponent<{ conversationId: string, replyToMessa
 
 	if (typeof replyToMessage === "undefined") {
 		
+	} else if (replyToMessage.IsDeleted) {
+		replyToComponent = <DeletedMessage message={replyToMessage}></DeletedMessage>
+
 	} else if (isTextMessage(replyToMessage) || isReplyMessage(replyToMessage)) {
 		replyToComponent = <TextMessage message={replyToMessage}></TextMessage>
-
-	} else if (isDeletedMessage(replyToMessage)) {
-		replyToComponent = <DeletedMessage message={replyToMessage}></DeletedMessage>
 
 	} else if (isImagesMessage(replyToMessage)) {
 		replyToComponent = <ImagesMessage message={replyToMessage}></ImagesMessage>

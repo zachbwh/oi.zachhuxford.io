@@ -3,11 +3,11 @@ import useClickOutside from 'react-hooks/ClickOutside';
 import { useSelector } from 'react-redux';
 import { selectUserConversationName } from 'redux/slices/MessagesSlice';
 import ConversationMessageProps from 'typescript-types/Messages/ConversationMessageProps';
-import IDeletedMessage from 'typescript-types/Messages/IDeletedMessage';
+import IMessage from 'typescript-types/Messages/IMessage';
 
 import './DeletedMessage.scss';
 
-const DeletedMessage: React.FunctionComponent<ConversationMessageProps<IDeletedMessage>> = props => {
+const DeletedMessage: React.FunctionComponent<ConversationMessageProps<IMessage>> = props => {
 	const bodyRef = useRef(null);
 	const senderName = useSelector(selectUserConversationName(props.message.ConversationId, props.message.SenderId))
 

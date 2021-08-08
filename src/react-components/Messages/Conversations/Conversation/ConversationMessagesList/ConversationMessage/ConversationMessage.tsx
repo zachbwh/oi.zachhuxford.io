@@ -7,7 +7,6 @@ import ReplyMessage from './ReplyMessage/ReplyMessage';
 import TextMessage from './TextMessage/TextMessage';
 import {isTextMessage} from 'typescript-types/Messages/ITextMessage';
 import {isReplyMessage} from 'typescript-types/Messages/IReplyMessage';
-import {isDeletedMessage} from 'typescript-types/Messages/IDeletedMessage';
 import {isImagesMessage} from 'typescript-types/Messages/IImagesMessage';
 
 import './ConversationMessage.scss';
@@ -49,7 +48,16 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 
 	let messageComponent;
 
-	if (isReplyMessage(props.message)) {
+	if (props.message.IsDeleted) {
+		messageComponent = <div className="message-component">
+				{imageComponent}
+				<DeletedMessage
+					message={props.message}
+					onClick={toggleDetailVisible}
+					onClickOutside={() => setDetailVisible(false)}
+				></DeletedMessage>
+			</div>
+	} else if (isReplyMessage(props.message)) {
 		messageComponent = (
 			<ReplyableMessage message={props.message}>
 				<ReactableMessage message={props.message}>
@@ -91,15 +99,6 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 				</ReactableMessage>
 			</ReplyableMessage>
 		);
-	} else if (isDeletedMessage(props.message)) {
-		messageComponent = <div className="message-component">
-				{imageComponent}
-				<DeletedMessage
-					message={props.message}
-					onClick={toggleDetailVisible}
-					onClickOutside={() => setDetailVisible(false)}
-				></DeletedMessage>
-			</div>
 	}
 
 	return (

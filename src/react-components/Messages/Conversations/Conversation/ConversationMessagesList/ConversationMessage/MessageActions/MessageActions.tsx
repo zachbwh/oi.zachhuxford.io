@@ -4,7 +4,6 @@ import React, { useRef } from 'react';
 import useFocusOut from 'react-hooks/FocusOut';
 import { useDispatch, useSelector } from 'react-redux';
 import { conversationSelectById, deleteMessage, messageSelectById, setConversationDraftMessage } from 'redux/slices/MessagesSlice';
-import { isDeletedMessage } from 'typescript-types/Messages/IDeletedMessage';
 import IDraftMessage from 'typescript-types/Messages/IDraftMessage';
 import { isTextMessage } from 'typescript-types/Messages/ITextMessage';
 
@@ -82,19 +81,19 @@ const MessageActions: React.FunctionComponent<{ messageId: string, close: () => 
 
         switch (action.actionName) {
             case "Copy":
-                if (isDeletedMessage(message)) {
+                if (message.IsDeleted) {
                     shouldShowAction = false;
                 }
                 break;
 
             case "Delete":
-                if (isDeletedMessage(message)) {
+                if (message.IsDeleted) {
                     shouldShowAction = false;
                 }
                 break;
 
             case "Reply":
-                if (isDeletedMessage(message)) {
+                if (message.IsDeleted) {
                     shouldShowAction = false;
                 }
                 break;
