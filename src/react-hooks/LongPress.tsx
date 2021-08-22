@@ -8,7 +8,9 @@ export default function useLongPress(callback = () => {}, ms = 750) {
 		let timerId : NodeJS.Timeout;
 		if (startLongPress) {
 			timerId = setTimeout(() => {
-				window.navigator.vibrate(1000);
+				if (typeof window.navigator.vibrate === "function") {
+					window.navigator.vibrate(1000);
+				}
 				callback();
 			}, ms);
 		}
