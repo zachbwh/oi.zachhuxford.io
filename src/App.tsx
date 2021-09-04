@@ -11,7 +11,6 @@ import Swipe from 'react-components/Swipe/Swipe'
 import RegisterUser from "react-components/Login/RegisterUser/RegisterUser";
 import LoginUser from "react-components/Login/LoginUser/LoginUser";
 import SwipeNavBar from "react-components/Swipe/SwipeNavBar/SwipeNavBar";
-import LoginNavBar from "react-components/Login/LoginNavBar/LoginNavBar";
 import SwipeUserProfile from "react-components/Swipe/SwipeUserProfile/SwipeUserProfile";
 import SwipeSettings from "react-components/Swipe/SwipeSettings/SwipeSettings";
 import SwipeSettingsLookingFor from "react-components/Swipe/SwipeSettings/SwipeSettingsLookingFor/SwipeSettingsLookingFor";
@@ -32,12 +31,6 @@ function App() {
 						</Route>
 						<Route path="/swipe">
 							<SwipeNavBar showMessagesLink={true} />
-						</Route>
-						<Route path="/register">
-							<LoginNavBar />
-						</Route>
-						<Route path="/login">
-							<LoginNavBar />
 						</Route>
 					</Switch>
 					<div className="App-content">
