@@ -3,11 +3,14 @@ import zxcvbn from 'zxcvbn'
 
 import './RegisterUser.scss';
 import PasswordStrength from './PasswordStrength/PasswordStrength';
+import TextInput from 'react-components/ComponentLibrary/InputComponents/TextInput/TextInput';
+import CustomButton from 'react-components/ComponentLibrary/InputComponents/CustomButton/CustomButton';
 
 function RegisterUser() {
 	const [emailAddress, setEmailAddress] = useState('');
 	const [username, setUsername] = useState('');
-	const [name, setName] = useState('');
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
 	const [phoneNumber, setPhoneNumber] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
@@ -89,45 +92,42 @@ function RegisterUser() {
 	switch(registerStage) {
 		case 1:
 			registerBody = (
-				<ul>
-					<li><span>Name</span><input type="text" onChange={event => setName(event.currentTarget.value)} value={name} placeholder="Zach Huxford"></input></li>
-					<li><span>Username</span><input type="text" onChange={event => setUsername(event.currentTarget.value)} value={username} placeholder="zachbwh"></input></li>
-					<li><span>Email</span><input type="email" onChange={event => setEmailAddress(event.currentTarget.value)} value={emailAddress} placeholder="me@zachhuxford.io"></input></li>
-					<li><span>Phone Number</span><input type="tel" onChange={event => setPhoneNumber(event.currentTarget.value)} value={phoneNumber} placeholder="123456789"></input></li>
-				</ul>
+				<div className="register-user-inputs">
+					<TextInput setValue={setFirstName} value={firstName} placeholder="First Name" inputType="text" classNames="dark first-name"></TextInput>
+					<TextInput setValue={setLastName} value={lastName} placeholder="Last Name" inputType="text" classNames="dark last-name"></TextInput>
+					<TextInput setValue={setUsername} value={username} placeholder="Username" inputType="text" spellCheck={false} classNames="dark full-width"></TextInput>
+					<TextInput setValue={setEmailAddress} value={emailAddress} placeholder="Email" inputType="email" classNames="dark full-width"></TextInput>
+					<TextInput setValue={setPhoneNumber} value={phoneNumber} placeholder="Phone Number" inputType="tel" classNames="dark full-width"></TextInput>
+				</div>
 			);
 			nextButton = (
-				<button className="next-button" onClick={handleNextButtonClick}>Next</button>
+				<CustomButton onClick={handleNextButtonClick}>Next</CustomButton>
 			);
 		break;
 		case 2:
 			registerBody = (
-				<ul>
-					<li>
-						<span>Password</span>
-						<div>
-							<input type="password" onChange={event => {setPassword(event.currentTarget.value)}} value={password}></input>
+				<div className="register-user-inputs">
+					<div className="full-width">
+						<TextInput setValue={setPassword} value={password} placeholder="Password" inputType="password" classNames="dark"></TextInput>
+						<div className="password-strength-container">
 							<PasswordStrength password={password}></PasswordStrength>
 						</div>
-					</li>
-					<li>
-						<span>Confirm Password</span>
+					</div>
+					<div className="full-width">
+						<TextInput setValue={setConfirmPassword} value={confirmPassword} placeholder="Confirm Password" inputType="password" classNames="dark"></TextInput>
 						<div>
-							<input type="password" onChange={event => setConfirmPassword(event.currentTarget.value)} value={confirmPassword}></input>
-							<div>
-								<span className="passwords-feedback" style={{opacity: passwordFeedbackVisible ? 1 : 0}}>
-									{passwordFeedback}
-								</span>
-							</div>
+							<span className="passwords-feedback" style={{opacity: passwordFeedbackVisible ? 1 : 0}}>
+								{passwordFeedback}
+							</span>
 						</div>
-					</li>
-				</ul>
+					</div>
+				</div>
 			);
 			previousButton = (
-				<button className="previous-button" onClick={handlePreviousButtonClick}>Previous</button>
+				<CustomButton onClick={handlePreviousButtonClick}>Previous</CustomButton>
 			);
 			nextButton = (
-				<button className="register-button" onClick={handleRegisterButtonClick}>Register</button>
+				<CustomButton onClick={handleRegisterButtonClick}>Register</CustomButton>
 			);
 		break;
 		default:
@@ -137,21 +137,15 @@ function RegisterUser() {
 	}
 
 	return (
-	<div className="register-user-container">
-		<div className="register-user">
-			
-			<h2 className="large-heading">Create an account</h2>
-			<div className="register-user-body">
-				<h3 className="small-heading">Create an account</h3>
-				<div>
-					{registerBody}
-				</div>
-				<div className="register-button-container">
-					{/* Order Reversed but flex direction: row reverse is applied so a single button is right aligned */}
-					{nextButton}
-					{previousButton}
-				</div>
-			</div>
+	<div className="register-user">
+		<h2 className="large-heading">Create an account</h2>
+		<div>
+			{registerBody}
+		</div>
+		<div className="register-button-container">
+			{/* Order Reversed but flex direction: row reverse is applied so a single button is right aligned */}
+			{nextButton}
+			{previousButton}
 		</div>
 	</div>
 	);

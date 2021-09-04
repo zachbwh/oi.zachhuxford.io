@@ -19,7 +19,7 @@ function Conversations() {
 			<Route path={`${match.path}/settings/:conversationId`}>
 				<div className="secondary-view hide-mobile" style={ window.innerWidth < 801 ? {display: "none"} : {}}>
 					<SwipeNavBar></SwipeNavBar>
-					<ConversationSearch onSearchTermUpdated={setSearchTerm}></ConversationSearch>
+					<ConversationSearch onSearchTermUpdated={setSearchTerm} searchTerm={searchTerm}></ConversationSearch>
 					<ConversationsList searchTerm={searchTerm} />
 				</div>
 				<div className="primary-view">
@@ -29,7 +29,7 @@ function Conversations() {
 			<Route path={`${match.path}/:conversationId`}>
 				<div className="secondary-view hide-mobile" style={ window.innerWidth < 801 ? {display: "none"} : {}}>
 					<SwipeNavBar></SwipeNavBar>
-					<ConversationSearch onSearchTermUpdated={setSearchTerm}></ConversationSearch>
+					<ConversationSearch onSearchTermUpdated={setSearchTerm} searchTerm={searchTerm}></ConversationSearch>
 					<ConversationsList searchTerm={searchTerm} />
 				</div>
 				<div className="primary-view">
@@ -39,7 +39,7 @@ function Conversations() {
 			<Route path={match.path}>
 				<div className="secondary-view primary-mobile">
 					<SwipeNavBar></SwipeNavBar>
-					<ConversationSearch onSearchTermUpdated={setSearchTerm}></ConversationSearch>
+					<ConversationSearch onSearchTermUpdated={setSearchTerm} searchTerm={searchTerm}></ConversationSearch>
 					<ConversationsList searchTerm={searchTerm} />
 				</div>
 				<div className="primary-view hide-mobile">
