@@ -1,19 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import zxcvbn from 'zxcvbn'
+import React, { useState, useEffect, useReducer } from 'react';
+import zxcvbn from 'zxcvbn';
+import getMergeReducer from 'helpers/GetMergeReducer';
 
 import './RegisterUser.scss';
 import PasswordStrength from './PasswordStrength/PasswordStrength';
 import TextInput from 'react-components/ComponentLibrary/InputComponents/TextInput/TextInput';
 import CustomButton from 'react-components/ComponentLibrary/InputComponents/CustomButton/CustomButton';
 
+
+interface RegisterUserForm {
+	emailAddress: string,
+	username: string,
+	firstName: string,
+	lastName: string,
+	phoneNumber: string,
+	password: string,
+	confirmPassword: string,
+}
+
 function RegisterUser() {
-	const [emailAddress, setEmailAddress] = useState('');
-	const [username, setUsername] = useState('');
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
-	const [phoneNumber, setPhoneNumber] = useState('');
-	const [password, setPassword] = useState('');
-	const [confirmPassword, setConfirmPassword] = useState('');
+	const [formState, update] = useReducer(getMergeReducer<RegisterUserForm>(), {
+		emailAddress: '',
+		username: '',
+		firstName: '',
+		lastName: '',
+		phoneNumber: '',
+		password: '',
+		confirmPassword: ''
+	})
+	const {emailAddress, username, firstName, lastName, phoneNumber, password, confirmPassword} = formState;
 	const [passwordFeedback, setPasswordFeedback] = useState('');
 	const [passwordFeedbackVisible, setPasswordFeedbackVisible] = useState(false);
 
@@ -93,11 +108,11 @@ function RegisterUser() {
 		case 1:
 			registerBody = (
 				<div className="register-user-inputs">
-					<TextInput setValue={setFirstName} value={firstName} placeholder="First Name" inputType="text" classNames="dark first-name"></TextInput>
-					<TextInput setValue={setLastName} value={lastName} placeholder="Last Name" inputType="text" classNames="dark last-name"></TextInput>
-					<TextInput setValue={setUsername} value={username} placeholder="Username" inputType="text" spellCheck={false} classNames="dark full-width"></TextInput>
-					<TextInput setValue={setEmailAddress} value={emailAddress} placeholder="Email" inputType="email" classNames="dark full-width"></TextInput>
-					<TextInput setValue={setPhoneNumber} value={phoneNumber} placeholder="Phone Number" inputType="tel" classNames="dark full-width"></TextInput>
+					<TextInput setValue={(firstName) => update({firstName})} value={firstName} placeholder="First Name" inputType="text" classNames="dark first-name"></TextInput>
+					<TextInput setValue={(lastName) => update({lastName})} value={lastName} placeholder="Last Name" inputType="text" classNames="dark last-name"></TextInput>
+					<TextInput setValue={(username) => update({username})} value={username} placeholder="Username" inputType="text" spellCheck={false} classNames="dark full-width"></TextInput>
+					<TextInput setValue={(emailAddress) => update({emailAddress})} value={emailAddress} placeholder="Email" inputType="email" classNames="dark full-width"></TextInput>
+					<TextInput setValue={(phoneNumber) => update({phoneNumber})} value={phoneNumber} placeholder="Phone Number" inputType="tel" classNames="dark full-width"></TextInput>
 				</div>
 			);
 			nextButton = (
@@ -108,13 +123,13 @@ function RegisterUser() {
 			registerBody = (
 				<div className="register-user-inputs">
 					<div className="full-width">
-						<TextInput setValue={setPassword} value={password} placeholder="Password" inputType="password" classNames="dark"></TextInput>
+						<TextInput setValue={(password) => update({password})} value={password} placeholder="Password" inputType="password" classNames="dark"></TextInput>
 						<div className="password-strength-container">
 							<PasswordStrength password={password}></PasswordStrength>
 						</div>
 					</div>
 					<div className="full-width">
-						<TextInput setValue={setConfirmPassword} value={confirmPassword} placeholder="Confirm Password" inputType="password" classNames="dark"></TextInput>
+						<TextInput setValue={(confirmPassword) => update({confirmPassword})} value={confirmPassword} placeholder="Confirm Password" inputType="password" classNames="dark"></TextInput>
 						<div>
 							<span className="passwords-feedback" style={{opacity: passwordFeedbackVisible ? 1 : 0}}>
 								{passwordFeedback}
