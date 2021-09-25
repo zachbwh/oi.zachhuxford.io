@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import './LoginUser.scss';
-import TextInput from 'react-components/ComponentLibrary/InputComponents/TextInput/TextInput';
+import FormTextInput from 'react-components/ComponentLibrary/InputComponents/FormTextInput/FormTextInput';
 import Checkbox from 'react-components/ComponentLibrary/InputComponents/Checkbox/Checkbox';
 
 function LoginUser() {
@@ -24,13 +24,13 @@ function LoginUser() {
 	<div className="login-user">
 		<h2 className="large-heading">Login</h2>
 		<div className="login-inputs">
-			<TextInput setValue={setUsername} value={username} placeholder="Username" inputType="text" classNames="dark"></TextInput>
-			<TextInput setValue={setPassword} value={password} placeholder="Password" inputType="password" classNames="dark"></TextInput>
+			<FormTextInput setValue={setUsername} value={username} label="Username" classNames="dark" />
+			<FormTextInput setValue={setPassword} value={password} label="Password" inputType="password" classNames="dark" />
 		</div>
 		<div className="login-button-container">
 			<div className="remember-me">
 				<div>Remember Me</div>
-				<Checkbox setValue={setRememberMe} value={rememberMe}></Checkbox>
+				<Checkbox setValue={setRememberMe} value={rememberMe} />
 			</div>
 			<div className="login-button" onClick={handleLoginButtonClick}>Login</div>
 		</div>
