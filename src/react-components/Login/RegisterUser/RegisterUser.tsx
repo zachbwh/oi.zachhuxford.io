@@ -4,7 +4,7 @@ import getMergeReducer from 'helpers/GetMergeReducer';
 
 import './RegisterUser.scss';
 import PasswordStrength from './PasswordStrength/PasswordStrength';
-import TextInput from 'react-components/ComponentLibrary/InputComponents/TextInput/TextInput';
+import FormTextInput from 'react-components/ComponentLibrary/InputComponents/FormTextInput/FormTextInput';
 import CustomButton from 'react-components/ComponentLibrary/InputComponents/CustomButton/CustomButton';
 
 
@@ -108,11 +108,11 @@ function RegisterUser() {
 		case 1:
 			registerBody = (
 				<div className="register-user-inputs">
-					<TextInput setValue={(firstName) => update({firstName})} value={firstName} placeholder="First Name" inputType="text" classNames="dark first-name"></TextInput>
-					<TextInput setValue={(lastName) => update({lastName})} value={lastName} placeholder="Last Name" inputType="text" classNames="dark last-name"></TextInput>
-					<TextInput setValue={(username) => update({username})} value={username} placeholder="Username" inputType="text" spellCheck={false} classNames="dark full-width"></TextInput>
-					<TextInput setValue={(emailAddress) => update({emailAddress})} value={emailAddress} placeholder="Email" inputType="email" classNames="dark full-width"></TextInput>
-					<TextInput setValue={(phoneNumber) => update({phoneNumber})} value={phoneNumber} placeholder="Phone Number" inputType="tel" classNames="dark full-width"></TextInput>
+					<FormTextInput setValue={(firstName) => update({firstName})} value={firstName} label="First Name" classNames="dark first-name" />
+					<FormTextInput setValue={(lastName) => update({lastName})} value={lastName} label="Last Name" classNames="dark last-name" />
+					<FormTextInput setValue={(username) => update({username})} value={username} label="Username" classNames="dark full-width" />
+					<FormTextInput setValue={(emailAddress) => update({emailAddress})} value={emailAddress} label="Email" inputType="email" classNames="dark full-width" />
+					<FormTextInput setValue={(phoneNumber) => update({phoneNumber})} value={phoneNumber} label="Phone Number" inputType="tel" classNames="dark full-width" />
 				</div>
 			);
 			nextButton = (
@@ -123,13 +123,13 @@ function RegisterUser() {
 			registerBody = (
 				<div className="register-user-inputs">
 					<div className="full-width">
-						<TextInput setValue={(password) => update({password})} value={password} placeholder="Password" inputType="password" classNames="dark"></TextInput>
+						<FormTextInput setValue={(password) => update({password})} value={password} label="Password" inputType="password" classNames="dark" />
 						<div className="password-strength-container">
-							<PasswordStrength password={password}></PasswordStrength>
+							<PasswordStrength password={password} />
 						</div>
 					</div>
 					<div className="full-width">
-						<TextInput setValue={(confirmPassword) => update({confirmPassword})} value={confirmPassword} placeholder="Confirm Password" inputType="password" classNames="dark"></TextInput>
+						<FormTextInput setValue={(confirmPassword) => update({confirmPassword})} value={confirmPassword} label="Confirm Password" inputType="password" classNames="dark" />
 						<div>
 							<span className="passwords-feedback" style={{opacity: passwordFeedbackVisible ? 1 : 0}}>
 								{passwordFeedback}
