@@ -27,7 +27,7 @@ const SetNickName: React.FunctionComponent<{conversation: IConversation, userId:
 	return (
 		<div className="set-nickname">
 			<div className="instructions">Set Nickname for {userFullName}</div>
-			<TextInput autoFocus={true} setValue={setNewNickName} value={newNickName} inputType="text" classNames="light"></TextInput>
+			<TextInput value={newNickName} setValue={setNewNickName} autoFocus={true} classNames="light" />
 			<div className="actions">
 				<div onClick={() => props.close()}>Cancel</div>
 				<div onClick={saveNewNickname}>Set</div>

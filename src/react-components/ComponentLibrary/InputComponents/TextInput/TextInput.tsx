@@ -8,41 +8,27 @@ interface TextInputProps {
     value: string,
     setValue: (textValue: string) => void,
     placeholder?: string,
-    inputType: string,
+    inputType?: string,
     autoFocus?: boolean,
     spellCheck?: boolean,
     icon?: IconDefinition,
-    classNames: string
+    classNames?: string
 }
 
-const TextInput: React.FunctionComponent<TextInputProps> = props => {
+function TextInput({value, setValue, placeholder, inputType="text", autoFocus=false, spellCheck=false, icon, classNames} : TextInputProps) {
     const inputChanged = function(inputChangedEvent: React.ChangeEvent<HTMLInputElement>) {
-        props.setValue(inputChangedEvent.target.value);
+        setValue(inputChangedEvent.target.value);
     }
 
-    let icon;
-    if (props.icon) {
-        icon = <FontAwesomeIcon className="icon" icon={props.icon}></FontAwesomeIcon>
-    }
-
-    const classNames = [props.classNames];
-    const hasLabel = typeof props.placeholder === "string";
-    const showLabel = hasLabel && props.value;
-
-    if (hasLabel) {
-        classNames.push("has-label");
-    }
-    if (showLabel) {
-        classNames.push("show-label");
+    let iconCpt;
+    if (icon) {
+        iconCpt = <FontAwesomeIcon className="icon" icon={icon}></FontAwesomeIcon>
     }
 
 	return (
-    <div className={"text-input " + classNames.join(" ")}>
-        <div className="label">{props.placeholder}</div>
-        <div className="container">
-            {icon}
-            <input autoFocus={props.autoFocus} type={props.inputType} placeholder={props.placeholder} onChange={inputChanged} value={props.value} size={2} spellCheck={props.spellCheck}></input>
-        </div>
+    <div className={"text-input " + classNames}>
+        {iconCpt}
+        <input value={value} onChange={inputChanged} placeholder={placeholder} autoFocus={autoFocus} type={inputType} size={2} spellCheck={spellCheck}></input>
     </div>
 	);
 }

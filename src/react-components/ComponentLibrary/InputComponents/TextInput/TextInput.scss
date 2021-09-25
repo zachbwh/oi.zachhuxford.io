@@ -2,38 +2,14 @@
     flex-grow: 1;
     border-radius: 2em;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    // justify-content: center;
+    align-items: center;
     padding: 0.75em;
     box-sizing: border-box;
 
     > * {
         padding: 0 0.75rem;
-    }
-
-    &.has-label {
-        padding-top: 0.05em;
-
-        .label {
-            font-size: 0.7em;
-            height: 0.8em;
-            line-height: 0.8em;
-            padding: 0 0.8rem;
-            transition: opacity ease-in-out 200ms;
-            opacity: 0;
-        }
-    
-        
-    }
-
-    &.show-label {
-        padding-bottom: 0.25em;
-
-        .label {
-            opacity: 1;
-            padding-top: 0.25rem;
-            padding-bottom: 0.25rem;
-        }
     }
 
     &.light {
@@ -49,31 +25,25 @@
         }
     }
 
-    .container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        .icon {
-            padding-right: 0.75rem;
-        }
-        
-        input {
-            flex-grow: 1;
-            color: #FFFFFF;
-            border: 0px solid;
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    .icon {
+        padding-right: 0.75rem;
+    }
     
-        input:focus {
-            outline: 0;
-        }
-        
-        input::placeholder {
-            color: #ffffff;
-            opacity: 0.8;
-        }
+    input {
+        flex-grow: 1;
+        color: #FFFFFF;
+        border: 0px solid;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    input:focus {
+        outline: 0;
+    }
+    
+    input::placeholder {
+        color: #ffffff;
+        opacity: 0.8;
     }
 }    

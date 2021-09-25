@@ -4,11 +4,16 @@ import './ConversationSearch.scss';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import TextInput from 'react-components/ComponentLibrary/InputComponents/TextInput/TextInput';
 
-const ConversationSearch: React.FunctionComponent<{ onSearchTermUpdated: (searchTerm: string) => void, searchTerm: string }> = props => {
+interface ConversationSearchProps {
+	onSearchTermUpdated: (searchTerm: string) => void,
+	searchTerm: string
+}
+
+function ConversationSearch({searchTerm, onSearchTermUpdated}: ConversationSearchProps) {
 
 	return (
 	<div className="conversation-search">
-        <TextInput icon={faSearch} autoFocus={true} setValue={props.onSearchTermUpdated} value={props.searchTerm} inputType="text" classNames="light"></TextInput>
+        <TextInput value={searchTerm} setValue={onSearchTermUpdated} placeholder="Search Messages" icon={faSearch} autoFocus={true} classNames="light" />
 	</div>
 	);
 }
