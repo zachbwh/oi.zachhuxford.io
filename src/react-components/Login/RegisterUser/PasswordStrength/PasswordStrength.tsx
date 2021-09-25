@@ -7,17 +7,17 @@ interface PasswordStrengthProps {
 	password: string
 }
 
-const PasswordStrength : React.FunctionComponent<PasswordStrengthProps> = props => {
+function PasswordStrength({password}: PasswordStrengthProps) {
 	const [passwordStrength, setPasswordStrength] = useState(-1);
 	
 	useEffect(() => {
-		if (props.password) {
-			var result = zxcvbn(props.password);
+		if (password) {
+			var result = zxcvbn(password);
 			setPasswordStrength(result.score);
 		} else {
 			setPasswordStrength(-1);
 		}
-	}, [props.password]);
+	}, [password]);
 
 	var strengthIndicator = (<div style={{"width": (passwordStrength + 1) * 20 + "%"}}></div>);
 

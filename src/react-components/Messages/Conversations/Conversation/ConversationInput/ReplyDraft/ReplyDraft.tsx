@@ -12,8 +12,14 @@ import {isTextMessage} from 'typescript-types/Messages/ITextMessage';
 import {isReplyMessage} from 'typescript-types/Messages/IReplyMessage';
 import {isImagesMessage} from 'typescript-types/Messages/IImagesMessage';
 
-const ReplyDraft: React.FunctionComponent<{ conversationId: string, replyToMessageId: string, closeReply: () => void}> = props => {
-    const conversation = useSelector(conversationSelectById(props.conversationId));
+interface ReplyDraftProps {
+	conversationId: string,
+	replyToMessageId: string,
+	closeReply: () => void
+}
+
+function ReplyDraft({conversationId, replyToMessageId, closeReply}: ReplyDraftProps) {
+    const conversation = useSelector(conversationSelectById(conversationId));
     const replyToMessage = useSelector(messageSelectById(conversation?.DraftMessage?.ReferenceMessageId || ""));
 
     let replyToComponent;
@@ -33,7 +39,7 @@ const ReplyDraft: React.FunctionComponent<{ conversationId: string, replyToMessa
 	return (
 	<div className="reply-draft" style={conversation?.DraftMessage?.MessageType === "reply" ? {} : { height: "0px", marginBottom: "0px"}}>
         {replyToComponent}
-        <FontAwesomeIcon icon={faTimesCircle} onClick={props.closeReply}></FontAwesomeIcon>
+        <FontAwesomeIcon icon={faTimesCircle} onClick={closeReply}></FontAwesomeIcon>
 	</div>
 	);
 }

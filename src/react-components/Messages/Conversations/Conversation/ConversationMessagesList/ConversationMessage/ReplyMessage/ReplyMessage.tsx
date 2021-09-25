@@ -16,24 +16,24 @@ import IReplyMessage, { isReplyMessage } from 'typescript-types/Messages/IReplyM
 import { isTextMessage } from 'typescript-types/Messages/ITextMessage';
 import { isImagesMessage } from 'typescript-types/Messages/IImagesMessage';
 
-const ReplyMessage: React.FunctionComponent<ConversationMessageProps<IReplyMessage>> = props => {
+function ReplyMessage({message, onClick, onClickOutside, onLongPress}: ConversationMessageProps<IReplyMessage>) {
 	const bodyRef = useRef(null),
-		replyToMessage = useSelector(messageSelectById(props.message.ReferenceMessageId || "")),
+		replyToMessage = useSelector(messageSelectById(message.ReferenceMessageId || "")),
 		messageLongPressHandlers = useLongPress(() => {
-			if (props.onLongPress) {
-				props.onLongPress();
+			if (onLongPress) {
+				onLongPress();
 			}
 		}),
 		loggedInUser = useSelector(selectLoginContext).userId;
 		
-	var replyerSenderName = useSelector(selectUserConversationName(props.message.ConversationId, props.message.SenderId)),
-		replyToSenderName = useSelector(selectUserConversationName(props.message.ConversationId, replyToMessage?.SenderId || ""));
+	var replyerSenderName = useSelector(selectUserConversationName(message.ConversationId, message.SenderId)),
+		replyToSenderName = useSelector(selectUserConversationName(message.ConversationId, replyToMessage?.SenderId || ""));
 
-	if (props.message.SenderId === loggedInUser) {
+	if (message.SenderId === loggedInUser) {
 		replyerSenderName = "You";
 	}
 
-	if (props.message.SenderId === replyToMessage?.SenderId) {
+	if (message.SenderId === replyToMessage?.SenderId) {
 		replyToSenderName = "themself";
 
 		if (replyToMessage.SenderId === loggedInUser) {
@@ -55,14 +55,14 @@ const ReplyMessage: React.FunctionComponent<ConversationMessageProps<IReplyMessa
 		replyToComponent = <ImagesMessage message={replyToMessage}></ImagesMessage>
 	}
 
-	useClickOutside(bodyRef, props.onClickOutside);
+	useClickOutside(bodyRef, onClickOutside);
 
 	return (
 	<div className="reply-message">
 		<div className="reply-to-text"><FontAwesomeIcon icon={faReply} />{`${replyerSenderName} replied to ${replyToSenderName}`}</div>
-		<div className="body" onClick={props?.onClick} ref={bodyRef} {...messageLongPressHandlers}>
+		<div className="body" onClick={onClick} ref={bodyRef} {...messageLongPressHandlers}>
 			<div className="reply-to">{replyToComponent}</div>
-			<div className="reply-text">{props.message.MessageText}</div>
+			<div className="reply-text">{message.MessageText}</div>
 		</div>
 	</div>
 	);

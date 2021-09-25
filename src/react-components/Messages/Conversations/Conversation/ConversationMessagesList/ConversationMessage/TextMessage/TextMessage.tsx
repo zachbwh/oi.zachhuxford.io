@@ -6,20 +6,20 @@ import './TextMessage.scss';
 import useLongPress from 'react-hooks/LongPress';
 import ITextMessage from 'typescript-types/Messages/ITextMessage';
 
-const TextMessage: React.FunctionComponent<ConversationMessageProps<ITextMessage>> = props => {
+function TextMessage({message, onClick, onClickOutside, onLongPress}: ConversationMessageProps<ITextMessage>) {
 	const bodyRef = useRef(null),
 		messageLongPressHandlers = useLongPress(() => {
-			if (props.onLongPress) {
-				props.onLongPress();
+			if (onLongPress) {
+				onLongPress();
 			}
 		});
 
-	useClickOutside(bodyRef, props.onClickOutside);
+	useClickOutside(bodyRef, onClickOutside);
 
 	return (
 	<div className="text-message">
-		<div className="body" onClick={props?.onClick} ref={bodyRef} {...messageLongPressHandlers}>
-			{props.message.MessageText}
+		<div className="body" onClick={onClick} ref={bodyRef} {...messageLongPressHandlers}>
+			{message.MessageText}
 		</div>
 	</div>
 	);

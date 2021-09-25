@@ -8,7 +8,11 @@ import MessageReactionsPreview from './MessageReactionsPreview/MessageReactionsP
 import Modal from 'react-components/ComponentLibrary/Modal/Modal';
 import MessageReactionsList from './MessageReactionsList/MessageReactionsList';
 
-const ReactableMessage: React.FunctionComponent<{message: Message, children: React.ReactNode}> = props => {	
+interface ReactableMessageProps {
+	message: Message
+}
+
+function ReactableMessage({message, children}: React.PropsWithChildren<ReactableMessageProps>) {	
 	const [showReactions, setShowReactions] = useState(false);
 	const [showReactionsModal, setShowReactionsModal] = useState(false);
 
@@ -16,21 +20,21 @@ const ReactableMessage: React.FunctionComponent<{message: Message, children: Rea
 		setShowReactions(true);
 	});
 
-	const hasReactionsClass = (props.message.Reactions?.length || 0) > 0 ? " has-reactions" : "";
+	const hasReactionsClass = (message.Reactions?.length || 0) > 0 ? " has-reactions" : "";
 
 	let messageReactionsList;
 	if (showReactionsModal) {
 		messageReactionsList = (
 		<Modal closeModal={() => setShowReactionsModal(false)} modalRootId="conversation-modal-root">
-			<MessageReactionsList message={props.message} close={() => setShowReactionsModal(false)}></MessageReactionsList>
+			<MessageReactionsList message={message} close={() => setShowReactionsModal(false)}></MessageReactionsList>
 		</Modal>);
 	}
 
 	return (
 	<div className={"reactable-message" + hasReactionsClass} {...longPressHandlers}>
-		<ChooseMessageReaction message={props.message} isVisible={showReactions} close={() => setShowReactions(false)}></ChooseMessageReaction>
-		{props.children}
-		<MessageReactionsPreview message={props.message} onClick={() => setShowReactionsModal(true)}></MessageReactionsPreview>
+		<ChooseMessageReaction message={message} isVisible={showReactions} close={() => setShowReactions(false)}></ChooseMessageReaction>
+		{children}
+		<MessageReactionsPreview message={message} onClick={() => setShowReactionsModal(true)}></MessageReactionsPreview>
 		{messageReactionsList}
 	</div>
 	);

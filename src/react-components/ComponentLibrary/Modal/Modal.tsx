@@ -5,17 +5,22 @@ import useHistoryStatePop from 'react-hooks/HistoryStatePop';
 
 import './Modal.scss';
 
-const Modal: React.FunctionComponent<{children: React.ReactNode, modalRootId: string, closeModal: () => void}> = props => {
-    const modalRoot: Element = document.getElementById(props.modalRootId) || document.createElement("div") as HTMLElement;
+interface ModalProps {
+    modalRootId: string,
+    closeModal: () => void
+}
+
+function Modal({modalRootId, closeModal, children}: React.PropsWithChildren<ModalProps>) {
+    const modalRoot: Element = document.getElementById(modalRootId) || document.createElement("div") as HTMLElement;
 
     const closeClick = useCallback((event: any) => {
         if (event.target === modalRoot) {
-            props.closeModal();
+            closeModal();
         }
-    }, [modalRoot, props]);
+    }, [modalRoot, closeModal]);
 
-    useHotkeys("esc", () => props.closeModal());
-    useHistoryStatePop(() => props.closeModal());
+    useHotkeys("esc", () => closeModal());
+    useHistoryStatePop(() => closeModal());
 
     useEffect(() => {
         modalRoot.classList.remove("hidden");
@@ -25,9 +30,9 @@ const Modal: React.FunctionComponent<{children: React.ReactNode, modalRootId: st
             modalRoot.classList.add("hidden");
             modalRoot.removeEventListener("click", closeClick);
         }
-    }, [props.children, modalRoot, modalRoot.classList, closeClick]);
+    }, [children, modalRoot, modalRoot.classList, closeClick]);
 
-	return ReactDOM.createPortal(props.children, modalRoot);;
+	return ReactDOM.createPortal(children, modalRoot);;
 }
 
 export default Modal;

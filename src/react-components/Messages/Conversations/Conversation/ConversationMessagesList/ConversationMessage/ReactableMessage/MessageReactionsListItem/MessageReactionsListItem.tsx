@@ -6,9 +6,14 @@ import MessageReaction from '../MessageReaction/MessageReaction';
 
 import './MessageReactionsListItem.scss';
 
-const MessageReactionsListItem: React.FunctionComponent<{reaction: IReaction, conversationId: string}> = props => {
-	const userConversationName = useSelector(selectUserConversationName(props.conversationId, props.reaction.UserId || ""));
-	const user = useSelector(userSelectById(props.reaction.UserId || ""));
+interface MessageReactionsListItemProps {
+	reaction: IReaction,
+	conversationId: string
+}
+
+function MessageReactionsListItem({reaction, conversationId}: MessageReactionsListItemProps) {
+	const userConversationName = useSelector(selectUserConversationName(conversationId, reaction.UserId || ""));
+	const user = useSelector(userSelectById(reaction.UserId || ""));
 
 	return (
 	<div className="message-reactions-list-item">
@@ -16,7 +21,7 @@ const MessageReactionsListItem: React.FunctionComponent<{reaction: IReaction, co
 			<img src={user?.ProfileImage} alt={user?.ProfileImageAltText}></img>
 			<div className="name">{userConversationName}</div>
 		</div>
-		<MessageReaction reaction={props.reaction}></MessageReaction>
+		<MessageReaction reaction={reaction}></MessageReaction>
 	</div>
 	);
 }

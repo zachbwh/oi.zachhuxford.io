@@ -1,10 +1,17 @@
 import React from 'react';
 import './ProfileImageIndicator.scss'
 
-const ProfileImageIndicator: React.FunctionComponent<{isActive: boolean; count: number;}> = props => {
+interface ProfileImageIndicatorProps {
+	isActive: boolean,
+	count: number
+}
+
+function ProfileImageIndicator({isActive, count}: ProfileImageIndicatorProps) {
 	return (
-		<div className={`profile-image-indicator ${props.isActive ? "active" : "inactive"}`} style={{"width": `calc(${100 / props.count}% - 4px)`}}>
-		</div>
+		<div
+			className={`profile-image-indicator ${isActive ? "active" : "inactive"}`}
+			style={{"width": `calc(${100 / count}% - 4px)`}}
+		/>
 	);
 }
 

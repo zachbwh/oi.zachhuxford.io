@@ -6,14 +6,19 @@ import MessageReactionsListItem from '../MessageReactionsListItem/MessageReactio
 
 import './MessageReactionsList.scss';
 
-const MessageReactionsList: React.FunctionComponent<{message: IMessage, close: () => void}> = props => {
-	const messageReactions = props.message.Reactions?.map(reaction => 
-		<MessageReactionsListItem reaction={reaction} conversationId={props.message.ConversationId} key={reaction.UserId}></MessageReactionsListItem>
+interface MessageReactionsListProps {
+	message: IMessage,
+	close: () => void
+}
+
+function MessageReactionsList({message, close}: MessageReactionsListProps) {
+	const messageReactions = message.Reactions?.map(reaction => 
+		<MessageReactionsListItem reaction={reaction} conversationId={message.ConversationId} key={reaction.UserId}></MessageReactionsListItem>
 	)
 
 	return (
 	<div className={"message-reactions-list" + (messageReactions ? "" : " hidden")}>
-		<div className="heading">Reactions <FontAwesomeIcon icon={faTimesCircle} onClick={props.close}></FontAwesomeIcon></div>
+		<div className="heading">Reactions <FontAwesomeIcon icon={faTimesCircle} onClick={close}></FontAwesomeIcon></div>
 		<div className="reaction-list-wrapper">
 			{messageReactions}
 		</div>

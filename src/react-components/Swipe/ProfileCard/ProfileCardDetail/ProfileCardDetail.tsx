@@ -9,33 +9,40 @@ import ProfileImages from '../ProfileImages/ProfileImages'
 
 import IProfile from 'typescript-types/Swipe/IProfile';
 
-const ProfileCardDetail: React.FunctionComponent<{profile: IProfile, imageIndex: number, setImageIndex: any, toggleViewMode: any;}> = props => {
-	const age = Moment(new Date()).diff(props.profile.BirthDate, 'years');
+interface ProfileCardDetailProps {
+	profile: IProfile,
+	imageIndex: number,
+	setImageIndex: any,
+	toggleViewMode: any
+}
+
+function ProfileCardDetail({ profile, imageIndex, setImageIndex, toggleViewMode }: ProfileCardDetailProps) {
+	const age = Moment(new Date()).diff(profile.BirthDate, 'years');
 
 	return (
 		<div className="profile-card-detail">
-			<ProfileImages profileImages={props.profile.ProfileImages} imageIndex={props.imageIndex} setImageIndex={props.setImageIndex}></ProfileImages>
+			<ProfileImages profileImages={profile.ProfileImages} imageIndex={imageIndex} setImageIndex={setImageIndex} />
 			<div className="profile-body">
 				<div className="section">
-					<h3 className="profile-header">{props.profile.ShortName} <span className="age">{age}</span></h3>
+					<h3 className="profile-header">{profile.ShortName} <span className="age">{age}</span></h3>
 					<div>
 						<p>
-							<FontAwesomeIcon icon={faBriefcase}></FontAwesomeIcon> {props.profile.Occupation}
+							<FontAwesomeIcon icon={faBriefcase} /> {profile.Occupation}
 						</p>
 						<p>
-							<FontAwesomeIcon icon={faHome}></FontAwesomeIcon> Lives in {props.profile.Locality.ShortName}
+							<FontAwesomeIcon icon={faHome} /> Lives in {profile.Locality.ShortName}
 						</p>
 					</div>
 				</div>
 				<hr />
 				<div className="section">
 					<p className="biography">
-						{props.profile.Biography}
+						{profile.Biography}
 					</p>
 				</div>
 				<hr />
 				<div className="toggle-view-mode">
-					<div className="circle" onClick={props.toggleViewMode}><FontAwesomeIcon icon={faArrowAltCircleDown}></FontAwesomeIcon></div>
+					<div className="circle" onClick={toggleViewMode}><FontAwesomeIcon icon={faArrowAltCircleDown} /></div>
 				</div>
 			</div>
 		</div>

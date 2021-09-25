@@ -16,9 +16,15 @@ import { useSelector } from 'react-redux';
 import { userSelectById } from 'redux/slices/MessagesSlice';
 import { selectLoginContext } from 'redux/slices/LoginContextSlice';
 
-const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMessageActions: (messageId: string) => void, zIndex?: number }> = props => {
+interface ConversationMessageProps {
+	message: IMessage, 
+	showMessageActions: (messageId: string) => void,
+	zIndex?: number
+}
+
+function ConversationMessage({message, showMessageActions, zIndex}: ConversationMessageProps) {
 	const loggedInUser = useSelector(selectLoginContext),
-		senderUser = useSelector(userSelectById(props.message.SenderId));
+		senderUser = useSelector(userSelectById(message.SenderId));
 
 	let alignClassName : string;
 	
@@ -26,10 +32,6 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 		alignClassName = "right-align"
 	} else {
 		alignClassName = "left-align"
-	}
-
-	function showMessageActions() {
-		props.showMessageActions(props.message.MessageId)
 	}
 
 	const [detailVisible, setDetailVisible] = useState(false);
@@ -48,62 +50,62 @@ const ConversationMessage: React.FunctionComponent<{ message: IMessage, showMess
 
 	let messageComponent;
 
-	if (props.message.IsDeleted) {
+	if (message.IsDeleted) {
 		messageComponent = <div className="message-component">
 				{imageComponent}
 				<DeletedMessage
-					message={props.message}
+					message={message}
 					onClick={toggleDetailVisible}
 					onClickOutside={() => setDetailVisible(false)}
 				></DeletedMessage>
 			</div>
-	} else if (isReplyMessage(props.message)) {
+	} else if (isReplyMessage(message)) {
 		messageComponent = (
-			<ReplyableMessage message={props.message}>
-				<ReactableMessage message={props.message}>
+			<ReplyableMessage message={message}>
+				<ReactableMessage message={message}>
 					{imageComponent}
 					<ReplyMessage
-						message={props.message}
+						message={message}
 						onClick={toggleDetailVisible}
 						onClickOutside={() => setDetailVisible(false)}
-						onLongPress={showMessageActions}>
-					</ReplyMessage>
+						onLongPress={() => showMessageActions(message.MessageId)}
+					/>
 				</ReactableMessage>
 			</ReplyableMessage>
 		);
-	} else if (isTextMessage(props.message)) {
+	} else if (isTextMessage(message)) {
 		messageComponent = (
-			<ReplyableMessage message={props.message}>
-				<ReactableMessage message={props.message}>
+			<ReplyableMessage message={message}>
+				<ReactableMessage message={message}>
 					{imageComponent}
 					<TextMessage
-						message={props.message}
+						message={message}
 						onClick={toggleDetailVisible}
 						onClickOutside={() => setDetailVisible(false)}
-						onLongPress={showMessageActions}>
-					</TextMessage>
+						onLongPress={() => showMessageActions(message.MessageId)}
+					/>
 				</ReactableMessage>
 			</ReplyableMessage>
 		);
-	} else if (isImagesMessage(props.message)) {
+	} else if (isImagesMessage(message)) {
 		messageComponent = (
-			<ReplyableMessage message={props.message}>
-				<ReactableMessage message={props.message}>
+			<ReplyableMessage message={message}>
+				<ReactableMessage message={message}>
 					{imageComponent}
 					<ImagesMessage
-						message={props.message}
+						message={message}
 						onClick={toggleDetailVisible}
 						onClickOutside={() => setDetailVisible(false)}
-						onLongPress={showMessageActions}>
-					</ImagesMessage>
+						onLongPress={() => showMessageActions(message.MessageId)}
+					/>
 				</ReactableMessage>
 			</ReplyableMessage>
 		);
 	}
 
 	return (
-	<div className={"conversation-message " + alignClassName} style={{zIndex: props.zIndex}}>
-		<div className={"date " + (!detailVisible ? "hidden" : "")}>{moment(props.message.DateTime).format('ddd Do MMMM  YY h:mm a')}</div>
+	<div className={"conversation-message " + alignClassName} style={{zIndex: zIndex}}>
+		<div className={"date " + (!detailVisible ? "hidden" : "")}>{moment(message.DateTime).format('ddd Do MMMM  YY h:mm a')}</div>
 		<div className="message-component">
 			{messageComponent}
 		</div>

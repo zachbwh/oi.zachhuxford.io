@@ -17,7 +17,7 @@ const maxCardRotate = 25;
 const maxTimeOnCardToClick = 250;
 const cardSpeedToAcceptOrReject = 0.3;
 
-const ProfileCard: React.FunctionComponent<ProfileCardProps> = props => {
+function ProfileCard({ profile }: ProfileCardProps) {
 	const [downOnCard, setDownOnCard] = useState(false);
 	const [viewMode, setViewMode] = useState<"preview" | "detail">("preview");
 	const [deltaX, setDeltaX] = useState(0);
@@ -153,21 +153,21 @@ const ProfileCard: React.FunctionComponent<ProfileCardProps> = props => {
 	const accept = function() {
 		setProgress(1.5);
 
-		dispatch(acceptProfileAsync(props.profile.UserName));
+		dispatch(acceptProfileAsync(profile.UserName));
 	}
 
 	const reject = function() {
 		setProgress(-1.5);
 
-		dispatch(rejectProfileAsync(props.profile.UserName));
+		dispatch(rejectProfileAsync(profile.UserName));
 	}
 
 	var cardContent;
 
 	if (viewMode === "preview") {
-		cardContent = <ProfileCardPreview profile={props.profile} imageIndex={imageIndex} setImageIndex={trySetImageIndex} toggleViewMode={() => trySetViewMode("detail")}></ProfileCardPreview>;
+		cardContent = <ProfileCardPreview profile={profile} imageIndex={imageIndex} setImageIndex={trySetImageIndex} toggleViewMode={() => trySetViewMode("detail")} />;
 	} else {
-		cardContent = <ProfileCardDetail profile={props.profile} imageIndex={imageIndex} setImageIndex={trySetImageIndex} toggleViewMode={() => trySetViewMode("preview")}></ProfileCardDetail>;
+		cardContent = <ProfileCardDetail profile={profile} imageIndex={imageIndex} setImageIndex={trySetImageIndex} toggleViewMode={() => trySetViewMode("preview")} />;
 	}
 
 	return (

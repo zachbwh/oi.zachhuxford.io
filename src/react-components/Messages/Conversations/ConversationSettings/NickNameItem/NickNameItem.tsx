@@ -5,13 +5,19 @@ import IConversation from "typescript-types/Messages/IConversation";
 
 import './NickNameItem.scss';
 
-const NickNameItem: React.FunctionComponent<{conversation: IConversation, userId: string, onClick: () => void}> = props => {
-	const nickName = props.conversation.NickNames?.find(nickName => nickName.UserId === props.userId),
-		user = useSelector(userSelectById(props.userId)),
+interface NickNameItemProps {
+	conversation: IConversation,
+	userId: string,
+	onClick: () => void
+}
+
+function NickNameItem({conversation, userId, onClick}: NickNameItemProps) {
+	const nickName = conversation.NickNames?.find(nickName => nickName.UserId === userId),
+		user = useSelector(userSelectById(userId)),
 		userFullName = `${user?.FirstName} ${user?.LastName}`;
 
 	return (
-		<div className="nickname-item" onClick={props.onClick}>
+		<div className="nickname-item" onClick={onClick}>
 			<img className="user-img" src={user?.ProfileImage} alt={user?.ProfileImageAltText}></img>
 			<div className="user-nickname">
 				<div className="nickname">{nickName?.NickName || "Set Nickname"}</div>

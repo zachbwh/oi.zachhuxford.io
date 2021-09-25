@@ -6,9 +6,15 @@ import IConversation, { INickName } from "typescript-types/Messages/IConversatio
 
 import './SetNickName.scss';
 
-const SetNickName: React.FunctionComponent<{conversation: IConversation, userId: string, close: () => void}> = props => {
-	const nickName = props.conversation.NickNames?.find(nickName => nickName.UserId === props.userId),
-		user = useSelector(userSelectById(props.userId)),
+interface SetNickNameProps {
+	conversation: IConversation,
+	userId: string,
+	close: () => void
+}
+
+function SetNickName({conversation, userId, close}: SetNickNameProps) {
+	const nickName = conversation.NickNames?.find(nickName => nickName.UserId === userId),
+		user = useSelector(userSelectById(userId)),
 		userFullName = `${user?.FirstName} ${user?.LastName}`,
 		dispatch = useDispatch();
 
@@ -16,12 +22,12 @@ const SetNickName: React.FunctionComponent<{conversation: IConversation, userId:
 
 	function saveNewNickname() {
 		const nickNameToSave: INickName = {
-			UserId: props.userId,
+			UserId: userId,
 			NickName: newNickName
 		};
 
-		dispatch(addNickNameToConversation({newNickName: nickNameToSave, conversation: props.conversation}));
-		props.close();
+		dispatch(addNickNameToConversation({newNickName: nickNameToSave, conversation: conversation}));
+		close();
 	}
 
 	return (
@@ -29,7 +35,7 @@ const SetNickName: React.FunctionComponent<{conversation: IConversation, userId:
 			<div className="instructions">Set Nickname for {userFullName}</div>
 			<TextInput value={newNickName} setValue={setNewNickName} autoFocus={true} classNames="light" />
 			<div className="actions">
-				<div onClick={() => props.close()}>Cancel</div>
+				<div onClick={() => close()}>Cancel</div>
 				<div onClick={saveNewNickname}>Set</div>
 			</div>
 		</div>

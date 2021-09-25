@@ -4,10 +4,15 @@ import React from 'react';
 
 import './Checkbox.scss';
 
-const Checkbox: React.FunctionComponent<{value: boolean, setValue: (value: boolean) => void}> = props => {
+interface CheckboxProps {
+    value: boolean,
+    setValue: (value: boolean) => void
+}
+
+function Checkbox({value, setValue}: CheckboxProps) {
 	return (
-    <div className="checkbox" onClick={() => props.setValue(!props.value)}>
-        <FontAwesomeIcon style={{opacity: props.value ? 1 : 0}} icon={faCheck}></FontAwesomeIcon>
+    <div className="checkbox" onClick={() => setValue(!value)}>
+        <FontAwesomeIcon style={{opacity: value ? 1 : 0}} icon={faCheck}></FontAwesomeIcon>
     </div>
 	);
 }

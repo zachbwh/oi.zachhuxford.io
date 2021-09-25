@@ -2,10 +2,14 @@ import React from 'react';
 
 import './CustomButton.scss';
 
-const CustomButton: React.FunctionComponent<{onClick: () => void}> = props => {
+interface CustomButtonProps {
+    onClick: () => void
+}
+
+function CustomButton({onClick, children}: React.PropsWithChildren<CustomButtonProps>) {
 	return (
-    <div className="custom-button" onClick={() => props.onClick()}>
-        {props.children}
+    <div className="custom-button" onClick={() => onClick()}>
+        {children}
     </div>
 	);
 }

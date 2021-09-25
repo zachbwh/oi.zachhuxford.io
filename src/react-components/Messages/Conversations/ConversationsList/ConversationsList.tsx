@@ -6,7 +6,11 @@ import { conversationSelectIds, setConversations, MessagesState } from "redux/sl
 import ConversationsListPreviewItem from './ConversationsListPreviewItem/ConversationsListPreviewItem';
 import { useParams } from 'react-router-dom';
 
-const ConversationsList: React.FunctionComponent<{ searchTerm: string }> = props => {
+interface ConversationsListProps {
+	searchTerm: string
+}
+
+function ConversationsList({searchTerm}: ConversationsListProps) {
 	const dispatch = useDispatch();
 	const conversationIds = useSelector(conversationSelectIds());
 	let { conversationId } = useParams<{conversationId: string}>();
@@ -23,7 +27,7 @@ const ConversationsList: React.FunctionComponent<{ searchTerm: string }> = props
 
 	const conversationsList = conversationIds.map(listConversationId => {
 		return (
-			<ConversationsListPreviewItem key={listConversationId} conversationId={listConversationId} isSelected={listConversationId === conversationId}></ConversationsListPreviewItem>
+			<ConversationsListPreviewItem key={listConversationId} conversationId={listConversationId} isSelected={listConversationId === conversationId} />
 		);
 	})
 

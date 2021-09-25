@@ -7,10 +7,14 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import ConversationMessage from './ConversationMessage/ConversationMessage';
 import IMessage from 'typescript-types/Messages/IMessage';
 
-const ConversationMessagesList: React.FunctionComponent<{ conversationId: string, showMessageActions: (messageId: string) => void  }> = props => {
+interface ConversationMessagesListProps {
+	conversationId: string,
+	showMessageActions: (messageId: string) => void
+}
+function ConversationMessagesList({conversationId, showMessageActions}: ConversationMessagesListProps) {
 	const listRef = useRef<Scrollbars>(null);
 
-	const lastConversationMessage = useSelector(selectLastMessageFromConversation(props.conversationId))
+	const lastConversationMessage = useSelector(selectLastMessageFromConversation(conversationId))
 	useEffect(() => {
 		listRef.current?.scrollToTop();
 	}, [lastConversationMessage?.MessageId]);
@@ -18,7 +22,7 @@ const ConversationMessagesList: React.FunctionComponent<{ conversationId: string
 	var messages : IMessage[] = [];
 
 	Object.values(useSelector(messageSelectEntities())).forEach(message => {
-		if (typeof message !== "undefined" && props.conversationId === message.ConversationId) {
+		if (typeof message !== "undefined" && conversationId === message.ConversationId) {
 			messages.push(message);
 		}
 	});
@@ -29,7 +33,7 @@ const ConversationMessagesList: React.FunctionComponent<{ conversationId: string
 
 	var conversationMessages = messages.map((message, index) => {
 		const messageId = message.MessageId;
-		return (<ConversationMessage message={message} key={messageId} showMessageActions={props.showMessageActions} zIndex={index}></ConversationMessage>);
+		return (<ConversationMessage message={message} key={messageId} showMessageActions={showMessageActions} zIndex={index}></ConversationMessage>);
 	});
 
 	return (

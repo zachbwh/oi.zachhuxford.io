@@ -15,16 +15,21 @@ interface IAction {
     action: () => void
 }
 
-const MessageActions: React.FunctionComponent<{ messageId: string, close: () => void }> = props => {
-    const message = useSelector(messageSelectById(props.messageId))
+interface MessageActionsProps {
+    messageId: string,
+    close: () => void
+}
+
+function MessageActions({messageId, close}: MessageActionsProps) {
+    const message = useSelector(messageSelectById(messageId))
     const conversation = useSelector(conversationSelectById(message?.ConversationId || ""));
     if (!message) {
-        props.close();
+        close();
     }
 
     const actionsRef = useRef(null);
 
-	useFocusOut(actionsRef, props.close);
+	useFocusOut(actionsRef, close);
     
 	const dispatch = useDispatch();
 
@@ -106,7 +111,7 @@ const MessageActions: React.FunctionComponent<{ messageId: string, close: () => 
 
     const messageActions = filteredActions.map((action) => {
         return (
-            <div className="action" onClick={() => { props.close(); action.action() }} key={action.actionName}>
+            <div className="action" onClick={() => { close(); action.action() }} key={action.actionName}>
                 {action.icon}
                 <div>{action.actionName}</div>
             </div>
@@ -114,7 +119,7 @@ const MessageActions: React.FunctionComponent<{ messageId: string, close: () => 
     })
 
     if (!filteredActions.length) {
-        props.close();
+        close();
     }
 
 	return (

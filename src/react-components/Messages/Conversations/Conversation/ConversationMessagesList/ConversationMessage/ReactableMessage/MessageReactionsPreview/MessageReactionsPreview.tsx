@@ -4,11 +4,16 @@ import MessageReaction from '../MessageReaction/MessageReaction';
 
 import './MessageReactionsPreview.scss';
 
-const MessageReactionsPreview: React.FunctionComponent<{message: IMessage, onClick?: () => void}> = props => {
+interface MessageReactionsPreviewProps {
+	message: IMessage,
+	onClick?: () => void
+}
+
+function MessageReactionsPreview({message, onClick}: MessageReactionsPreviewProps) {
 
 	const groupedReactions: any = {};
 
-	props.message.Reactions?.forEach((reaction: IReaction) => {
+	message.Reactions?.forEach((reaction: IReaction) => {
 		if (!groupedReactions[reaction.ReactionType]) {
 			groupedReactions[reaction.ReactionType] = [];
 		}
@@ -16,12 +21,12 @@ const MessageReactionsPreview: React.FunctionComponent<{message: IMessage, onCli
 		groupedReactions[reaction.ReactionType].push(reaction);
 	});
 
-	const reactionsPreview = Object.values(groupedReactions).map((reactionGroup: any, index: number) => <MessageReaction reaction={reactionGroup[0]} key={index} ></MessageReaction>)
-
+	const reactionsPreview = Object.values(groupedReactions)
+		.map((reactionGroup: any, index: number) => <MessageReaction reaction={reactionGroup[0]} key={index} ></MessageReaction>)
 
 	return (
-	<div className="message-reactions-preview" onClick={props.onClick}>
-		{reactionsPreview} {props.message.Reactions?.length || ""}
+	<div className="message-reactions-preview" onClick={onClick}>
+		{reactionsPreview} {message.Reactions?.length || ""}
 	</div>
 	);
 }

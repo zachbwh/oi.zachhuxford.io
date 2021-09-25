@@ -8,8 +8,13 @@ import { Link } from 'react-router-dom';
 import { selectLoginContext } from 'redux/slices/LoginContextSlice';
 import moment from 'moment';
 
-const ConversationsListPreviewItem: React.FunctionComponent<{ conversationId: string | number, isSelected: boolean }> = props => {
-	const conversation = useSelector(conversationSelectById(props.conversationId)),
+interface ConversationsListPreviewItemProps {
+	conversationId: string | number,
+	isSelected: boolean
+}
+
+function ConversationsListPreviewItem({conversationId, isSelected}: ConversationsListPreviewItemProps) {
+	const conversation = useSelector(conversationSelectById(conversationId)),
 		lastMessage = useSelector(selectLastMessageFromConversation(conversation?.ConversationId || "")),
 		lastMessageSender = useSelector(userSelectById(lastMessage?.SenderId || "")),
 		loggedInUsername = useSelector(selectLoginContext).username;
@@ -56,8 +61,8 @@ const ConversationsListPreviewItem: React.FunctionComponent<{ conversationId: st
 	}
 
 	return (
-	<Link to={`/messages/${conversation?.ConversationId}`} className={"conversation-list-preview-item" + (props.isSelected ? " selected" : "")}>
-		<ConversationPreviewIcon conversationId={props.conversationId}></ConversationPreviewIcon>
+	<Link to={`/messages/${conversation?.ConversationId}`} className={"conversation-list-preview-item" + (isSelected ? " selected" : "")}>
+		<ConversationPreviewIcon conversationId={conversationId}></ConversationPreviewIcon>
 		<div className="conversation-preview-text">
 			<h3 className="conversation-preview-header">{conversation?.ConversationName}</h3>
 			{textPreview}

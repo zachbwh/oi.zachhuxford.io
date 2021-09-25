@@ -3,11 +3,16 @@ import {IReaction} from 'typescript-types/Messages/IMessage';
 
 import './MessageReaction.scss';
 
-const MessageReaction: React.FunctionComponent<{reaction: IReaction, onClick?: () => void}> = props => {
+interface MessageReactionProps {
+	reaction: IReaction,
+	onClick?: () => void
+}
+
+function MessageReaction({reaction, onClick}: MessageReactionProps) {
 
 	let reactionEmoji;
 
-	switch(props.reaction.ReactionType) {
+	switch(reaction.ReactionType) {
 		case "love":
 			reactionEmoji = "😘"
 		break;
@@ -30,7 +35,7 @@ const MessageReaction: React.FunctionComponent<{reaction: IReaction, onClick?: (
 
 
 	return (
-	<div className="message-reaction" onClick={props.onClick}>
+	<div className="message-reaction" onClick={onClick}>
 		{reactionEmoji} 
 	</div>
 	);

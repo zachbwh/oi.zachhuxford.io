@@ -10,10 +10,14 @@ import { faReply } from '@fortawesome/free-solid-svg-icons';
 import Message from 'typescript-types/Messages/IMessage';
 import IDraftMessage from 'typescript-types/Messages/IDraftMessage';
 
-const ReplyableMessage: React.FunctionComponent<{message: Message, children: React.ReactNode}> = props => {
+interface ReplyableMessageProps {
+	message: Message
+}
+
+function ReplyableMessage({ message, children }: React.PropsWithChildren<ReplyableMessageProps>) {
 	const loggedInUsername = useSelector(selectLoginContext).username,
-		senderUsername = useSelector(userSelectById(props.message.SenderId))?.Username,
-    	conversation = useSelector(conversationSelectById(props.message.ConversationId || "")),
+		senderUsername = useSelector(userSelectById(message.SenderId))?.Username,
+    	conversation = useSelector(conversationSelectById(message.ConversationId || "")),
 		dispatch = useDispatch();
 
 	let alignClassName : string;
@@ -50,7 +54,7 @@ const ReplyableMessage: React.FunctionComponent<{message: Message, children: Rea
 					MessageType: "reply",
 					MessageText: oldDraftMessage?.MessageText,
 					ImageUrls: oldDraftMessage?.ImageUrls,
-					ReferenceMessageId: props.message.MessageId
+					ReferenceMessageId: message.MessageId
 				};
 			dispatch(setConversationDraftMessage(newDraftMessage));
 		}
@@ -80,7 +84,7 @@ const ReplyableMessage: React.FunctionComponent<{message: Message, children: Rea
 	return (
 	<div className={"replyable-message " +  alignClassName + (replyProgress < -100 && replyProgress > 100 ? " slow" : "")}  {...replyTouchHandlers} style={{transform: `translateX(${replyProgressTranslateValue * 1}px)` }}>
 		<FontAwesomeIcon icon={faReply} className={"reply-to-icon" + (Math.abs(replyProgress) > 100 ? " animate" : "")} style={{opacity: 0.01 * Math.abs(replyProgress)}}></FontAwesomeIcon>
-		{props.children}
+		{children}
 	</div>
 	);
 }

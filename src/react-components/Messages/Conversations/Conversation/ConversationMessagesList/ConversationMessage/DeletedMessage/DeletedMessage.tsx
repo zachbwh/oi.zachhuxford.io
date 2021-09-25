@@ -7,15 +7,15 @@ import IMessage from 'typescript-types/Messages/IMessage';
 
 import './DeletedMessage.scss';
 
-const DeletedMessage: React.FunctionComponent<ConversationMessageProps<IMessage>> = props => {
+function DeletedMessage({message, onClick, onClickOutside}: ConversationMessageProps<IMessage>) {
 	const bodyRef = useRef(null);
-	const senderName = useSelector(selectUserConversationName(props.message.ConversationId, props.message.SenderId))
+	const senderName = useSelector(selectUserConversationName(message.ConversationId, message.SenderId))
 
-	useClickOutside(bodyRef, props.onClickOutside);
+	useClickOutside(bodyRef, onClickOutside);
 
 	return (
 	<div className="deleted-message">
-		<div className="body" onClick={props?.onClick} ref={bodyRef}>
+		<div className="body" onClick={onClick} ref={bodyRef}>
             {senderName} deleted their message
 		</div>
 	</div>

@@ -7,10 +7,14 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faComments } from "@fortawesome/free-solid-svg-icons";
 
-const SwipeNavBar: React.FunctionComponent<{showMessagesLink?: boolean}> = props =>  {
+interface SwipeNavBarProps {
+	showMessagesLink?: boolean
+}
+
+function SwipeNavBar({showMessagesLink}: SwipeNavBarProps) {
 	let messagesLink;
 
-	if (props.showMessagesLink) {
+	if (showMessagesLink) {
 		messagesLink = <Link to="/messages"><FontAwesomeIcon icon={faComments}></FontAwesomeIcon></Link>
 	}
 	return (

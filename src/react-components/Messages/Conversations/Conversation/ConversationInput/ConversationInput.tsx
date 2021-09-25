@@ -10,8 +10,12 @@ import { selectLoginContext } from 'redux/slices/LoginContextSlice';
 import useDebounce from 'react-hooks/Debounce';
 import IDraftMessage from 'typescript-types/Messages/IDraftMessage';
 
-const ConversationInput: React.FunctionComponent<{ conversationId: string}> = props => {
-    const conversation = useSelector(conversationSelectById(props.conversationId));
+interface ConversationInputProps {
+    conversationId: string
+}
+
+function ConversationInput({conversationId}: ConversationInputProps) {
+    const conversation = useSelector(conversationSelectById(conversationId));
     const replyToMessageId = conversation?.DraftMessage?.ReferenceMessageId || "";
     const [messageDraftTextValue, setMessageDraftTextValue] = useState(conversation?.DraftMessage?.MessageText || "");
     const debouncedMessageDraftText = useDebounce<string>(messageDraftTextValue, 500);
@@ -23,7 +27,7 @@ const ConversationInput: React.FunctionComponent<{ conversationId: string}> = pr
         let draftMessage: IDraftMessage;
         if (debouncedMessageDraftText && debouncedMessageDraftText.trim().length > 0) {
             draftMessage = {
-                ConversationId: props.conversationId,
+                ConversationId: conversationId,
                 MessageType: conversation?.DraftMessage?.MessageType || "text",
                 MessageText: debouncedMessageDraftText,
                 ReferenceMessageId: conversation?.DraftMessage?.ReferenceMessageId
@@ -31,12 +35,12 @@ const ConversationInput: React.FunctionComponent<{ conversationId: string}> = pr
 
             dispatch(setConversationDraftMessage(draftMessage));
         }
-    }, [debouncedMessageDraftText, dispatch, props.conversationId, conversation?.DraftMessage?.MessageType, conversation?.DraftMessage?.ReferenceMessageId]);
+    }, [debouncedMessageDraftText, dispatch, conversationId, conversation?.DraftMessage?.MessageType, conversation?.DraftMessage?.ReferenceMessageId]);
 
     const sendMessage = function() {
         if (messageDraftTextValue && messageDraftTextValue.trim().length > 0) {
             const newMessage = {
-                ConversationId: props.conversationId,
+                ConversationId: conversationId,
                 MessageType: conversation?.DraftMessage?.MessageType || "text",
                 SenderId: loginContent.userId,
                 MessageText: messageDraftTextValue,
@@ -88,7 +92,7 @@ const ConversationInput: React.FunctionComponent<{ conversationId: string}> = pr
 	return (
 	<div className="conversation-input">
         <div className="input-wrapper">
-            <ReplyDraft conversationId={props.conversationId} replyToMessageId={replyToMessageId} closeReply={removeConversationDraftReplyToMessage}></ReplyDraft>
+            <ReplyDraft conversationId={conversationId} replyToMessageId={replyToMessageId} closeReply={removeConversationDraftReplyToMessage}></ReplyDraft>
             <input type="text" placeholder="Send Message" onChange={inputChanged} value={messageDraftTextValue} onKeyDown={handleKeyDown} ref={inputRef}></input>
         </div>
         <FontAwesomeIcon icon={faArrowRight} onClick={sendMessage}></FontAwesomeIcon>
