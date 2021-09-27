@@ -1,11 +1,18 @@
-.register-user {
+.details {
 	padding: 1em;
 	box-sizing: border-box;
 
-	.register-user-inputs {
+	h2 {
+		display: block;
+		text-align: center;
+		padding: 1rem;
+	}
+
+	.inputs {
 		display: grid;
 		grid-gap: 1em;
 		grid-template-columns: repeat(2, minmax(150px, 1fr));
+		padding-bottom: 1em;
 
 		.full-width {
 			grid-column-start: 1;
@@ -23,29 +30,17 @@
 		}
 
 		@media (max-width: 601px) {
+			grid-template-columns: repeat(1, minmax(150px, 1fr));
+
 			.first-name, .last-name {
 				grid-column-start: 1;
 				grid-column-end: end;
 			}
 		}
-
-		.password-strength-container {
-			margin: 0 0.75em;
-			position: relative;
-			bottom: 6px;
-		}
 	}
 
-	.register-user-body {
-		border: 0px solid;
-		border-radius: 0.25em;
-		padding: 20px;
+	.validate-message {
+		transition: opacity 200ms ease-in-out;
+		padding: 1em 2em;
 	}
-}
-
-.register-button-container {
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: space-between;
-	padding: 10px 5px;
 }

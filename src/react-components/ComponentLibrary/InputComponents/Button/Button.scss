@@ -1,0 +1,14 @@
+.button {
+    padding: 1em;
+    border-radius: 2em;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity ease-in-out 200ms, background-color ease-in-out 200ms;
+    background-color: #0e1f5c;
+
+    &.disabled {
+        background-color: #1a379e;
+        opacity: 0.8;
+    }
+}

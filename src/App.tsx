@@ -8,7 +8,8 @@ import {
 import './App.scss';
 
 import Swipe from 'react-components/Swipe/Swipe'
-import RegisterUser from "react-components/Login/RegisterUser/RegisterUser";
+import SignUp from "react-components/Register/SignUp/SignUp";
+import AddDetails from "react-components/Register/AddDetails/AddDetails";
 import LoginUser from "react-components/Login/LoginUser/LoginUser";
 import SwipeNavBar from "react-components/Swipe/SwipeNavBar/SwipeNavBar";
 import SwipeUserProfile from "react-components/Swipe/SwipeUserProfile/SwipeUserProfile";
@@ -53,8 +54,11 @@ function App() {
 							<Route path="/messages">
 								<Conversations />
 							</Route>
-							<Route path="/register">
-								<RegisterUser />
+							<Route path="/register/signup">
+								<SignUp />
+							</Route>
+							<Route path="/register/details">
+								<AddDetails />
 							</Route>
 							<Route path="/login">
 								<LoginUser />
