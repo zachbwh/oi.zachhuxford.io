@@ -2,7 +2,8 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 
 import './App.scss';
@@ -27,9 +28,6 @@ function App() {
 			<header className="App-header">
 				<Router>
 					<Switch>
-						<Route exact path="/">
-							<SwipeNavBar showMessagesLink={true} />
-						</Route>
 						<Route path="/swipe">
 							<SwipeNavBar showMessagesLink={true} />
 						</Route>
@@ -46,7 +44,7 @@ function App() {
 								<SwipeSettings />
 							</Route>
 							<Route exact path="/">
-								<Swipe />
+								<Redirect to="/swipe" />
 							</Route>
 							<Route path="/swipe">
 								<Swipe />
