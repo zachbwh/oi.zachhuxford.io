@@ -11,12 +11,24 @@
 	.inputs {
 		display: grid;
 		grid-gap: 1em;
+		padding-bottom: 1em;
+
+		.recaptcha-container {
+			display: flex;
+			justify-content: center;
+			transition: opacity 200ms ease-in-out;
+			opacity: 0;
+
+			&.visible {
+				opacity: 1;
+			}
+		}
 	}
 
 	.password-feedback {
 		transition: opacity 200ms ease-in-out;
 		height: 1.2em;
-		padding: 0 2em 1em 2em;
+		padding: 0 2em;
 	}
 
 	.validate-message {

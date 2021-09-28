@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import zxcvbn from 'zxcvbn';
+import ReCAPTCHA from "react-google-recaptcha";
 import getMergeReducer from 'helpers/GetMergeReducer';
 
 import './SignUp.scss';
@@ -13,15 +14,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface SignUpForm {
 	emailAddress: string,
-	password: string
+	password: string,
+	recaptchaToken: string | null
 }
 
 function SignUp() {
 	const [formState, update] = useReducer(getMergeReducer<SignUpForm>(), {
 		emailAddress: '',
-		password: ''
+		password: '',
+		recaptchaToken: null
 	})
-	const {emailAddress, password} = formState;
+	const {emailAddress, password, recaptchaToken} = formState;
 
 	const [passwordFeedback, setPasswordFeedback] = useState("");
 	const [validateMessage, setValidateMessage] = useState("");
@@ -35,6 +38,10 @@ function SignUp() {
 		}
 		if (password.length < 8) {
 			if (throwError) throw new Error("Minimum Password Length is 8 Characters");
+			return false;
+		}
+		if (!recaptchaToken) {
+			if (throwError) throw new Error("Please Complete Recaptcha");
 			return false;
 		}
 
@@ -80,7 +87,7 @@ function SignUp() {
 
 	useEffect(() => {
 		setValidateMessage("")
-	}, [emailAddress, password]);
+	}, [emailAddress, password, recaptchaToken]);
 
 	return (
 	<div className="sign-up">
@@ -91,8 +98,11 @@ function SignUp() {
 			<div className="password-feedback" style={{opacity: passwordFeedback ? 1 : 0}}>
 				{passwordFeedback}
 			</div>
+			<div className={`recaptcha-container ${(!!emailAddress && !!password) ? "visible" : ""}`}>
+				<ReCAPTCHA onChange={(recaptchaToken) => update({recaptchaToken})} sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY || ""} theme={"dark"}/>
+			</div>
 		</div>
-		<Button onClick={signUp} disabled={(!emailAddress || !password)}>{loading ? <FontAwesomeIcon icon={faCircleNotch} className="fa-spin" /> : "Register"}</Button>
+		<Button onClick={signUp} disabled={(!emailAddress || !password || !recaptchaToken)}>{loading ? <FontAwesomeIcon icon={faCircleNotch} className="fa-spin" /> : "Register"}</Button>
 		<div className="validate-message" style={{opacity: validateMessage ? 1 : 0}}>
 			{validateMessage}
 		</div>
