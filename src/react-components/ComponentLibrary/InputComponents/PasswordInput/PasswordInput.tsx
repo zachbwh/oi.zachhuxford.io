@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 
 import './PasswordInput.scss';
 import PasswordStrength from './PasswordStrength/PasswordStrength';
+import useToggle from 'react-hooks/Toggle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
 interface PasswordInputProps {
     password: string,
@@ -18,6 +21,7 @@ function PasswordInput({password, setPassword, label, showStrength=false, autoFo
     }
 
     const [focused, setFocused] = useState(autoFocus);
+    const [showPassword, toggleShowPassword] = useToggle(false);
     const active = focused || password;
 
     if (focused) {
@@ -30,7 +34,10 @@ function PasswordInput({password, setPassword, label, showStrength=false, autoFo
 	return (
     <div className={"password-input " + classNames}>
         <div className="label">{label}</div>
-        <input value={password} onChange={inputChanged} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} type="password" size={2} autoFocus={autoFocus}/>
+        <div className="input-row">
+            <input value={password} onChange={inputChanged} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} type={showPassword ? "text" : "password"} size={2} autoFocus={autoFocus}/>
+            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} onClick={toggleShowPassword} className="toggle-password-hidden" />
+        </div>
         <div className="password-strength-container" style={{display: showStrength ? "block" : "none"}}>
             <PasswordStrength password={password}/>
         </div>
