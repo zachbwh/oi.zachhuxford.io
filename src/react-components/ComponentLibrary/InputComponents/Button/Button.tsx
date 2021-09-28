@@ -14,9 +14,9 @@ function Button({onClick, disabled=false, classNames="dark", children}: React.Pr
     }
 
 	return (
-    <div className={`button ${classNames} ${disabled ? "disabled" : ""}`} onClick={buttonClicked}>
+    <button className={`button ${classNames} ${disabled ? "disabled" : ""}`} onClick={buttonClicked}>
         {children}
-    </div>
+    </button>
 	);
 }
 

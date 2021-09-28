@@ -1,4 +1,6 @@
 .button {
+    display: block;
+    width: 100%;
     padding: 1em;
     border-radius: 2em;
     text-align: center;
@@ -6,9 +8,21 @@
     font-weight: bold;
     transition: opacity ease-in-out 200ms, background-color ease-in-out 200ms;
     background-color: #0e1f5c;
+    border: 1px solid #0e1f5c;
+    color: white;
 
     &.disabled {
         background-color: #1a379e;
         opacity: 0.8;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: #FFFFFF;
+    }
+
+    .fa-spin {
+        font-size: 1.3em;
+        height: 1em;
     }
 }
