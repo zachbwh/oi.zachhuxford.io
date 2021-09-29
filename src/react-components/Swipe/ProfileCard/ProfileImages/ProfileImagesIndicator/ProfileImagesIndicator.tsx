@@ -9,9 +9,9 @@ interface ProfileImagesIndicatorProps {
     profileImages: IProfileImage[]
 }
 
-function ProfileImagesIndicator({index, profileImages}: ProfileImagesIndicatorProps) {
+function ProfileImagesIndicator({index, profileImages}: React.PropsWithChildren<ProfileImagesIndicatorProps>) {
     var indicatorElements = profileImages.map((profileImage, i) => {
-        return <ProjectImageIndicator key={index} isActive={index === i} count={profileImages.length} />
+        return <ProjectImageIndicator key={i} isActive={index === i} count={profileImages.length} />
     });
     
     return <div className="profile-images-indicator">{indicatorElements}</div>
