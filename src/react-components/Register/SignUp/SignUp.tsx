@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, useCallback } from 'react';
 import zxcvbn from 'zxcvbn';
-import ReCAPTCHA from "react-google-recaptcha";
 import getMergeReducer from 'helpers/GetMergeReducer';
 
 import './SignUp.scss';
@@ -10,6 +9,7 @@ import Button from 'react-components/ComponentLibrary/InputComponents/Button/But
 import { useHistory } from 'react-router';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 
 interface SignUpForm {
@@ -85,9 +85,22 @@ function SignUp() {
 
 	}, [password]);
 
+	const { executeRecaptcha } = useGoogleReCaptcha();
+
+	const getRecaptchaToken = useCallback(async () => {
+		if (executeRecaptcha) {
+			let recaptchaToken = await executeRecaptcha();
+			update({recaptchaToken})
+		}
+	}, [executeRecaptcha])
+
 	useEffect(() => {
 		setValidateMessage("")
-	}, [emailAddress, password, recaptchaToken]);
+
+		if (!!emailAddress && !!password && !recaptchaToken) {
+			getRecaptchaToken()
+		}
+	}, [emailAddress, password, recaptchaToken, getRecaptchaToken]);
 
 	return (
 	<div className="sign-up">
@@ -98,13 +111,14 @@ function SignUp() {
 			<div className="password-feedback" style={{opacity: passwordFeedback ? 1 : 0}}>
 				{passwordFeedback}
 			</div>
-			<div className={`recaptcha-container ${(!!emailAddress && !!password) ? "visible" : ""}`}>
-				<ReCAPTCHA onChange={(recaptchaToken) => update({recaptchaToken})} sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY || ""} theme={"dark"}/>
-			</div>
 		</div>
 		<Button onClick={signUp} disabled={(!emailAddress || !password || !recaptchaToken)}>{loading ? <FontAwesomeIcon icon={faCircleNotch} className="fa-spin" /> : "Register"}</Button>
 		<div className="validate-message" style={{opacity: validateMessage ? 1 : 0}}>
 			{validateMessage}
+		</div>
+
+		<div className="recaptcha-terms">
+			This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.
 		</div>
 	</div>
 	);

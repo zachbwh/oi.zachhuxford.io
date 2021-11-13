@@ -1,6 +1,7 @@
 .sign-up {
 	padding: 1em;
 	box-sizing: border-box;
+	overflow-y: auto;
 
 	h2 {
 		display: block;
@@ -12,17 +13,6 @@
 		display: grid;
 		grid-gap: 1em;
 		padding-bottom: 1em;
-
-		.recaptcha-container {
-			display: flex;
-			justify-content: center;
-			transition: opacity 200ms ease-in-out;
-			opacity: 0;
-
-			&.visible {
-				opacity: 1;
-			}
-		}
 	}
 
 	.password-feedback {
@@ -41,4 +31,19 @@
 		border-radius: 0.25em;
 		padding: 20px;
 	}
+
+	.recaptcha-terms {
+		text-align: center;
+		padding-top: 160px;
+		opacity: 0.8;
+		font-size: 0.8em;
+
+		a {
+			font-weight: bold;
+		}
+	}
+}
+
+.grecaptcha-badge { 
+    visibility: hidden;
 }

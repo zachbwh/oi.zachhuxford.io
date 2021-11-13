@@ -5,12 +5,15 @@ import store from 'redux/Store';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_RECAPTCHA_SITE_KEY || ""}>
+      <Provider store={store}>
+          <App />
+      </Provider>
+    </GoogleReCaptchaProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
