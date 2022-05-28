@@ -18,6 +18,7 @@ import SwipeSettings from "react-components/Swipe/SwipeSettings/SwipeSettings";
 import SwipeSettingsLookingFor from "react-components/Swipe/SwipeSettings/SwipeSettingsLookingFor/SwipeSettingsLookingFor";
 import Conversations from "react-components/Messages/Conversations/Conversations";
 import GradientBackground from "react-components/ComponentLibrary/GradientBackground/GradientBackground";
+import ProtectedRoute from "auth/ProtectedRoute";
 
 function App() {
 	let vh = window.innerHeight * 0.01;
@@ -34,24 +35,24 @@ function App() {
 					</Switch>
 					<div className="App-content">
 						<Switch>
-							<Route path="/swipe/profile">
+							<ProtectedRoute path="/swipe/profile">
 								<SwipeUserProfile />
-							</Route>
-							<Route path="/swipe/settings/looking-for">
+							</ProtectedRoute>
+							<ProtectedRoute path="/swipe/settings/looking-for">
 								<SwipeSettingsLookingFor />
-							</Route>
-							<Route path="/swipe/settings">
+							</ProtectedRoute>
+							<ProtectedRoute path="/swipe/settings">
 								<SwipeSettings />
-							</Route>
-							<Route exact path="/">
+							</ProtectedRoute>
+							<ProtectedRoute exact path="/">
 								<Redirect to="/swipe" />
-							</Route>
-							<Route path="/swipe">
+							</ProtectedRoute>
+							<ProtectedRoute path="/swipe">
 								<Swipe />
-							</Route>
-							<Route path="/messages">
+							</ProtectedRoute>
+							<ProtectedRoute path="/messages">
 								<Conversations />
-							</Route>
+							</ProtectedRoute>
 							<Route path="/register/signup">
 								<SignUp />
 							</Route>
