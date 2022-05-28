@@ -9,9 +9,7 @@ import {
 import './App.scss';
 
 import Swipe from 'react-components/Swipe/Swipe'
-import SignUp from "react-components/Register/SignUp/SignUp";
 import AddDetails from "react-components/Register/AddDetails/AddDetails";
-import LoginUser from "react-components/Login/LoginUser/LoginUser";
 import SwipeNavBar from "react-components/Swipe/SwipeNavBar/SwipeNavBar";
 import SwipeUserProfile from "react-components/Swipe/SwipeUserProfile/SwipeUserProfile";
 import SwipeSettings from "react-components/Swipe/SwipeSettings/SwipeSettings";
@@ -53,14 +51,8 @@ function App() {
 							<ProtectedRoute path="/messages">
 								<Conversations />
 							</ProtectedRoute>
-							<Route path="/register/signup">
-								<SignUp />
-							</Route>
 							<Route path="/register/details">
 								<AddDetails />
-							</Route>
-							<Route path="/login">
-								<LoginUser />
 							</Route>
 						</Switch>
 					</div>
