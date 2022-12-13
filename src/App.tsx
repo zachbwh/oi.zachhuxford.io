@@ -9,8 +9,6 @@ import SwipeSettings from "react-components/Swipe/SwipeSettings/SwipeSettings";
 import SwipeSettingsLookingFor from "react-components/Swipe/SwipeSettings/SwipeSettingsLookingFor/SwipeSettingsLookingFor";
 import Conversations from "react-components/Messages/Conversations/Conversations";
 import GradientBackground from "react-components/ComponentLibrary/GradientBackground/GradientBackground";
-import ProtectedRoute from "auth/ProtectedRoute";
-import SalesPage from "react-components/SalesPage/SalesPage";
 
 function App() {
   let vh = window.innerHeight * 0.01;
@@ -27,24 +25,21 @@ function App() {
           </Switch>
           <div className="App-content">
             <Switch>
-              <Route exact path="/">
-                <SalesPage />
-              </Route>
-              <ProtectedRoute path="/swipe/profile">
+              <Route path="/swipe/profile">
                 <SwipeUserProfile />
-              </ProtectedRoute>
-              <ProtectedRoute path="/swipe/settings/looking-for">
+              </Route>
+              <Route path="/swipe/settings/looking-for">
                 <SwipeSettingsLookingFor />
-              </ProtectedRoute>
-              <ProtectedRoute path="/swipe/settings">
+              </Route>
+              <Route path="/swipe/settings">
                 <SwipeSettings />
-              </ProtectedRoute>
-              <ProtectedRoute path="/swipe">
+              </Route>
+              <Route path="/swipe">
                 <Swipe />
-              </ProtectedRoute>
-              <ProtectedRoute path="/messages">
+              </Route>
+              <Route path="/messages">
                 <Conversations />
-              </ProtectedRoute>
+              </Route>
               <Route path="/register/details">
                 <AddDetails />
               </Route>

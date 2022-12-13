@@ -6,7 +6,6 @@ import "./index.scss";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
-import { Auth0Provider } from "@auth0/auth0-react";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,13 +13,7 @@ ReactDOM.render(
       reCaptchaKey={process.env.REACT_APP_RECAPTCHA_SITE_KEY || ""}
     >
       <Provider store={store}>
-        <Auth0Provider
-          domain="dev-i0lklall.us.auth0.com"
-          clientId="clZ619XfPIk8ELgUXk7ZzM1EblfrseZn"
-          redirectUri={window.location.origin}
-        >
           <App />
-        </Auth0Provider>
       </Provider>
     </GoogleReCaptchaProvider>
   </React.StrictMode>,
