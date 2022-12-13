@@ -5,7 +5,7 @@ import './Swipe.scss';
 
 import ProfileCard from './ProfileCard/ProfileCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { faRedo } from '@fortawesome/free-solid-svg-icons';
 
 function Swipe() {
