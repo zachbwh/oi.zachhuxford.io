@@ -9,22 +9,19 @@ import Button from 'react-components/ComponentLibrary/InputComponents/Button/But
 import { useHistory } from 'react-router';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 
 interface SignUpForm {
 	emailAddress: string,
-	password: string,
-	recaptchaToken: string | null
+	password: string
 }
 
 function SignUp() {
 	const [formState, update] = useReducer(getMergeReducer<SignUpForm>(), {
 		emailAddress: '',
-		password: '',
-		recaptchaToken: null
+		password: ''
 	})
-	const {emailAddress, password, recaptchaToken} = formState;
+	const {emailAddress, password} = formState;
 
 	const [passwordFeedback, setPasswordFeedback] = useState("");
 	const [validateMessage, setValidateMessage] = useState("");
@@ -38,10 +35,6 @@ function SignUp() {
 		}
 		if (password.length < 8) {
 			if (throwError) throw new Error("Minimum Password Length is 8 Characters");
-			return false;
-		}
-		if (!recaptchaToken) {
-			if (throwError) throw new Error("Please Complete Recaptcha");
 			return false;
 		}
 
@@ -85,23 +78,6 @@ function SignUp() {
 
 	}, [password]);
 
-	const { executeRecaptcha } = useGoogleReCaptcha();
-
-	const getRecaptchaToken = useCallback(async () => {
-		if (executeRecaptcha) {
-			let recaptchaToken = await executeRecaptcha();
-			update({recaptchaToken})
-		}
-	}, [executeRecaptcha])
-
-	useEffect(() => {
-		setValidateMessage("")
-
-		if (!!emailAddress && !!password && !recaptchaToken) {
-			getRecaptchaToken()
-		}
-	}, [emailAddress, password, recaptchaToken, getRecaptchaToken]);
-
 	return (
 	<div className="sign-up">
 		<h2>Sign Up</h2>
@@ -112,13 +88,9 @@ function SignUp() {
 				{passwordFeedback}
 			</div>
 		</div>
-		<Button onClick={signUp} disabled={(!emailAddress || !password || !recaptchaToken)}>{loading ? <FontAwesomeIcon icon={faCircleNotch} className="fa-spin" /> : "Register"}</Button>
+		<Button onClick={signUp} disabled={(!emailAddress || !password)}>{loading ? <FontAwesomeIcon icon={faCircleNotch} className="fa-spin" /> : "Register"}</Button>
 		<div className="validate-message" style={{opacity: validateMessage ? 1 : 0}}>
 			{validateMessage}
-		</div>
-
-		<div className="recaptcha-terms">
-			This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.
 		</div>
 	</div>
 	);
