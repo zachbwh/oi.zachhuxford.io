@@ -63,8 +63,8 @@ function Swipe() {
 	} else if (acceptedCount > 0) {
 		endOfListMessage = (
 			<div>
-				<h3>You're outta profiles!</h3>
-				<Link to="/messages">Go talk to your matches!</Link>
+				<h3>You're outta profiles! Talk to your matches on slack</h3>
+				{/* <Link to="/messages">Go talk to your matches!</Link> */}
 			</div>
 		);
 	} else if (rejectedCount > 0) {
